@@ -1,0 +1,61 @@
+# Created by https:\\www.toptal.com\developers\gitignore\api\dotnetcore
+# Edit at https:\\www.toptal.com\developers\gitignore?templates=dotnetcore
+
+### DotnetCore APPLICATION ###
+# .NET Core build folders
+/basecs/bin/*
+/basecs/obj/*
+/basecs/bin
+/basecs/obj
+
+# Common node modules locations
+/basecs/node_modules/
+/basecs/wwwroot/node_modules
+
+# Common IDE VS and VS Code
+/basecs/.vscode/
+/basecs/.vs/
+/basecs/basecs/.vscode/*
+/basecs/.vs/*
+
+# Common publish files
+/basecs/publish/*
+/basecs/setup.sql
+/basecs/.dockerignore
+/basecs/appsettings.json
+/basecs/appsettings.Development.json
+/basecs/appsettings.*
+/basecs/docker-compose.yml
+/basecs/deployment.yml
+/basecs/Dockerfile
+/basecs/entrypoint.sh
+
+# Common project files
+/basecs/Migrations/*
+/basecs/Migrations/
+# End of https:\www.toptal.com/developers/gitignore/api/dotnetcore
+
+
+### DotnetCore TESTS ###
+basecs.tests/bin/*
+basecs.tests/obj/*
+basecs.tests/bin
+basecs.tests/obj
+
+# Common node modules locations
+/basecs.tests/node_modules/*
+/basecs.tests/wwwroot/node_modules/
+/basecs.tests/node_modules
+/basecs.tests/wwwroot/node_modules
+
+# Common IDE VS and VS Code
+/basecs.tests/.vscode/*
+/basecs.tests/.vs/*
+/basecs.tests/.vscode
+/basecs.tests/.vs
+
+### DotnetCore ROOT ###
+/.vscode/*
+/.vs/*
+/.vscode
+/.vs
