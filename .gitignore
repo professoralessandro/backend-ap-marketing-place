@@ -1,7 +1,7 @@
 # Created by https:\\www.toptal.com\developers\gitignore\api\dotnetcore
 # Edit at https:\\www.toptal.com\developers\gitignore?templates=dotnetcore
 
-### DotnetCore APPLICATION ###
+### DotnetCore APPLICATION ####
 # .NET Core build folders
 /basecs/bin/*
 /basecs/obj/*
