@@ -8,7 +8,7 @@
 /basecs/bin
 /basecs/obj
 
-# Common node modules locations
+# Common node modules locations.
 /basecs/node_modules/
 /basecs/wwwroot/node_modules
 
