@@ -85,8 +85,8 @@ namespace basecs.Services
             {
                 List<Log> lstRetorno = await _context.Logs.Where(c =>
                     (c.LogId == id || id == null) &&
-                    (c.Request.Contains(Validators.RemoveInjections(request)) || string.IsNullOrEmpty(request)) &&
-                    (c.Method.Contains(Validators.RemoveInjections(method)) || string.IsNullOrEmpty(method)) &&
+                    (c.Request.Contains(Validators.RemoveInjections(request)) || string.IsNullOrEmpty(Validators.RemoveInjections(request))) &&
+                    (c.Method.Contains(Validators.RemoveInjections(method)) || string.IsNullOrEmpty(Validators.RemoveInjections(method))) &&
                     (c.UserAddedId == userAddedId || userAddedId == null) &&
                     (c.DateAdded == dateAdded || dateAdded == null)
                     ).ToListAsync();

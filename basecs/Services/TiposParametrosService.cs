@@ -54,7 +54,7 @@ namespace basecs.Services
             {
                 SqlParameter[] Params = {
                     new SqlParameter("@Id", id.Equals(null) ? DBNull.Value : id),
-                    new SqlParameter("@Descricao", string.IsNullOrEmpty(descricao) ? DBNull.Value : Validators.RemoveInjections(descricao)),
+                    new SqlParameter("@Descricao", string.IsNullOrEmpty(Validators.RemoveInjections(descricao)) ? DBNull.Value : Validators.RemoveInjections(descricao)),
                     new SqlParameter("@Ativo", ativo.Equals(null) ? DBNull.Value : ativo),
                     new SqlParameter("@PageNumber", pageNumber),
                     new SqlParameter("@RowspPage", rowspPage)
@@ -88,7 +88,7 @@ namespace basecs.Services
                 {
                     return await context.TiposParametros.Where(c =>
                     (c.TipoParametroId == id || id == null) &&
-                    (c.Descricao.Contains(Validators.RemoveInjections(descricao)) || string.IsNullOrEmpty(descricao)) &&
+                    (c.Descricao.Contains(Validators.RemoveInjections(descricao)) || string.IsNullOrEmpty(Validators.RemoveInjections(descricao))) &&
                     (c.Ativo == ativo || ativo == null))
                     .OrderByDescending(x => x.TipoParametroId)
                     .ToListAsync();
