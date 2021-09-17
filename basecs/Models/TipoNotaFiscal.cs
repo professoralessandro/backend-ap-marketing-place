@@ -5,9 +5,9 @@ using System.Collections.Generic;
 
 namespace basecs.Models
 {
-    public partial class TiposNotasFiscai
+    public partial class TipoNotaFiscal
     {
-        public TiposNotasFiscai()
+        public TipoNotaFiscal()
         {
             NotasFiscais = new HashSet<NotasFiscai>();
         }
