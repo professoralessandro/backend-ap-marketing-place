@@ -22,9 +22,6 @@
 /basecs/publish/*
 /basecs/setup.sql
 /basecs/.dockerignore
-/basecs/appsettings.json
-/basecs/appsettings.Development.json
-/basecs/appsettings.*
 /basecs/docker-compose.yml
 /basecs/deployment.yml
 /basecs/Dockerfile
