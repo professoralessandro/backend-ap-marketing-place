@@ -26,14 +26,14 @@ namespace basecs.tests.Services.TiposNotasFiscais
         [Fact(DisplayName = "Insert Send Valid Post")]
         public void Insert_SendValidPost()
         {
-            var retorno = new basecs.Models.TipoNotaFiscal { TipoNotaFiscalId = 1, Descricao = "Descricao Teste", Ativo = true, UsuarioUltimaAlteracaoId = 1, UsuarioInclusaoId = 1, DataInclusao = DateTime.Now, DataUltimaAlteracao = DateTime.Now };
+            var retorno = new basecs.Models.TipoNotaFiscal { TipoNotaFiscalId = 1, Descricao = "Unit Test", Ativo = true, UsuarioUltimaAlteracaoId = 1, UsuarioInclusaoId = 1, DataInclusao = DateTime.Now, DataUltimaAlteracao = DateTime.Now };
             _serviceMock.Setup(x => x.Insert(It.IsAny<basecs.Models.TipoNotaFiscal>())).ReturnsAsync(retorno);
         }
 
         [Fact(DisplayName = "Insert Send Invalid PostId")]
         public async Task Insert_SendInvalidPostId()
         {
-            await Assert.ThrowsAsync<Exception>(() => _service.Insert(new basecs.Models.TipoNotaFiscal { TipoNotaFiscalId = 200, Descricao = "Descricao Teste", Ativo = true, UsuarioUltimaAlteracaoId = 1, UsuarioInclusaoId = 1, DataInclusao = DateTime.Now, DataUltimaAlteracao = DateTime.Now }));
+            await Assert.ThrowsAsync<Exception>(() => _service.Insert(new basecs.Models.TipoNotaFiscal { TipoNotaFiscalId = 200, Descricao = "Unit Test", Ativo = true, UsuarioUltimaAlteracaoId = 1, UsuarioInclusaoId = 1, DataInclusao = DateTime.Now, DataUltimaAlteracao = DateTime.Now }));
         }
 
         [Fact(DisplayName = "Insert Send Invalid Post Description")]
@@ -47,14 +47,14 @@ namespace basecs.tests.Services.TiposNotasFiscais
         [Fact(DisplayName = "Update Send Invalid Post Description")]
         public void Update_SendValidPut()
         {
-            var retorno = new basecs.Models.TipoNotaFiscal { TipoNotaFiscalId = 200, Descricao = "Descricao Teste", Ativo = true, UsuarioUltimaAlteracaoId = 1, UsuarioInclusaoId = 1, DataInclusao = DateTime.Now, DataUltimaAlteracao = DateTime.Now };
+            var retorno = new basecs.Models.TipoNotaFiscal { TipoNotaFiscalId = 200, Descricao = "Unit Test", Ativo = true, UsuarioUltimaAlteracaoId = 1, UsuarioInclusaoId = 1, DataInclusao = DateTime.Now, DataUltimaAlteracao = DateTime.Now };
             _serviceMock.Setup(x => x.Update(It.IsAny<basecs.Models.TipoNotaFiscal>())).ReturnsAsync(retorno);
         }
 
         [Fact]
         public async Task Update_SendInvalidPostId()
         {
-            await Assert.ThrowsAsync<Exception>(() => _service.Update(new basecs.Models.TipoNotaFiscal { TipoNotaFiscalId = 0, Descricao = "Descricao Teste", Ativo = true, UsuarioUltimaAlteracaoId = 1, UsuarioInclusaoId = 1, DataInclusao = DateTime.Now, DataUltimaAlteracao = DateTime.Now }));
+            await Assert.ThrowsAsync<Exception>(() => _service.Update(new basecs.Models.TipoNotaFiscal { TipoNotaFiscalId = 0, Descricao = "Unit Test", Ativo = true, UsuarioUltimaAlteracaoId = 1, UsuarioInclusaoId = 1, DataInclusao = DateTime.Now, DataUltimaAlteracao = DateTime.Now }));
         }
 
         [Fact]

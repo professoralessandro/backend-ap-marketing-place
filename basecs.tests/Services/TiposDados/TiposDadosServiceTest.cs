@@ -26,14 +26,14 @@ namespace basecs.tests.Services.TipoDado
         [Fact(DisplayName = "Insert Send Valid Post")]
         public void Insert_SendValidPost()
         {
-            var retorno = new basecs.Models.TipoDado { TipoDadoId = 1, Descricao = "Descricao Teste", Ativo = true, UsuarioUltimaAlteracaoId = 1, UsuarioInclusaoId = 1, DataInclusao = DateTime.Now, DataUltimaAlteracao = DateTime.Now };
+            var retorno = new basecs.Models.TipoDado { TipoDadoId = 1, Descricao = "Unit Test", Ativo = true, UsuarioUltimaAlteracaoId = 1, UsuarioInclusaoId = 1, DataInclusao = DateTime.Now, DataUltimaAlteracao = DateTime.Now };
             _serviceMock.Setup(x => x.Insert(It.IsAny<basecs.Models.TipoDado>())).ReturnsAsync(retorno);
         }
 
         [Fact(DisplayName = "Insert Send Invalid PostId")]
         public async Task Insert_SendInvalidPostId()
         {
-            await Assert.ThrowsAsync<Exception>(() => _service.Insert(new basecs.Models.TipoDado { TipoDadoId = 200, Descricao = "Descricao Teste", Ativo = true, UsuarioUltimaAlteracaoId = 1, UsuarioInclusaoId = 1, DataInclusao = DateTime.Now, DataUltimaAlteracao = DateTime.Now }));
+            await Assert.ThrowsAsync<Exception>(() => _service.Insert(new basecs.Models.TipoDado { TipoDadoId = 200, Descricao = "Unit Test", Ativo = true, UsuarioUltimaAlteracaoId = 1, UsuarioInclusaoId = 1, DataInclusao = DateTime.Now, DataUltimaAlteracao = DateTime.Now }));
         }
 
         [Fact(DisplayName = "Insert Send Invalid Post Description")]
@@ -47,14 +47,14 @@ namespace basecs.tests.Services.TipoDado
         [Fact(DisplayName = "Update Send Invalid Post Description")]
         public void Update_SendValidPut()
         {
-            var retorno = new basecs.Models.TipoDado { TipoDadoId = 200, Descricao = "Descricao Teste", Ativo = true, UsuarioUltimaAlteracaoId = 1, UsuarioInclusaoId = 1, DataInclusao = DateTime.Now, DataUltimaAlteracao = DateTime.Now };
+            var retorno = new basecs.Models.TipoDado { TipoDadoId = 200, Descricao = "Unit Test", Ativo = true, UsuarioUltimaAlteracaoId = 1, UsuarioInclusaoId = 1, DataInclusao = DateTime.Now, DataUltimaAlteracao = DateTime.Now };
             _serviceMock.Setup(x => x.Update(It.IsAny<basecs.Models.TipoDado>())).ReturnsAsync(retorno);
         }
 
         [Fact]
         public async Task Update_SendInvalidPostId()
         {
-            await Assert.ThrowsAsync<Exception>(() => _service.Update(new basecs.Models.TipoDado { TipoDadoId = 0, Descricao = "Descricao Teste", Ativo = true, UsuarioUltimaAlteracaoId = 1, UsuarioInclusaoId = 1, DataInclusao = DateTime.Now, DataUltimaAlteracao = DateTime.Now }));
+            await Assert.ThrowsAsync<Exception>(() => _service.Update(new basecs.Models.TipoDado { TipoDadoId = 0, Descricao = "Unit Test", Ativo = true, UsuarioUltimaAlteracaoId = 1, UsuarioInclusaoId = 1, DataInclusao = DateTime.Now, DataUltimaAlteracao = DateTime.Now }));
         }
 
         [Fact]
