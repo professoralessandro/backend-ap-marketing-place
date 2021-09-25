@@ -136,7 +136,7 @@ namespace basecs.Services
 
                 if (validationMessage.Equals(""))
                 {
-                    this._context.Update(model);
+                    this._context.TiposTelefones.Update(model);
                     await this._context.SaveChangesAsync();
                     return model;
                 }

@@ -8,6 +8,6 @@ namespace basecs.Models
         public int NotaFiscalId { get; set; }
         public int TipoNotaFiscalId { get; set; }
 
-        public virtual TiposNotasFiscai TipoNotaFiscal { get; set; }
+        public virtual TipoNotaFiscal TipoNotaFiscal { get; set; }
     }
 }

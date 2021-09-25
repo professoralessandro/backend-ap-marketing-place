@@ -2,47 +2,47 @@ using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Threading.Tasks;
-using basecs.Business.TiposWorkFlows;
 using basecs.Data;
-using basecs.Helpers.Helpers.Validators;
-using basecs.Interfaces.ITiposWorkFlowsService;
 using basecs.Models;
 using Microsoft.Data.SqlClient;
 using Microsoft.EntityFrameworkCore;
+using basecs.Business.TiposBloqueios;
+using basecs.Helpers.Helpers.Validators;
+using basecs.Interfaces.ITiposBloqueiosService;
 
 namespace basecs.Services
 {
-    public class TiposWorkFlowsService : ITiposWorkFlowsService
+    public class TiposBloqueiosService : ITiposBloqueiosService
     {
         #region ATRIBUTTES
         private readonly MyDbContext _context;
-        private readonly TiposWorkFlowsBusiness _business;
+        private readonly TiposBloqueiosBusiness _business;
         #endregion
 
         #region CONTRUCTORS
-        public TiposWorkFlowsService(MyDbContext context)
+        public TiposBloqueiosService(MyDbContext context)
         {
             _context = context;
-            _business = new TiposWorkFlowsBusiness();
+            _business = new TiposBloqueiosBusiness();
         }
         #endregion
 
         #region FIND BY ID
-        public async Task<TipoWorkFlow> FindById(int id)
+        public async Task<TipoBloqueio> FindById(int id)
         {
             try
             {
-                return await this._context.TiposWorkFlows.SingleOrDefaultAsync(c => c.TipoWorkFlowId == id);
+                return await this._context.TiposBloqueios.SingleOrDefaultAsync(c => c.TipoBloqueioId == id);
             }
             catch (Exception ex)
             {
-                throw new Exception("Houve um erro ao o tipo de workflow desejado! " + ex.Message);
+                throw new Exception("Houve um erro ao buscar o TipoBloqueio desejada!" + ex.Message);
             }
         }
         #endregion
 
         #region RETURN LIST WITH PARAMETERS PAGINATED
-        public async Task<List<TipoWorkFlow>> ReturnListWithParametersPaginated(
+        public async Task<List<TipoBloqueio>> ReturnListWithParametersPaginated(
                 int? id,
                 string descricao,
                 bool? ativo,
@@ -60,23 +60,23 @@ namespace basecs.Services
                     new SqlParameter("@RowspPage", rowspPage)
                 };
 
-                var storedProcedure = $@"[dbo].[TiposWorkFlowsPaginated] @Id, @Descricao, @Ativo, @PageNumber, @RowspPage";
+                var storedProcedure = $@"[dbo].[TiposBloqueiosPaginated] @Id, @Descricao, @Ativo, @PageNumber, @RowspPage";
 
                 using (var context = this._context)
                 {
-                    return await context.TiposWorkFlows.FromSqlRaw(storedProcedure, Params).ToListAsync();
+                    return await context.TiposBloqueios.FromSqlRaw(storedProcedure, Params).ToListAsync();
                 }
             }
             catch (Exception ex)
             {
-                throw new Exception("Não foi possível realizar a busca por tipos workflows: " + ex.Message);
+                throw new Exception("Não foi possível realizar a busca por tipos bloqueios: " + ex.Message);
             }
 
         }
         #endregion
 
         #region RETURN LIST WITH PARAMETERS
-        public async Task<List<TipoWorkFlow>> ReturnListWithParameters(
+        public async Task<List<TipoBloqueio>> ReturnListWithParameters(
                 int? id,
                 string descricao,
                 bool? ativo
@@ -86,24 +86,23 @@ namespace basecs.Services
             {
                 using (var context = this._context)
                 {
-                    return await context.TiposWorkFlows.Where(c =>
-                    (c.TipoWorkFlowId == id || id == null) &&
+                    return await context.TiposBloqueios.Where(c =>
+                    (c.TipoBloqueioId == id || id == null) &&
                     (c.Descricao.Contains(Validators.RemoveInjections(descricao)) || string.IsNullOrEmpty(Validators.RemoveInjections(descricao))) &&
-                    (c.Ativo == ativo || ativo == null))
-                    .OrderByDescending(x => x.TipoWorkFlowId)
+                    (c.Ativo == ativo || ativo == null)
+                    ).OrderByDescending(x => x.TipoBloqueioId)
                     .ToListAsync();
                 }
             }
             catch (Exception ex)
             {
-                throw new Exception("Não foi possível realizar a busca por tipos workflows: " + ex.Message);
+                throw new Exception("Não foi possível realizar a busca por tipos bloqueios: " + ex.Message);
             }
-
         }
         #endregion
 
         #region INSERT
-        public async Task<TipoWorkFlow> Insert(TipoWorkFlow model)
+        public async Task<TipoBloqueio> Insert(TipoBloqueio model)
         {
             try
             {
@@ -111,7 +110,7 @@ namespace basecs.Services
 
                 if (validationMessage.Equals(""))
                 {
-                    this._context.TiposWorkFlows.Add(model);
+                    this._context.TiposBloqueios.Add(model);
                     await this._context.SaveChangesAsync();
                     return model;
                 }
@@ -122,13 +121,13 @@ namespace basecs.Services
             }
             catch (Exception ex)
             {
-                throw new Exception("Houve um erro ao incluir tipos workflows: " + ex.Message);
+                throw new Exception("Houve um erro ao incluir tipos bloqueios: " + ex.Message);
             }
         }
         #endregion
 
         #region UPDATE
-        public async Task<TipoWorkFlow> Update(TipoWorkFlow model)
+        public async Task<TipoBloqueio> Update(TipoBloqueio model)
         {
             try
             {
@@ -136,7 +135,7 @@ namespace basecs.Services
 
                 if (validationMessage.Equals(""))
                 {
-                    this._context.TiposWorkFlows.Update(model);
+                    this._context.TiposBloqueios.Update(model);
                     await this._context.SaveChangesAsync();
                     return model;
                 }
@@ -152,8 +151,8 @@ namespace basecs.Services
         }
         #endregion        
 
-        #region DELETE SERVIÇO DE DELETE
-        public async Task<TipoWorkFlow> Delete(int id)
+        #region DELETE SERVIÇO DE DELETE COMENTADO
+        public async Task<TipoBloqueio> Delete(int id)
         {
             try
             {
@@ -161,7 +160,7 @@ namespace basecs.Services
 
                 if (validationMessage.Equals(""))
                 {
-                    TipoWorkFlow model = await this.FindById(id);
+                    TipoBloqueio model = await this.FindById(id);
                     model.Ativo = false;
                     await this.Update(model);
                     return model;

@@ -60,7 +60,7 @@ namespace basecs.Data
         public virtual DbSet<TiposEntrega> TiposEntregas { get; set; }
         public virtual DbSet<TiposGarantia> TiposGarantias { get; set; }
         public virtual DbSet<TipoLancamento> TiposLancamentos { get; set; }
-        public virtual DbSet<TiposNotasFiscai> TiposNotasFiscais { get; set; }
+        public virtual DbSet<TipoNotaFiscal> TiposNotasFiscais { get; set; }
         public virtual DbSet<TipoParametro> TiposParametros { get; set; }
         public virtual DbSet<TipoProduto> TiposProdutos { get; set; }
         public virtual DbSet<TipoTelefone> TiposTelefones { get; set; }
@@ -975,7 +975,7 @@ namespace basecs.Data
                     .IsUnicode(false);
             });
 
-            modelBuilder.Entity<TiposNotasFiscai>(entity =>
+            modelBuilder.Entity<TipoNotaFiscal>(entity =>
             {
                 entity.HasKey(e => e.TipoNotaFiscalId)
                     .HasName("PK__TiposNot__2F0C24E8AEC3ECEA");
