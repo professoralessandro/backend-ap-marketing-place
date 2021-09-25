@@ -10,6 +10,7 @@ using Microsoft.Extensions.DependencyInjection;
 using Microsoft.Extensions.Hosting;
 using Microsoft.Extensions.Options;
 using Microsoft.IdentityModel.Tokens;
+using Microsoft.OpenApi.Models;
 using System;
 using System.Collections.Generic;
 using System.Text;
@@ -36,6 +37,10 @@ namespace basecs
             #region CONFIGURATION SERVICES
             services.AddEntityFrameworkSqlServer().AddDbContext<MyDbContext>(a => a.UseSqlServer(Configuration.GetValue<String>("ConnectionString").ToString()));
             services = Container(services);
+            services.AddSwaggerGen(c =>
+            {
+                c.SwaggerDoc("v1", new OpenApiInfo { Title = "APP MKT Place", Version = "v1" });
+            });
             #endregion
 
             services.AddControllers();
@@ -72,6 +77,9 @@ namespace basecs
             {
                 app.UseHttpsRedirection();
             }
+
+            app.UseSwagger();
+            app.UseSwaggerUI(c => c.SwaggerEndpoint("/swagger/v1/swagger.json", "APP MKT Place V1"));
 
             app.UseRouting();
 
