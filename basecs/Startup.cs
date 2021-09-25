@@ -37,6 +37,9 @@ namespace basecs
             #region CONFIGURATION SERVICES
             services.AddEntityFrameworkSqlServer().AddDbContext<MyDbContext>(a => a.UseSqlServer(Configuration.GetValue<String>("ConnectionString").ToString()));
             services = Container(services);
+            #endregion
+
+            #region CONFIGURATION SWAGGER
             services.AddSwaggerGen(c =>
             {
                 c.SwaggerDoc("v1", new OpenApiInfo { Title = "APP MKT Place", Version = "v1" });
@@ -69,6 +72,7 @@ namespace basecs
         // This method gets called by the runtime. Use this method to configure the HTTP request pipeline.
         public void Configure(IApplicationBuilder app, IWebHostEnvironment env)
         {
+            #region CONFIGURATION ENVRONMENT
             if (env.IsDevelopment())
             {
                 app.UseDeveloperExceptionPage();
@@ -77,13 +81,18 @@ namespace basecs
             {
                 app.UseHttpsRedirection();
             }
+            #endregion
 
+            #region CONFIGURATION SWAGGER
             app.UseSwagger();
             app.UseSwaggerUI(c => c.SwaggerEndpoint("/swagger/v1/swagger.json", "APP MKT Place V1"));
+            #endregion
 
             app.UseRouting();
 
+            #region CONFIGURARION CORS
             app.UseCors(b => b.AllowAnyHeader().AllowAnyMethod().AllowAnyOrigin());
+            #endregion
 
             app.UseEndpoints(endpoints =>
             {
