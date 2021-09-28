@@ -26,7 +26,7 @@ namespace basecs.Interfaces.ITiposLancamentosService
         Task<TipoLancamento> Update(TipoLancamento model);
         #endregion        
 
-        #region DELETE SERVIÇO DE DELETE COMENTADO
+        #region DELETE SERVIÇO DE DELETE
         Task<TipoLancamento> Delete(int id);
         #endregion
     }

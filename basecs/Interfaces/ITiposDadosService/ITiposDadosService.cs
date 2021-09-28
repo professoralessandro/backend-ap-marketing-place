@@ -26,7 +26,7 @@ namespace basecs.Interfaces.ITiposDadosService
         Task<TipoDado> Update(TipoDado model);
         #endregion        
 
-        #region DELETE SERVIÇO DE DELETE COMENTADO
+        #region DELETE SERVIÇO DE DELETE
         Task<TipoDado> Delete(int id);
         #endregion
     }
