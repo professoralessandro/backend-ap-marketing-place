@@ -4,15 +4,9 @@ pipeline {
     
   stages {
 
-   stage('Cloning Git') {
-      steps {
-        git glone https://github.com/professoralessandro/backend-ap-marketing-place.git
-      }
-    }
-
     stage('Replacing Artefacts') {
       steps {
-        bat 'xcopy /S /E /Y "C://Windows//SysWOW64//config//systemprofile//AppData//Local//Jenkins.jenkins//workspace//Environments//backend-mkt-dev"  "C://Windows//SysWOW64//config//systemprofile//AppData//Local//Jenkins.jenkins//workspace//DEV-backend-marketing-place//basecs" '
+        sh 'xcopy /S /E /Y "C://Windows//SysWOW64//config//systemprofile//AppData//Local//Jenkins.jenkins//workspace//Environments//backend-mkt-dev"  "C://Windows//SysWOW64//config//systemprofile//AppData//Local//Jenkins.jenkins//workspace//DEV-backend-marketing-place//basecs" '
       }
     }
     
