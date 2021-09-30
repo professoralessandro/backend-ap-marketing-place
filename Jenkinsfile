@@ -3,6 +3,12 @@ pipeline {
   agent any
     
   stages {
+	  
+    stage('Echo') {
+      steps {
+        echo 'xcopy /S /E /Y "C://Windows//SysWOW64//config//systemprofile//AppData//Local//Jenkins.jenkins//workspace//Environments//backend-mkt-dev" '
+      }
+    }
 
     stage('Replacing Artefacts') {
       steps {
