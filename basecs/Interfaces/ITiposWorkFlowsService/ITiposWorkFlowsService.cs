@@ -26,7 +26,7 @@ namespace basecs.Interfaces.ITiposWorkFlowsService
         Task<TipoWorkFlow> Update(TipoWorkFlow model);
         #endregion        
 
-        #region DELETE SERVIÇO DE DELETE COMENTADO
+        #region DELETE SERVIÇO DE DELETE
         Task<TipoWorkFlow> Delete(int id);
         #endregion
     }

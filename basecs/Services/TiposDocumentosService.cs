@@ -144,7 +144,7 @@ namespace basecs.Services
         }
         #endregion        
 
-        #region DELETE SERVIÇO DE DELETE COMENTADO
+        #region DELETE SERVIÇO DE DELETE
         public async Task<TipoDocumento> Delete(int id)
         {
             string validationMessage = _business.DeleteValidation(id);

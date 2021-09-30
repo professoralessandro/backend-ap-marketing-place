@@ -8,8 +8,6 @@ using Microsoft.EntityFrameworkCore;
 using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.DependencyInjection;
 using Microsoft.Extensions.Hosting;
-using Microsoft.Extensions.Options;
-using Microsoft.IdentityModel.Tokens;
 using Microsoft.OpenApi.Models;
 using System;
 using System.Collections.Generic;
@@ -54,10 +52,13 @@ namespace basecs
         private IServiceCollection Container(IServiceCollection services)
         {
             services.AddScoped<LogsService>();
+            services.AddScoped<TiposBloqueiosService>();
+            services.AddScoped<TiposCaracteristicasService>();
             services.AddScoped<TiposConfiguracoesService>();
             services.AddScoped<TiposDadosService>();
             services.AddScoped<TiposDocumentosService>();
             services.AddScoped<TiposLancamentosService>();
+            services.AddScoped<TiposNotasFiscaisService>();
             services.AddScoped<TiposParametrosService>();
             services.AddScoped<TiposTelefonesService>();
             services.AddScoped<TiposWorkFlowsService>();
