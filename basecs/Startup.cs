@@ -54,10 +54,13 @@ namespace basecs
         private IServiceCollection Container(IServiceCollection services)
         {
             services.AddScoped<LogsService>();
+            services.AddScoped<TiposBloqueiosService>();
+            services.AddScoped<TiposCaracteristicasService>();
             services.AddScoped<TiposConfiguracoesService>();
             services.AddScoped<TiposDadosService>();
             services.AddScoped<TiposDocumentosService>();
             services.AddScoped<TiposLancamentosService>();
+            services.AddScoped<TiposNotasFiscaisService>();
             services.AddScoped<TiposParametrosService>();
             services.AddScoped<TiposTelefonesService>();
             services.AddScoped<TiposWorkFlowsService>();
