@@ -51,7 +51,6 @@ namespace basecs
         #region SERVICES CONTAINER METHOD
         private IServiceCollection Container(IServiceCollection services)
         {
-            services.AddScoped<LogsService>();
             services.AddScoped<TiposBloqueiosService>();
             services.AddScoped<TiposCaracteristicasService>();
             services.AddScoped<TiposConfiguracoesService>();
