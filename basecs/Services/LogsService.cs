@@ -7,7 +7,6 @@ using basecs.Helpers.Helpers.Validators;
 using basecs.Interfaces.ITiposLogsService;
 using basecs.Models;
 using Microsoft.AspNetCore.Http;
-using Microsoft.AspNetCore.Mvc;
 using Microsoft.Data.SqlClient;
 using Microsoft.EntityFrameworkCore;
 
