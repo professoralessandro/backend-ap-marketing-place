@@ -21,7 +21,7 @@ namespace basecs.Data
         #endregion
 
         #region DBCONTEXT
-        public virtual DbSet<Avaliaco> Avaliacoes { get; set; }
+        public virtual DbSet<Avaliacao> Avaliacoes { get; set; }
         public virtual DbSet<Bloqueio> Bloqueios { get; set; }
         public virtual DbSet<Caracteristica> Caracteristicas { get; set; }
         public virtual DbSet<CartoesBancario> CartoesBancarios { get; set; }
@@ -78,7 +78,7 @@ namespace basecs.Data
         {
             modelBuilder.HasAnnotation("Relational:Collation", "SQL_Latin1_General_CP1_CI_AS");
 
-            modelBuilder.Entity<Avaliaco>(entity =>
+            modelBuilder.Entity<Avaliacao>(entity =>
             {
                 entity.HasKey(e => e.AvaliacaoId)
                     .HasName("PK__Avaliaco__FC95FF18DF328EDE");
