@@ -12,6 +12,7 @@ pipeline {
     
     stage('Testing Project') {
       steps {
+	export PATH=/usr/local/share/dotnet:$PATH
         sh 'dotnet test "/var/jenkins_home/workspace/DEV-backend-marketing-place/basecs.tests/basecs.tests.csproj" '
       }
     }
