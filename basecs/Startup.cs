@@ -52,6 +52,7 @@ namespace basecs
         private IServiceCollection Container(IServiceCollection services)
         {
             services.AddScoped<AvaliacoesService>();
+            services.AddScoped<BloqueiosService>();
             services.AddScoped<TiposBloqueiosService>();
             services.AddScoped<TiposCaracteristicasService>();
             services.AddScoped<TiposConfiguracoesService>();

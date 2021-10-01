@@ -10,8 +10,10 @@ that is bound
 
 ## Quick start
 
-Run into SQL Server the script setup.sql
 ```
+Run into SQL Server the script setup.sql
+
+Change credentials in appsettings.json or other envronement
 
 dotnet run
 ```
