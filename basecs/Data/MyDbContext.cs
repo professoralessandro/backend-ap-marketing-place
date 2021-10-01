@@ -57,8 +57,8 @@ namespace basecs.Data
         public virtual DbSet<TipoDocumento> TiposDocumentos { get; set; }
         public virtual DbSet<TipoEmail> TiposEmails { get; set; }
         public virtual DbSet<TipoEndereco> TiposEnderecos { get; set; }
-        public virtual DbSet<TiposEntrega> TiposEntregas { get; set; }
-        public virtual DbSet<TiposGarantia> TiposGarantias { get; set; }
+        public virtual DbSet<TipoEntrega> TiposEntregas { get; set; }
+        public virtual DbSet<TipoGarantia> TiposGarantias { get; set; }
         public virtual DbSet<TipoLancamento> TiposLancamentos { get; set; }
         public virtual DbSet<TipoNotaFiscal> TiposNotasFiscais { get; set; }
         public virtual DbSet<TipoParametro> TiposParametros { get; set; }
@@ -930,7 +930,7 @@ namespace basecs.Data
                     .IsUnicode(false);
             });
 
-            modelBuilder.Entity<TiposEntrega>(entity =>
+            modelBuilder.Entity<TipoEntrega>(entity =>
             {
                 entity.HasKey(e => e.TipoEntregaId)
                     .HasName("PK__TiposEnt__9D702849D524D466");
@@ -945,7 +945,7 @@ namespace basecs.Data
                     .IsUnicode(false);
             });
 
-            modelBuilder.Entity<TiposGarantia>(entity =>
+            modelBuilder.Entity<TipoGarantia>(entity =>
             {
                 entity.HasKey(e => e.TipoGarantiaId)
                     .HasName("PK__TiposGar__E388A1F9CBB48684");
