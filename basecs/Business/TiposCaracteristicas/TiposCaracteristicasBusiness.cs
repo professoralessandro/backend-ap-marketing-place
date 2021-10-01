@@ -17,7 +17,7 @@ namespace basecs.Business.TiposCaracteristicas
             if (!string.IsNullOrEmpty(model.Descricao))
             {
                 model.Descricao = Validators.RemoveInjections(model.Descricao);
-                if (model.Descricao.Length < 2)
+                if (model.Descricao.Length < 3)
                 {
                     validation += "Descrição do caracteristica contem menos de dois caracteres\n";
                 }
@@ -50,7 +50,7 @@ namespace basecs.Business.TiposCaracteristicas
             if (!string.IsNullOrEmpty(model.Descricao))
             {
                 model.Descricao = Validators.RemoveInjections(model.Descricao);
-                if (model.Descricao.Length < 2)
+                if (model.Descricao.Length < 3)
                 {
                     validation += "Descrição do caracteristica contem menos de dois caracteres\n";
                 }

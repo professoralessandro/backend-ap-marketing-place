@@ -1,17 +1,18 @@
-﻿using basecs.Helpers.Helpers.Validators;
+﻿
+using basecs.Helpers.Helpers.Validators;
 
-namespace basecs.Business.TiposBloqueios
+namespace basecs.Business.TiposEnderecos
 {
-    public class TiposBloqueiosBusiness
+    public class TiposEnderecosBusiness
     {
         #region INSERT
-        public string InsertValidation(basecs.Models.TipoBloqueio model)
+        public string InsertValidation(basecs.Models.TipoEndereco model)
         {
             string validation = "";
 
-            if (model.TipoBloqueioId > 0)
+            if (model.TipoEnderecoId > 0)
             {
-                validation += "Identificação do tipo de bloqueio invalido\n";
+                validation += "Identificação do tipo de endereco invalido\n";
             }
 
             if (!string.IsNullOrEmpty(model.Descricao))
@@ -19,9 +20,9 @@ namespace basecs.Business.TiposBloqueios
                 model.Descricao = Validators.RemoveInjections(model.Descricao);
                 if (model.Descricao.Length < 3)
                 {
-                    validation += "Descrição do bloqueio contem menos de três caracteres\n";
+                    validation += "Descrição do endereco contem menos de três caracteres\n";
                 }
-            }            
+            }
 
             if (model.UsuarioInclusaoId < 1)
             {
@@ -38,13 +39,13 @@ namespace basecs.Business.TiposBloqueios
         #endregion
 
         #region UPDATE
-        public string UpdateValidation(basecs.Models.TipoBloqueio model)
+        public string UpdateValidation(basecs.Models.TipoEndereco model)
         {
             string validation = "";
 
-            if (model.TipoBloqueioId == 0)
+            if (model.TipoEnderecoId == 0)
             {
-                validation += "Identificação do tipo de bloqueio invalido\n";
+                validation += "Identificação do tipo de endereco invalido\n";
             }
 
             if (!string.IsNullOrEmpty(model.Descricao))
@@ -52,7 +53,7 @@ namespace basecs.Business.TiposBloqueios
                 model.Descricao = Validators.RemoveInjections(model.Descricao);
                 if (model.Descricao.Length < 3)
                 {
-                    validation += "Descrição do bloqueio contem menos de três caracteres\n";
+                    validation += "Descrição do endereco contem menos de três caracteres\n";
                 }
             }
 
@@ -72,7 +73,7 @@ namespace basecs.Business.TiposBloqueios
 
             if (id == 0)
             {
-                validation += "Identificação do tipo de bloqueio invalido\n";
+                validation += "Identificação do tipo de endereco invalido\n";
             }
 
             return validation;

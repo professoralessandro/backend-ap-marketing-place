@@ -27,7 +27,7 @@ namespace basecs.Models
         public DateTime DataUltimaAlteracao { get; set; }
         public bool Ativo { get; set; }
 
-        public virtual TiposEndereco TipoEndereco { get; set; }
+        public virtual TipoEndereco TipoEndereco { get; set; }
         public virtual ICollection<Compra> Compras { get; set; }
     }
 }

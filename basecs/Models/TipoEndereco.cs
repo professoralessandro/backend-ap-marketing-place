@@ -5,14 +5,14 @@ using System.Collections.Generic;
 
 namespace basecs.Models
 {
-    public partial class TiposEmail
+    public partial class TipoEndereco
     {
-        public TiposEmail()
+        public TipoEndereco()
         {
-            Emails = new HashSet<Email>();
+            Enderecos = new HashSet<Endereco>();
         }
 
-        public int TipoEmailId { get; set; }
+        public int TipoEnderecoId { get; set; }
         public string Descricao { get; set; }
         public int UsuarioInclusaoId { get; set; }
         public int UsuarioUltimaAlteracaoId { get; set; }
@@ -20,6 +20,6 @@ namespace basecs.Models
         public DateTime DataUltimaAlteracao { get; set; }
         public bool Ativo { get; set; }
 
-        public virtual ICollection<Email> Emails { get; set; }
+        public virtual ICollection<Endereco> Enderecos { get; set; }
     }
 }
