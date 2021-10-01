@@ -56,7 +56,7 @@ namespace basecs.Data
         public virtual DbSet<TipoDado> TiposDados { get; set; }
         public virtual DbSet<TipoDocumento> TiposDocumentos { get; set; }
         public virtual DbSet<TipoEmail> TiposEmails { get; set; }
-        public virtual DbSet<TiposEndereco> TiposEnderecos { get; set; }
+        public virtual DbSet<TipoEndereco> TiposEnderecos { get; set; }
         public virtual DbSet<TiposEntrega> TiposEntregas { get; set; }
         public virtual DbSet<TiposGarantia> TiposGarantias { get; set; }
         public virtual DbSet<TipoLancamento> TiposLancamentos { get; set; }
@@ -915,7 +915,7 @@ namespace basecs.Data
                     .IsUnicode(false);
             });
 
-            modelBuilder.Entity<TiposEndereco>(entity =>
+            modelBuilder.Entity<TipoEndereco>(entity =>
             {
                 entity.HasKey(e => e.TipoEnderecoId)
                     .HasName("PK__TiposEnd__F24E38AEC156202E");

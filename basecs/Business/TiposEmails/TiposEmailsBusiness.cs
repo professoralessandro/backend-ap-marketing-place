@@ -17,9 +17,9 @@ namespace basecs.Business.Tipoemails
             if (!string.IsNullOrEmpty(model.Descricao))
             {
                 model.Descricao = Validators.RemoveInjections(model.Descricao);
-                if (model.Descricao.Length < 2)
+                if (model.Descricao.Length < 3)
                 {
-                    validation += "Descrição do tipo de email contem menos de dois caracteres\n";
+                    validation += "Descrição do tipo de email contem menos de três caracteres\n";
                 }
             }
 
@@ -50,9 +50,9 @@ namespace basecs.Business.Tipoemails
             if (!string.IsNullOrEmpty(model.Descricao))
             {
                 model.Descricao = Validators.RemoveInjections(model.Descricao);
-                if (model.Descricao.Length < 2)
+                if (model.Descricao.Length < 3)
                 {
-                    validation += "Descrição do tipo de email contem menos de dois caracteres\n";
+                    validation += "Descrição do tipo de email contem menos de três caracteres\n";
                 }
             }
 

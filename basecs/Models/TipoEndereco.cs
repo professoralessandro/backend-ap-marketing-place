@@ -5,9 +5,9 @@ using System.Collections.Generic;
 
 namespace basecs.Models
 {
-    public partial class TiposEndereco
+    public partial class TipoEndereco
     {
-        public TiposEndereco()
+        public TipoEndereco()
         {
             Enderecos = new HashSet<Endereco>();
         }
