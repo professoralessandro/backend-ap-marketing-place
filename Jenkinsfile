@@ -18,7 +18,7 @@ pipeline {
     
     stage('Testing Project') {
       steps {
-        sh 'dotnet test "/C/Windows/SysWOW64/config/systemprofile/AppData/Local/Jenkins.jenkins/workspace/DEV-backend-marketing-place/basecs.tests/basecs.tests.csproj" '
+        sh 'dotnet test "/c/var/jenkins_home/workspace/DEV-backend-marketing-place/basecs.tests/basecs.tests.csproj" '
       }
     }
     
