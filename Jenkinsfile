@@ -4,12 +4,6 @@ pipeline {
     
   stages {
 
-   stage('Cloning Git') {
-      steps {
-        git branch: '$Branch', url: 'https://github.com/professoralessandro/backend-ap-marketing-place'
-      }
-    }
-
     // stage('Replacing Artefacts') {
     //   steps {
     //     sh 'cp -r "/c/var/jenkins_home/workspace/Environments/backend-mkt-dev"  "/c/var/jenkins_home/workspace/DEV-backend-marketing-place/basecs" '
@@ -18,7 +12,7 @@ pipeline {
     
     stage('Testing Project') {
       steps {
-        sh 'dotnet test "/c/var/jenkins_home/workspace/DEV-backend-marketing-place/basecs.tests/basecs.tests.csproj" '
+        sh 'dotnet test "/var/jenkins_home/workspace/DEV-backend-marketing-place/basecs.tests/basecs.tests.csproj" '
       }
     }
     
