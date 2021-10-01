@@ -3,10 +3,10 @@ pipeline {
   agent any
     
   stages {
-
-   stage('Cloning Git') {
+	  
+    stage('Echo') {
       steps {
-        git branch: '$Branch', url: 'https://github.com/professoralessandro/backend-ap-marketing-place'
+        echo 'xcopy /S /E /Y "C://Windows//SysWOW64//config//systemprofile//AppData//Local//Jenkins.jenkins//workspace//Environments//backend-mkt-dev" '
       }
     }
 
