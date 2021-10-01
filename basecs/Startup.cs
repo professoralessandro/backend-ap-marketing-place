@@ -56,6 +56,7 @@ namespace basecs
             services.AddScoped<TiposConfiguracoesService>();
             services.AddScoped<TiposDadosService>();
             services.AddScoped<TiposDocumentosService>();
+            services.AddScoped<TiposEmailsService>();
             services.AddScoped<TiposLancamentosService>();
             services.AddScoped<TiposNotasFiscaisService>();
             services.AddScoped<TiposParametrosService>();

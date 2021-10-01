@@ -5,9 +5,9 @@ using System.Collections.Generic;
 
 namespace basecs.Models
 {
-    public partial class TiposEmail
+    public partial class TipoEmail
     {
-        public TiposEmail()
+        public TipoEmail()
         {
             Emails = new HashSet<Email>();
         }

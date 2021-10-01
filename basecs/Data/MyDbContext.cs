@@ -55,7 +55,7 @@ namespace basecs.Data
         public virtual DbSet<TipoConfiguracao> TiposConfiguracoes { get; set; }
         public virtual DbSet<TipoDado> TiposDados { get; set; }
         public virtual DbSet<TipoDocumento> TiposDocumentos { get; set; }
-        public virtual DbSet<TiposEmail> TiposEmails { get; set; }
+        public virtual DbSet<TipoEmail> TiposEmails { get; set; }
         public virtual DbSet<TiposEndereco> TiposEnderecos { get; set; }
         public virtual DbSet<TiposEntrega> TiposEntregas { get; set; }
         public virtual DbSet<TiposGarantia> TiposGarantias { get; set; }
@@ -900,7 +900,7 @@ namespace basecs.Data
                     .IsUnicode(false);
             });
 
-            modelBuilder.Entity<TiposEmail>(entity =>
+            modelBuilder.Entity<TipoEmail>(entity =>
             {
                 entity.HasKey(e => e.TipoEmailId)
                     .HasName("PK__TiposEma__1C0DC5CAB7C8073A");

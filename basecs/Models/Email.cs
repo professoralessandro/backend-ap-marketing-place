@@ -23,7 +23,7 @@ namespace basecs.Models
         public DateTime DataUltimaAlteracao { get; set; }
         public bool Ativo { get; set; }
 
-        public virtual TiposEmail TipoEmail { get; set; }
+        public virtual TipoEmail TipoEmail { get; set; }
         public virtual Usuario UsuarioEnvio { get; set; }
     }
 }
