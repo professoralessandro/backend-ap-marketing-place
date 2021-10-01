@@ -21,7 +21,7 @@ namespace basecs.Data
         #endregion
 
         #region DBCONTEXT
-        public virtual DbSet<Avaliaco> Avaliacoes { get; set; }
+        public virtual DbSet<Avaliacao> Avaliacoes { get; set; }
         public virtual DbSet<Bloqueio> Bloqueios { get; set; }
         public virtual DbSet<Caracteristica> Caracteristicas { get; set; }
         public virtual DbSet<CartoesBancario> CartoesBancarios { get; set; }
@@ -57,8 +57,8 @@ namespace basecs.Data
         public virtual DbSet<TipoDocumento> TiposDocumentos { get; set; }
         public virtual DbSet<TipoEmail> TiposEmails { get; set; }
         public virtual DbSet<TipoEndereco> TiposEnderecos { get; set; }
-        public virtual DbSet<TiposEntrega> TiposEntregas { get; set; }
-        public virtual DbSet<TiposGarantia> TiposGarantias { get; set; }
+        public virtual DbSet<TipoEntrega> TiposEntregas { get; set; }
+        public virtual DbSet<TipoGarantia> TiposGarantias { get; set; }
         public virtual DbSet<TipoLancamento> TiposLancamentos { get; set; }
         public virtual DbSet<TipoNotaFiscal> TiposNotasFiscais { get; set; }
         public virtual DbSet<TipoParametro> TiposParametros { get; set; }
@@ -78,7 +78,7 @@ namespace basecs.Data
         {
             modelBuilder.HasAnnotation("Relational:Collation", "SQL_Latin1_General_CP1_CI_AS");
 
-            modelBuilder.Entity<Avaliaco>(entity =>
+            modelBuilder.Entity<Avaliacao>(entity =>
             {
                 entity.HasKey(e => e.AvaliacaoId)
                     .HasName("PK__Avaliaco__FC95FF18DF328EDE");
@@ -930,7 +930,7 @@ namespace basecs.Data
                     .IsUnicode(false);
             });
 
-            modelBuilder.Entity<TiposEntrega>(entity =>
+            modelBuilder.Entity<TipoEntrega>(entity =>
             {
                 entity.HasKey(e => e.TipoEntregaId)
                     .HasName("PK__TiposEnt__9D702849D524D466");
@@ -945,7 +945,7 @@ namespace basecs.Data
                     .IsUnicode(false);
             });
 
-            modelBuilder.Entity<TiposGarantia>(entity =>
+            modelBuilder.Entity<TipoGarantia>(entity =>
             {
                 entity.HasKey(e => e.TipoGarantiaId)
                     .HasName("PK__TiposGar__E388A1F9CBB48684");

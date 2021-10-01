@@ -9,7 +9,7 @@ namespace basecs.Models
     {
         public Usuario()
         {
-            Avaliacos = new HashSet<Avaliaco>();
+            Avaliacos = new HashSet<Avaliacao>();
             CartoesBancarios = new HashSet<CartoesBancario>();
             Compras = new HashSet<Compra>();
             DadosBancarios = new HashSet<DadosBancario>();
@@ -45,7 +45,7 @@ namespace basecs.Models
         public bool Ativo { get; set; }
 
         public virtual TipoDocumento TipoDocumento { get; set; }
-        public virtual ICollection<Avaliaco> Avaliacos { get; set; }
+        public virtual ICollection<Avaliacao> Avaliacos { get; set; }
         public virtual ICollection<CartoesBancario> CartoesBancarios { get; set; }
         public virtual ICollection<Compra> Compras { get; set; }
         public virtual ICollection<DadosBancario> DadosBancarios { get; set; }

@@ -5,9 +5,9 @@ using System.Collections.Generic;
 
 namespace basecs.Models
 {
-    public partial class Avaliaco
+    public partial class Avaliacao
     {
-        public Avaliaco()
+        public Avaliacao()
         {
             Compras = new HashSet<Compra>();
         }

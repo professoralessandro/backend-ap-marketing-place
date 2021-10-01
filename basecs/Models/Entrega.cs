@@ -28,7 +28,7 @@ namespace basecs.Models
         public bool Ativo { get; set; }
 
         public virtual Usuario ResponsavelEntrega { get; set; }
-        public virtual TiposEntrega TipoEntrega { get; set; }
+        public virtual TipoEntrega TipoEntrega { get; set; }
         public virtual ICollection<Compra> Compras { get; set; }
     }
 }

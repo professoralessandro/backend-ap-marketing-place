@@ -23,7 +23,7 @@ namespace basecs.Models
         public bool IsEntregue { get; set; }
         public bool IsAvaliado { get; set; }
 
-        public virtual Avaliaco Avaliacao { get; set; }
+        public virtual Avaliacao Avaliacao { get; set; }
         public virtual Usuario Comprador { get; set; }
         public virtual Endereco Endereco { get; set; }
         public virtual Entrega Entrega { get; set; }

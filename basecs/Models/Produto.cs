@@ -9,7 +9,7 @@ namespace basecs.Models
     {
         public Produto()
         {
-            Avaliacos = new HashSet<Avaliaco>();
+            Avaliacos = new HashSet<Avaliacao>();
             Compras = new HashSet<Compra>();
         }
 
@@ -32,7 +32,7 @@ namespace basecs.Models
         public bool Ativo { get; set; }
 
         public virtual TipoProduto TipoProduto { get; set; }
-        public virtual ICollection<Avaliaco> Avaliacos { get; set; }
+        public virtual ICollection<Avaliacao> Avaliacos { get; set; }
         public virtual ICollection<Compra> Compras { get; set; }
     }
 }
