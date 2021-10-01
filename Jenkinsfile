@@ -3,12 +3,6 @@ pipeline {
   agent any
     
   stages {
-	  
-    stage('Echo') {
-      steps {
-        echo 'xcopy /S /E /Y "C://Windows//SysWOW64//config//systemprofile//AppData//Local//Jenkins.jenkins//workspace//Environments//backend-mkt-dev" '
-      }
-    }
 
     // stage('Replacing Artefacts') {
     //   steps {
@@ -18,7 +12,7 @@ pipeline {
     
     stage('Testing Project') {
       steps {
-        sh 'dotnet test "/c/var/jenkins_home/workspace/DEV-backend-marketing-place/basecs.tests/basecs.tests.csproj" '
+        sh 'dotnet test "/var/jenkins_home/workspace/DEV-backend-marketing-place/basecs.tests/basecs.tests.csproj" '
       }
     }
     
