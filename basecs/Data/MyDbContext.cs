@@ -195,11 +195,18 @@ namespace basecs.Data
 
             modelBuilder.Entity<Compra>(entity =>
             {
-                entity.Property(e => e.IsAvaliado).HasColumnName("isAvaliado");
+                entity.Property(e => e.CodigoCompra)
+                    .IsRequired()
+                    .HasMaxLength(20)
+                    .IsUnicode(false);
 
-                entity.Property(e => e.IsEntregue).HasColumnName("isEntregue");
+                entity.Property(e => e.IsAvaliado).HasColumnName("IsAvaliado");
 
-                entity.Property(e => e.IsPago).HasColumnName("isPago");
+                entity.Property(e => e.IsEntregue).HasColumnName("IsEntregue");
+
+                entity.Property(e => e.IsPago).HasColumnName("IsPago");
+
+                entity.Property(e => e.Ativo).HasColumnName("Ativo");
 
                 entity.HasOne(d => d.Avaliacao)
                     .WithMany(p => p.Compras)

@@ -8,6 +8,7 @@ namespace basecs.Models
     public partial class Compra
     {
         public int CompraId { get; set; }
+        public string CodigoCompra { get; set; }
         public int ProdutoId { get; set; }
         public int CompradorId { get; set; }
         public int FormaPagamentoId { get; set; }
@@ -22,7 +23,7 @@ namespace basecs.Models
         public bool IsPago { get; set; }
         public bool IsEntregue { get; set; }
         public bool IsAvaliado { get; set; }
-
+        public bool Ativo { get; set; }
         public virtual Avaliacao Avaliacao { get; set; }
         public virtual Usuario Comprador { get; set; }
         public virtual Endereco Endereco { get; set; }
