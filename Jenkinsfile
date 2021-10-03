@@ -34,7 +34,7 @@ pipeline {
       }
     }
 	
-	  stage('Stoping Docker Compose') {
+    stage('Stoping Docker Compose') {
       steps {
         bat 'cd basecs && docker-compose down'
       }
