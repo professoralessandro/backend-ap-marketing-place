@@ -77,7 +77,7 @@ namespace basecs.Data
             modelBuilder.Entity<Avaliacao>(entity =>
             {
                 entity.HasKey(e => e.AvaliacaoId)
-                    .HasName("PK__Avaliaco__FC95FF18DC2BFD76");
+                    .HasName("PK__Avaliaco__FC95FF18C11BE5B5");
 
                 entity.Property(e => e.DataInclusao).HasColumnType("datetime");
 
@@ -146,7 +146,7 @@ namespace basecs.Data
             modelBuilder.Entity<CartoesBancario>(entity =>
             {
                 entity.HasKey(e => e.CartaoBancarioId)
-                    .HasName("PK__CartoesB__CFFCED84121B7AD1");
+                    .HasName("PK__CartoesB__CFFCED8462F0C17F");
 
                 entity.Property(e => e.Bandeira)
                     .IsRequired()
@@ -198,12 +198,6 @@ namespace basecs.Data
                 entity.Property(e => e.CodigoPagamento)
                     .HasMaxLength(20)
                     .IsUnicode(false);
-
-                entity.Property(e => e.IsAvaliado).HasColumnName("isAvaliado");
-
-                entity.Property(e => e.IsEntregue).HasColumnName("isEntregue");
-
-                entity.Property(e => e.IsPago).HasColumnName("isPago");
 
                 entity.HasOne(d => d.Avaliacao)
                     .WithMany(p => p.Compras)
@@ -263,7 +257,7 @@ namespace basecs.Data
             modelBuilder.Entity<Configuraco>(entity =>
             {
                 entity.HasKey(e => e.ConfiguracaoId)
-                    .HasName("PK__Configur__6AAFCF09D32759FC");
+                    .HasName("PK__Configur__6AAFCF091F8FDDC2");
 
                 entity.Property(e => e.DataInclusao).HasColumnType("datetime");
 
@@ -284,7 +278,7 @@ namespace basecs.Data
             modelBuilder.Entity<ConfiguracoesParametro>(entity =>
             {
                 entity.HasKey(e => e.ConfiguracaoParametroId)
-                    .HasName("PK__Configur__E21FA04FF863FE5E");
+                    .HasName("PK__Configur__E21FA04F8D7FE938");
 
                 entity.HasOne(d => d.Configuracao)
                     .WithMany(p => p.ConfiguracoesParametros)
@@ -302,7 +296,7 @@ namespace basecs.Data
             modelBuilder.Entity<DadosBancario>(entity =>
             {
                 entity.HasKey(e => e.DadoBancarioId)
-                    .HasName("PK__DadosBan__DC8C909A7BFB3B84");
+                    .HasName("PK__DadosBan__DC8C909A1BC5F2CA");
 
                 entity.Property(e => e.Agencia)
                     .IsRequired()
@@ -453,7 +447,7 @@ namespace basecs.Data
             modelBuilder.Entity<FormasPagamento>(entity =>
             {
                 entity.HasKey(e => e.FormaPagamentoId)
-                    .HasName("PK__FormasPa__3FBCDE060E787680");
+                    .HasName("PK__FormasPa__3FBCDE069923437D");
 
                 entity.Property(e => e.DataInclusao).HasColumnType("datetime");
 
@@ -505,7 +499,7 @@ namespace basecs.Data
             modelBuilder.Entity<GruposRecurso>(entity =>
             {
                 entity.HasKey(e => e.GrupoRecursoId)
-                    .HasName("PK__GruposRe__5A5BD25713F30B63");
+                    .HasName("PK__GruposRe__5A5BD2573CD48AEC");
 
                 entity.ToTable("GruposRecursos", "seg");
 
@@ -525,7 +519,7 @@ namespace basecs.Data
             modelBuilder.Entity<GruposUsuario>(entity =>
             {
                 entity.HasKey(e => e.GrupoUsuarioId)
-                    .HasName("PK__GruposUs__B303C450131866E3");
+                    .HasName("PK__GruposUs__B303C450CDCA92A9");
 
                 entity.ToTable("GruposUsuarios", "seg");
 
@@ -545,7 +539,7 @@ namespace basecs.Data
             modelBuilder.Entity<Imagen>(entity =>
             {
                 entity.HasKey(e => e.ImagemId)
-                    .HasName("PK__Imagens__0CBF2AEEBF1CF84C");
+                    .HasName("PK__Imagens__0CBF2AEE31339B2B");
 
                 entity.Property(e => e.DataInclusao).HasColumnType("datetime");
 
@@ -643,7 +637,7 @@ namespace basecs.Data
             modelBuilder.Entity<Mensagen>(entity =>
             {
                 entity.HasKey(e => e.MensagemId)
-                    .HasName("PK__Mensagen__7C0322C61B139094");
+                    .HasName("PK__Mensagen__7C0322C677B5D331");
 
                 entity.Property(e => e.DataInclusao).HasColumnType("datetime");
 
@@ -663,7 +657,7 @@ namespace basecs.Data
             modelBuilder.Entity<NotasFiscai>(entity =>
             {
                 entity.HasKey(e => e.NotaFiscalId)
-                    .HasName("PK__NotasFis__F82B6CF6B0654D3E");
+                    .HasName("PK__NotasFis__F82B6CF6EE19118D");
 
                 entity.HasOne(d => d.TipoNotaFiscal)
                     .WithMany(p => p.NotasFiscais)
@@ -729,7 +723,7 @@ namespace basecs.Data
             modelBuilder.Entity<Reclamaco>(entity =>
             {
                 entity.HasKey(e => e.ReclamacaoId)
-                    .HasName("PK__Reclamac__EAB68DAEAAE06F0D");
+                    .HasName("PK__Reclamac__EAB68DAEB02A4550");
 
                 entity.Property(e => e.DataInclusao).HasColumnType("datetime");
 
@@ -778,7 +772,7 @@ namespace basecs.Data
             modelBuilder.Entity<Situaco>(entity =>
             {
                 entity.HasKey(e => e.SituacaoId)
-                    .HasName("PK__Situacoe__62444474B1B18720");
+                    .HasName("PK__Situacoe__62444474E66A93FB");
 
                 entity.Property(e => e.DataInclusao).HasColumnType("datetime");
 
@@ -793,7 +787,7 @@ namespace basecs.Data
             modelBuilder.Entity<StatusAprovaco>(entity =>
             {
                 entity.HasKey(e => e.StatusAprovacaoId)
-                    .HasName("PK__StatusAp__E9CC69FDE8994FE4");
+                    .HasName("PK__StatusAp__E9CC69FD0AD1DCE1");
 
                 entity.Property(e => e.DataInclusao).HasColumnType("datetime");
 
@@ -832,7 +826,7 @@ namespace basecs.Data
             modelBuilder.Entity<TipoBloqueio>(entity =>
             {
                 entity.HasKey(e => e.TipoBloqueioId)
-                    .HasName("PK__TiposBlo__28FFD753DB8431CF");
+                    .HasName("PK__TiposBlo__28FFD7530A037C3A");
 
                 entity.Property(e => e.DataInclusao).HasColumnType("datetime");
 
@@ -847,7 +841,7 @@ namespace basecs.Data
             modelBuilder.Entity<TipoCaracteristica>(entity =>
             {
                 entity.HasKey(e => e.TipoCaracteristicaId)
-                    .HasName("PK__TiposCar__F96B55CE133C566A");
+                    .HasName("PK__TiposCar__F96B55CE659A8B74");
 
                 entity.Property(e => e.DataInclusao).HasColumnType("datetime");
 
@@ -862,7 +856,7 @@ namespace basecs.Data
             modelBuilder.Entity<TipoConfiguracao>(entity =>
             {
                 entity.HasKey(e => e.TipoConfiguracaoId)
-                    .HasName("PK__TiposCon__5851DEEDF1E4DFB4");
+                    .HasName("PK__TiposCon__5851DEED778D73ED");
 
                 entity.Property(e => e.DataInclusao).HasColumnType("datetime");
 
@@ -877,7 +871,7 @@ namespace basecs.Data
             modelBuilder.Entity<TipoDado>(entity =>
             {
                 entity.HasKey(e => e.TipoDadoId)
-                    .HasName("PK__TiposDad__3E94B2BAEB36743A");
+                    .HasName("PK__TiposDad__3E94B2BA0E56278D");
 
                 entity.Property(e => e.DataInclusao).HasColumnType("datetime");
 
@@ -892,7 +886,7 @@ namespace basecs.Data
             modelBuilder.Entity<TipoDocumento>(entity =>
             {
                 entity.HasKey(e => e.TipoDocumentoId)
-                    .HasName("PK__TiposDoc__A329EA87F8927C9F");
+                    .HasName("PK__TiposDoc__A329EA87DB556F90");
 
                 entity.Property(e => e.DataInclusao).HasColumnType("datetime");
 
@@ -907,7 +901,7 @@ namespace basecs.Data
             modelBuilder.Entity<TipoEmail>(entity =>
             {
                 entity.HasKey(e => e.TipoEmailId)
-                    .HasName("PK__TiposEma__1C0DC5CA8922DFF7");
+                    .HasName("PK__TiposEma__1C0DC5CA659DFE0C");
 
                 entity.Property(e => e.DataInclusao).HasColumnType("datetime");
 
@@ -922,7 +916,7 @@ namespace basecs.Data
             modelBuilder.Entity<TipoEndereco>(entity =>
             {
                 entity.HasKey(e => e.TipoEnderecoId)
-                    .HasName("PK__TiposEnd__F24E38AE83885E7E");
+                    .HasName("PK__TiposEnd__F24E38AECE075870");
 
                 entity.Property(e => e.DataInclusao).HasColumnType("datetime");
 
@@ -937,7 +931,7 @@ namespace basecs.Data
             modelBuilder.Entity<TipoEntrega>(entity =>
             {
                 entity.HasKey(e => e.TipoEntregaId)
-                    .HasName("PK__TiposEnt__9D7028497E1D1E2E");
+                    .HasName("PK__TiposEnt__9D702849F436B81E");
 
                 entity.Property(e => e.DataInclusao).HasColumnType("datetime");
 
@@ -952,7 +946,7 @@ namespace basecs.Data
             modelBuilder.Entity<TipoGarantia>(entity =>
             {
                 entity.HasKey(e => e.TipoGarantiaId)
-                    .HasName("PK__TiposGar__E388A1F98C2B47CE");
+                    .HasName("PK__TiposGar__E388A1F9427D09CA");
 
                 entity.Property(e => e.DataInclusao).HasColumnType("datetime");
 
@@ -967,7 +961,7 @@ namespace basecs.Data
             modelBuilder.Entity<TipoLancamento>(entity =>
             {
                 entity.HasKey(e => e.TipoLancamentoId)
-                    .HasName("PK__TiposLan__F18FA829C8B8A131");
+                    .HasName("PK__TiposLan__F18FA8292682EAD1");
 
                 entity.Property(e => e.DataInclusao).HasColumnType("datetime");
 
@@ -982,7 +976,7 @@ namespace basecs.Data
             modelBuilder.Entity<TipoNotaFiscal>(entity =>
             {
                 entity.HasKey(e => e.TipoNotaFiscalId)
-                    .HasName("PK__TiposNot__2F0C24E8AFDD38B7");
+                    .HasName("PK__TiposNot__2F0C24E86F5199A3");
 
                 entity.Property(e => e.DataInclusao).HasColumnType("datetime");
 
@@ -997,7 +991,7 @@ namespace basecs.Data
             modelBuilder.Entity<TipoParametro>(entity =>
             {
                 entity.HasKey(e => e.TipoParametroId)
-                    .HasName("PK__TiposPar__AD0BF6ED0D8B964C");
+                    .HasName("PK__TiposPar__AD0BF6EDCD101488");
 
                 entity.Property(e => e.DataInclusao).HasColumnType("datetime");
 
@@ -1012,7 +1006,7 @@ namespace basecs.Data
             modelBuilder.Entity<TipoProduto>(entity =>
             {
                 entity.HasKey(e => e.TipoProdutoId)
-                    .HasName("PK__TiposPro__99B538CB3CBE6D5D");
+                    .HasName("PK__TiposPro__99B538CBDC6EB712");
 
                 entity.ToTable("TiposProdutos", "seg");
 
@@ -1029,7 +1023,7 @@ namespace basecs.Data
             modelBuilder.Entity<TipoTelefone>(entity =>
             {
                 entity.HasKey(e => e.TipoTelefoneId)
-                    .HasName("PK__TiposTel__3D0BC17BA2DEB5CF");
+                    .HasName("PK__TiposTel__3D0BC17BA64EA8F9");
 
                 entity.Property(e => e.DataInclusao).HasColumnType("datetime");
 
@@ -1044,7 +1038,7 @@ namespace basecs.Data
             modelBuilder.Entity<TipoUsuario>(entity =>
             {
                 entity.HasKey(e => e.TipoUsuarioId)
-                    .HasName("PK__TiposUsu__7F22C7227158238A");
+                    .HasName("PK__TiposUsu__7F22C722FA3A3F80");
 
                 entity.ToTable("TiposUsuarios", "seg");
 
@@ -1061,7 +1055,7 @@ namespace basecs.Data
             modelBuilder.Entity<TipoWorkFlow>(entity =>
             {
                 entity.HasKey(e => e.TipoWorkFlowId)
-                    .HasName("PK__TiposWor__12D351937DC0E6AD");
+                    .HasName("PK__TiposWor__12D351935E5497E2");
 
                 entity.Property(e => e.DataInclusao).HasColumnType("datetime");
 
@@ -1130,7 +1124,7 @@ namespace basecs.Data
             modelBuilder.Entity<UsuariosDadosBancario>(entity =>
             {
                 entity.HasKey(e => e.UsuarioDadoBancarioId)
-                    .HasName("PK__Usuarios__BD9070E22B82B29B");
+                    .HasName("PK__Usuarios__BD9070E210232EC5");
 
                 entity.HasOne(d => d.DadoBancario)
                     .WithMany(p => p.UsuariosDadosBancarios)
@@ -1148,7 +1142,7 @@ namespace basecs.Data
             modelBuilder.Entity<UsuariosLancamento>(entity =>
             {
                 entity.HasKey(e => e.UsuarioLancamentoId)
-                    .HasName("PK__Usuarios__632770F5902B6F12");
+                    .HasName("PK__Usuarios__632770F5021DE550");
 
                 entity.HasOne(d => d.Lancamento)
                     .WithMany(p => p.UsuariosLancamentos)
