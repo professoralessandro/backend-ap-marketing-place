@@ -9,12 +9,6 @@ pipeline {
         git branch: '$Branch', url: 'https://github.com/professoralessandro/backend-ap-marketing-place'
       }
     }
-
-    stage('Replacing Artefacts') {
-      steps {
-        bat 'xcopy /S /E /Y "C://Windows//SysWOW64//config//systemprofile//AppData//Local//Jenkins.jenkins//workspace//Environments//backend-mkt-dev"  "C://Windows//SysWOW64//config//systemprofile//AppData//Local//Jenkins.jenkins//workspace//DEV-backend-marketing-place//basecs" '
-      }
-    }
     
     stage('Testing Project') {
       steps {
@@ -28,7 +22,7 @@ pipeline {
       }
     }
 	
-	  stage('Stoping Docker Compose') {
+	stage('Stoping Docker Compose') {
       steps {
         bat 'cd basecs && docker-compose down'
       }
