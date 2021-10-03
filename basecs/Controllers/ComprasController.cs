@@ -5,19 +5,18 @@ using basecs.Models;
 using basecs.Services;
 using Microsoft.AspNetCore.Mvc;
 using System.Threading.Tasks;
-using basecs.Interfaces.IComprasService;
 
 namespace backend_adm.Controllers
 {
     public class ComprasController : ControllerCS
     {
         #region ATRIBUTTES
-        private readonly IComprasService _service;
+        private readonly ComprasService _service;
         private readonly LogsService _log;
         #endregion
 
         #region CONSTRUCTORS
-        public ComprasController([FromServices] IComprasService service, [FromServices] LogsService log)
+        public ComprasController([FromServices] ComprasService service, [FromServices] LogsService log)
         {
             _service = service;
             _log = log;

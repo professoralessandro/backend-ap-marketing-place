@@ -24,6 +24,7 @@ namespace basecs.Models
         public bool IsPago { get; set; }
         public bool IsEntregue { get; set; }
         public bool IsAvaliado { get; set; }
+        public bool Ativo { get; set; }
 
         public virtual Avaliacao Avaliacao { get; set; }
         public virtual Usuario Comprador { get; set; }
