@@ -36,7 +36,7 @@ namespace basecs
             #region CONFIGURATION SWAGGER
             services.AddSwaggerGen(c =>
             {
-                c.SwaggerDoc("v1", new OpenApiInfo { Title = "APP MKT Place", Version = "v1" });
+                c.SwaggerDoc("v1", new OpenApiInfo { Title = "DEV - APP MKT Place", Version = "v1" });
             });
             #endregion
 
