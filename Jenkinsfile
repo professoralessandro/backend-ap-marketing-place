@@ -9,16 +9,6 @@ pipeline {
         git branch: '$Branch', url: 'https:/github.com/professoralessandro/backend-ap-marketing-place'
       }
     }
-
-    stage('Testing Variables') {
-      steps {
-        echo "${env.Envronment}"
-        echo '$env.Envronment'
-        echo '$Branch'
-        echo '${env.Branch}'
-        echo '${env.Envronment}'
-      }
-    }
     
     stage('Testing Project') {
       steps {
