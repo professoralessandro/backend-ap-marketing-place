@@ -6,7 +6,7 @@ pipeline {
 
    stage('Cloning Git') {
       steps {
-        git branch: '$Branch', url: 'https:/github.com/professoralessandro/backend-ap-marketing-place'
+        git branch: '$Branch', url: 'https://github.com/professoralessandro/backend-ap-marketing-place'
       }
     }
     
