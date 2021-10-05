@@ -12,25 +12,25 @@ pipeline {
     
     stage('Testing Project') {
       steps {
-        bat 'dotnet test "C://Windows//SysWOW64//config//systemprofile//AppData//Local//Jenkins.jenkins//workspace//$Envronment-backend-marketing-place//basecs.tests//basecs.tests.csproj" '
+        bat 'dotnet test "C://Windows//SysWOW64//config//systemprofile//AppData//Local//Jenkins.jenkins//workspace//${Envronment}-backend-marketing-place//basecs.tests//basecs.tests.csproj" '
       }
     }
 	  
     stage('Replacing Artefacts') {
       steps {
-        bat 'xcopy /S /E /Y "C://Windows//SysWOW64//config//systemprofile//AppData//Local//Jenkins.jenkins//workspace//$Envronment-artefacts-marketing-place//Environments//backend-mkt-$Envronment"  "C://Windows//SysWOW64//config//systemprofile//AppData//Local//Jenkins.jenkins//workspace//$Envronment-backend-marketing-place//basecs" '
+        bat 'xcopy /S /E /Y "C://Windows//SysWOW64//config//systemprofile//AppData//Local//Jenkins.jenkins//workspace//${Envronment}-artefacts-marketing-place//Environments//backend-mkt-${Envronment}"  "C://Windows//SysWOW64//config//systemprofile//AppData//Local//Jenkins.jenkins//workspace//${Envronment}-backend-marketing-place//basecs" '
       }
     }
 	  
     stage('Replacing Script entrypoint') {
       steps {
-        bat 'xcopy /S /E /Y "C://Windows//SysWOW64//config//systemprofile//AppData//Local//Jenkins.jenkins//workspace//Environments//$Envronment//backend-mkt"  "C://Windows//SysWOW64//config//systemprofile//AppData//Local//Jenkins.jenkins//workspace//$Envronment-backend-marketing-place//basecs" '
+        bat 'xcopy /S /E /Y "C://Windows//SysWOW64//config//systemprofile//AppData//Local//Jenkins.jenkins//workspace//Environments//${Envronment}//backend-mkt"  "C://Windows//SysWOW64//config//systemprofile//AppData//Local//Jenkins.jenkins//workspace//${Envronment}-backend-marketing-place//basecs" '
       }
     }
     
     stage('Replace Database Scripts') {
       steps {
-        bat 'xcopy /S /E /Y "C://Windows//SysWOW64//config//systemprofile//AppData//Local//Jenkins.jenkins//workspace//$Envronment-database-marketing-place//BACKUPDATABASEOBJECTS"  "C://Windows//SysWOW64//config//systemprofile//AppData//Local//Jenkins.jenkins//workspace//$Envronment-backend-marketing-place//basecs" '
+        bat 'xcopy /S /E /Y "C://Windows//SysWOW64//config//systemprofile//AppData//Local//Jenkins.jenkins//workspace//${Envronment}-database-marketing-place//BACKUPDATABASEOBJECTS"  "C://Windows//SysWOW64//config//systemprofile//AppData//Local//Jenkins.jenkins//workspace//${Envronment}-backend-marketing-place//basecs" '
       }
     }
     
