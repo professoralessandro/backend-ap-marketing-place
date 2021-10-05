@@ -18,11 +18,14 @@ pipeline {
     stage('Replacing Artefacts') {
       steps {
 
-        if ("${env.Branch}" === "DEV") {
-          bat 'xcopy /S /E /Y "C://Windows//SysWOW64//config//systemprofile//AppData//Local//Jenkins.jenkins//workspace//DEV-artefacts-marketing-place//Environments//backend-mkt-dev" "C://Windows//SysWOW64//config//systemprofile//AppData//Local//Jenkins.jenkins//workspace//DEV-backend-marketing-place//basecs" '
-        } else {
-          bat 'xcopy /S /E /Y "C://Windows//SysWOW64//config//systemprofile//AppData//Local//Jenkins.jenkins//workspace//PROD-artefacts-marketing-place//Environments//backend-mkt-dev" "C://Windows//SysWOW64//config//systemprofile//AppData//Local//Jenkins.jenkins//workspace//PROD-backend-marketing-place//basecs" '
+        script {
+          if ("${env.Branch}" === "DEV") {
+            bat 'xcopy /S /E /Y "C://Windows//SysWOW64//config//systemprofile//AppData//Local//Jenkins.jenkins//workspace//DEV-artefacts-marketing-place//Environments//backend-mkt-dev" "C://Windows//SysWOW64//config//systemprofile//AppData//Local//Jenkins.jenkins//workspace//DEV-backend-marketing-place//basecs" '
+          } else {
+            bat 'xcopy /S /E /Y "C://Windows//SysWOW64//config//systemprofile//AppData//Local//Jenkins.jenkins//workspace//PROD-artefacts-marketing-place//Environments//backend-mkt-dev" "C://Windows//SysWOW64//config//systemprofile//AppData//Local//Jenkins.jenkins//workspace//PROD-backend-marketing-place//basecs" '
+          }
         }
+        
       }
     }
 
