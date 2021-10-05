@@ -18,7 +18,7 @@ pipeline {
 
     stage('Replacing Artefacts') {
       steps {
-        bat 'xcopy /S /E /Y @"C:/Windows/SysWOW64/config/systemprofile/AppData/Local/Jenkins.jenkins/workspace/$env.Envronment-artefacts-marketing-place/Environments/backend-mkt-${env.Envronment}" @"C:/Windows/SysWOW64/config/systemprofile/AppData/Local/Jenkins.jenkins/workspace/$env.Envronment-backend-marketing-place/basecs" '
+        bat "xcopy /S /E /Y 'C:/Windows/SysWOW64/config/systemprofile/AppData/Local/Jenkins.jenkins/workspace/$env.Envronment-artefacts-marketing-place/Environments/backend-mkt-$env.Envronment' 'C:/Windows/SysWOW64/config/systemprofile/AppData/Local/Jenkins.jenkins/workspace/$env.Envronment-backend-marketing-place/basecs' "
       }
     }
 	  
