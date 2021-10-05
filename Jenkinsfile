@@ -3,7 +3,7 @@ pipeline {
   agent any
 
   environment {
-        ENV_NAME = $env.Branch
+        ENV_NAME = "${env.Envronment}";
   }
     
   stages {
