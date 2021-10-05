@@ -1,10 +1,6 @@
 pipeline {
 
   agent any
-
-  environment {
-        ENV_NAME = "${env.Branch}"
-  }
     
   stages {
 
@@ -23,7 +19,7 @@ pipeline {
       steps {
 
         script {
-          if (ENV_NAME === "DEV") {
+          if (env.Envronment === "DEV") {
             bat 'xcopy /S /E /Y "C://Windows//SysWOW64//config//systemprofile//AppData//Local//Jenkins.jenkins//workspace//DEV-artefacts-marketing-place//Environments//backend-mkt-dev" "C://Windows//SysWOW64//config//systemprofile//AppData//Local//Jenkins.jenkins//workspace//DEV-backend-marketing-place//basecs" '
           } else {
             bat 'xcopy /S /E /Y "C://Windows//SysWOW64//config//systemprofile//AppData//Local//Jenkins.jenkins//workspace//PROD-artefacts-marketing-place//Environments//backend-mkt-dev" "C://Windows//SysWOW64//config//systemprofile//AppData//Local//Jenkins.jenkins//workspace//PROD-backend-marketing-place//basecs" '
