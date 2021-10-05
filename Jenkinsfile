@@ -22,7 +22,13 @@ pipeline {
     
     stage('Testing Project') {
       steps {
-        bat 'dotnet test C:/Windows/SysWOW64/config/systemprofile/AppData/Local/Jenkins.jenkins/workspace/$env.Envronment-backend-marketing-place/basecs.tests/basecs.tests.csproj '
+        bat "dotnet test C:/Windows/SysWOW64/config/systemprofile/AppData/Local/Jenkins.jenkins/workspace/DEV-backend-marketing-place/basecs.tests/basecs.tests.csproj "
+      }
+    }
+
+    stage('Testing Project2') {
+      steps {
+        bat "dotnet test C:/Windows/SysWOW64/config/systemprofile/AppData/Local/Jenkins.jenkins/workspace/${env.Envronment}-backend-marketing-place/basecs.tests/basecs.tests.csproj "
       }
     }
 	  
