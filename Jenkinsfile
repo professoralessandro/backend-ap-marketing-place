@@ -9,6 +9,7 @@ pipeline {
         echo '$Branch';
         echo "${env.Branch}";
         echo "${env.Envronment}";
+        echo "${env}";
         echo '$Envronment';
         echo '$Envronment';
       }
@@ -16,7 +17,7 @@ pipeline {
 
     stage('Replacing Artefacts') {
       steps {
-        bat "xcopy C:/Windows/SysWOW64/config/systemprofile/AppData/Local/Jenkins.jenkins/workspace/${env.Envronment}-artefacts-marketing-place/Environments/backend-mkt-${env.Envronment}  C:/Windows/SysWOW64/config/systemprofile/AppData/Local/Jenkins.jenkins/workspace/${env.Envronment}-backend-marketing-place/basecs /C /S /E /Y "
+        bat 'xcopy @"C://Windows/SysWOW64/config/systemprofile/AppData/Local/Jenkins.jenkins/workspace/$env.Envronment-artefacts-marketing-place/Environments/backend-mkt-${env.Envronment}"  $"C:\Windows/SysWOW64/config/systemprofile/AppData/Local/Jenkins.jenkins/workspace/${env.Envronment}-backend-marketing-place/basecs" /C /S /E /Y '
       }
     }
 
