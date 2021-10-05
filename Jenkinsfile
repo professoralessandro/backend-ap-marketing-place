@@ -34,16 +34,16 @@ pipeline {
     }
     
     // stage('Stoping Docker Compose') {
-      // steps {
-        // bat 'cd basecs && docker-compose down'
-      // }
-    // }
-
-    // stage('Deploy Project Docker and Starting Docker Compose') {
     //   steps {
-    //     bat 'cd basecs && docker-compose  up -d --build'
+    //      bat 'cd basecs && docker-compose down'
     //   }
     // }
+
+    stage('Deploy Project Docker and Starting Docker Compose') {
+      steps {
+        bat 'cd basecs && docker-compose  up -d --build'
+      }
+    }
     
   }
 }
