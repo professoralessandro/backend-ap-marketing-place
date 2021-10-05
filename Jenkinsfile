@@ -1,5 +1,9 @@
 pipeline {
 
+  environment {
+    Envronment = "${env.Envronment}";
+  }
+
   agent any
     
   stages {
@@ -9,37 +13,32 @@ pipeline {
         git branch: '$Branch', url: 'https://github.com/professoralessandro/backend-ap-marketing-place'
       }
     }
-
-    stage('Replacing Artefacts') {
-      steps {
-        bat 'xcopy /S /E /Y "C://Windows//SysWOW64//config//systemprofile//AppData//Local//Jenkins.jenkins//workspace//PROD-artefacts-marketing-place//Environments//backend-mkt-dev"  "C://Windows//SysWOW64//config//systemprofile//AppData//Local//Jenkins.jenkins//workspace//PROD-backend-marketing-place//basecs" '
-      }
-    }
-	  
-    stage('Replacing Script entrypoint') {
-      steps {
-        bat 'xcopy /S /E /Y "C://Windows//SysWOW64//config//systemprofile//AppData//Local//Jenkins.jenkins//workspace//Environments//prod//backend-mkt"  "C://Windows//SysWOW64//config//systemprofile//AppData//Local//Jenkins.jenkins//workspace//DEV-backend-marketing-place//basecs" '
-      }
-    }
     
     stage('Testing Project') {
       steps {
-        bat 'dotnet test "C://Windows//SysWOW64//config//systemprofile//AppData//Local//Jenkins.jenkins//workspace//PROD-backend-marketing-place//basecs.tests//basecs.tests.csproj" '
+        bat 'dotnet test "C://Windows//SysWOW64//config//systemprofile//AppData//Local//Jenkins.jenkins//workspace//'+Envronment+'-backend-marketing-place//basecs.tests//basecs.tests.csproj" '
       }
     }
-    
-    stage('Replace Database Scripts') {
+	  
+    stage('Replacing Artefacts') {
       steps {
-        bat 'xcopy /S /E /Y "C://Windows//SysWOW64//config//systemprofile//AppData//Local//Jenkins.jenkins//workspace//PROD-database-marketing-place//BACKUPDATABASEOBJECTS"  "C://Windows//SysWOW64//config//systemprofile//AppData//Local//Jenkins.jenkins//workspace//PROD-backend-marketing-place//basecs" '
+        // REPLACE DATABASE SCRIPTS
+        bat 'xcopy /S /E /Y "C://Windows//SysWOW64//config//systemprofile//AppData//Local//Jenkins.jenkins//workspace//'+Envronment+'-artefacts-marketing-place//Environments//backend-mkt-dev"  "C://Windows//SysWOW64//config//systemprofile//AppData//Local//Jenkins.jenkins//workspace//'+Envronment+'-backend-marketing-place//basecs" '
+        
+        // REPLACE ENTRYPOINT SH SCRIPT
+        bat 'xcopy /S /E /Y "C://Windows//SysWOW64//config//systemprofile//AppData//Local//Jenkins.jenkins//workspace//Environments//'+Envronment+'//backend-mkt"  "C://Windows//SysWOW64//config//systemprofile//AppData//Local//Jenkins.jenkins//workspace//'+Envronment+'-backend-marketing-place//basecs" '
+        
+        // REPLACE DATABASE SCRIPTS
+        bat 'xcopy /S /E /Y "C://Windows//SysWOW64//config//systemprofile//AppData//Local//Jenkins.jenkins//workspace//'+Envronment+'-database-marketing-place//BACKUPDATABASEOBJECTS"  "C://Windows//SysWOW64//config//systemprofile//AppData//Local//Jenkins.jenkins//workspace//'+Envronment+'-backend-marketing-place//basecs" '
       }
     }
-	
-    // stage('Stoping Docker Compose') {
-      // steps {
-        // bat 'cd basecs && docker-compose down'
-      // }
-    // }
     
+    // stage('Stoping Docker Compose') {
+    //   steps {
+    //      bat 'cd basecs && docker-compose down'
+    //   }
+    // }
+
     stage('Deploy Project Docker and Starting Docker Compose') {
       steps {
         bat 'cd basecs && docker-compose  up -d --build'

@@ -1,7 +1,5 @@
 ﻿using basecs.Data;
 using basecs.Services;
-using Microsoft.AspNetCore.Authentication.JwtBearer;
-using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Builder;
 using Microsoft.AspNetCore.Hosting;
 using Microsoft.EntityFrameworkCore;
@@ -10,8 +8,6 @@ using Microsoft.Extensions.DependencyInjection;
 using Microsoft.Extensions.Hosting;
 using Microsoft.OpenApi.Models;
 using System;
-using System.Collections.Generic;
-using System.Text;
 
 namespace basecs
 {
@@ -40,7 +36,7 @@ namespace basecs
             #region CONFIGURATION SWAGGER
             services.AddSwaggerGen(c =>
             {
-                c.SwaggerDoc("v1", new OpenApiInfo { Title = "APP MKT Place", Version = "v1" });
+                c.SwaggerDoc("v1", new OpenApiInfo { Title = "DEV - APP MKT Place", Version = "v1" });
             });
             #endregion
 
@@ -53,8 +49,9 @@ namespace basecs
         {
             services.AddScoped<AvaliacoesService>();
             services.AddScoped<BloqueiosService>();
-            services.AddScoped<ComprasService>();
             services.AddScoped<CaracteristicasService>();
+            services.AddScoped<ComprasService>();
+            services.AddScoped<ConfiguracoesService>();
             services.AddScoped<TiposBloqueiosService>();
             services.AddScoped<TiposCaracteristicasService>();
             services.AddScoped<TiposConfiguracoesService>();

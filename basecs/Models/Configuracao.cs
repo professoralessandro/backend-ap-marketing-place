@@ -5,9 +5,9 @@ using System.Collections.Generic;
 
 namespace basecs.Models
 {
-    public partial class Configuraco
+    public partial class Configuracao
     {
-        public Configuraco()
+        public Configuracao()
         {
             ConfiguracoesParametros = new HashSet<ConfiguracoesParametro>();
         }

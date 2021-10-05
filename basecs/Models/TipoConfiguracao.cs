@@ -9,7 +9,7 @@ namespace basecs.Models
     {
         public TipoConfiguracao()
         {
-            Configuracos = new HashSet<Configuraco>();
+            Configuracos = new HashSet<Configuracao>();
         }
 
         public int TipoConfiguracaoId { get; set; }
@@ -20,6 +20,6 @@ namespace basecs.Models
         public DateTime DataUltimaAlteracao { get; set; }
         public bool Ativo { get; set; }
 
-        public virtual ICollection<Configuraco> Configuracos { get; set; }
+        public virtual ICollection<Configuracao> Configuracos { get; set; }
     }
 }
