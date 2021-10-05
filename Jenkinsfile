@@ -21,7 +21,7 @@ pipeline {
     
     stage('Testing Project') {
       steps {
-        bat 'dotnet test "C://Windows//SysWOW64//config//systemprofile//AppData//Local//Jenkins.jenkins//workspace//'${env.Envronment}'-backend-marketing-place//basecs.tests//basecs.tests.csproj" '
+        bat 'dotnet test "C://Windows//SysWOW64//config//systemprofile//AppData//Local//Jenkins.jenkins//workspace//"${env.Envronment}"-backend-marketing-place//basecs.tests//basecs.tests.csproj" '
       }
     }
 	  
