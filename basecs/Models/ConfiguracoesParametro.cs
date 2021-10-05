@@ -11,7 +11,7 @@ namespace basecs.Models
         public int ParametroId { get; set; }
         public int ConfiguracaoId { get; set; }
 
-        public virtual Configuraco Configuracao { get; set; }
+        public virtual Configuracao Configuracao { get; set; }
         public virtual Parametro Parametro { get; set; }
     }
 }

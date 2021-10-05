@@ -30,6 +30,7 @@
 # Common project files
 /basecs/Migrations/*
 /basecs/Migrations/
+Jenkinsfile
 # End of https:\www.toptal.com/developers/gitignore/api/dotnetcore
 
 
