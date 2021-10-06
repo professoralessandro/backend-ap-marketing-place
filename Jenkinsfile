@@ -8,11 +8,11 @@ pipeline {
     
   stages {
 
-   stage('Cloning Git') {
-      steps {
-        git branch: '$Branch', url: 'https://github.com/professoralessandro/backend-ap-marketing-place'
-      }
-    }
+    // stage('Cloning Git') {
+    //   steps {
+    //     git branch: '$Branch', url: 'https://github.com/professoralessandro/backend-ap-marketing-place'
+    //   }
+    // }
     
     stage('Testing Project') {
       steps {
@@ -22,7 +22,7 @@ pipeline {
 	  
     stage('Replacing Artefacts') {
       steps {
-        // REPLACE DATABASE SCRIPTS
+        // REPLACE ARTEFACT FILES
         bat 'xcopy /S /E /Y "C://Windows//SysWOW64//config//systemprofile//AppData//Local//Jenkins.jenkins//workspace//'+Envronment+'-artefacts-marketing-place//Environments//backend-mkt-dev"  "C://Windows//SysWOW64//config//systemprofile//AppData//Local//Jenkins.jenkins//workspace//'+Envronment+'-backend-marketing-place//basecs" '
         
         // REPLACE ENTRYPOINT SH SCRIPT
