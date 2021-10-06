@@ -29,7 +29,7 @@ pipeline {
 
     stage('Restore Project') {
       steps {
-         bat 'dotnet restore'
+         bat 'cd basecs && dotnet restore'
       }
     }
     
