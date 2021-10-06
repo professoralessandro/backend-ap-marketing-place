@@ -41,7 +41,7 @@ pipeline {
 
     stage('Deploy Project Docker and Starting Docker Compose') {
       steps {
-        bat 'docker-compose  up -d --build'
+        bat 'cd basecs && docker-compose  up -d --build'
       }
     }
     
