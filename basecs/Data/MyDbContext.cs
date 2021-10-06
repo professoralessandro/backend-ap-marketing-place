@@ -347,7 +347,6 @@ namespace basecs.Data
 
                 entity.Property(e => e.Mensagem)
                     .IsRequired()
-                    .HasMaxLength(150)
                     .IsUnicode(false);
 
                 entity.Property(e => e.NomeEmail)
