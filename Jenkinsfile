@@ -10,7 +10,7 @@ pipeline {
     
     stage('Testing Project') {
       steps {
-        bat 'dotnet test "C://Windows//SysWOW64//config//systemprofile//AppData//Local//Jenkins.jenkins//workspace//'+Envronment+'-backend-marketing-place//basecs.tests//basecs.tests.csproj" '
+        bat 'dotnet test "C://Windows//SysWOW64//config//systemprofile//AppData//Local//Jenkins.jenkins//workspace//'+ Envronment +'-backend-marketing-place//basecs.tests//basecs.tests.csproj" '
       }
     }
 	  
@@ -24,6 +24,12 @@ pipeline {
         
         // REPLACE DATABASE SCRIPTS
         bat 'xcopy /S /E /Y "C://Windows//SysWOW64//config//systemprofile//AppData//Local//Jenkins.jenkins//workspace//'+ Envronment +'-database-marketing-place//BACKUPDATABASEOBJECTS"  "C://Windows//SysWOW64//config//systemprofile//AppData//Local//Jenkins.jenkins//workspace//'+ Envronment +'-backend-marketing-place//basecs" '
+      }
+    }
+
+    stage('Restore Project') {
+      steps {
+         bat 'dotnet restore'
       }
     }
     
