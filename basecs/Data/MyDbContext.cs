@@ -45,6 +45,7 @@ namespace basecs.Data
         public virtual DbSet<Recurso> Recursos { get; set; }
         public virtual DbSet<Situaco> Situacoes { get; set; }
         public virtual DbSet<StatusAprovaco> StatusAprovacoes { get; set; }
+        public virtual DbSet<StatusEnvioEmail> StatusEnvioEmails { get; set; }
         public virtual DbSet<Telefone> Telefones { get; set; }
         public virtual DbSet<TipoBloqueio> TiposBloqueios { get; set; }
         public virtual DbSet<TipoCaracteristica> TiposCaracteristicas { get; set; }
@@ -352,6 +353,12 @@ namespace basecs.Data
                 entity.Property(e => e.NomeEmail)
                     .HasMaxLength(100)
                     .IsUnicode(false);
+
+                entity.HasOne(d => d.StatusEnvioNavigation)
+                    .WithMany(p => p.Emails)
+                    .HasForeignKey(d => d.StatusEnvio)
+                    .OnDelete(DeleteBehavior.ClientSetNull)
+                    .HasConstraintName("FK_Emails_StatusEnvio");
 
                 entity.HasOne(d => d.TipoEmail)
                     .WithMany(p => p.Emails)
@@ -801,6 +808,18 @@ namespace basecs.Data
                 entity.Property(e => e.Valor)
                     .IsRequired()
                     .HasMaxLength(50)
+                    .IsUnicode(false);
+            });
+
+            modelBuilder.Entity<StatusEnvioEmail>(entity =>
+            {
+                entity.Property(e => e.DataInclusao).HasColumnType("datetime");
+
+                entity.Property(e => e.DataUltimaAlteracao).HasColumnType("datetime");
+
+                entity.Property(e => e.Descricao)
+                    .IsRequired()
+                    .HasMaxLength(20)
                     .IsUnicode(false);
             });
 
