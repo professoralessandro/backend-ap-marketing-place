@@ -23,7 +23,7 @@ namespace basecs.Data
         public virtual DbSet<CartoesBancario> CartoesBancarios { get; set; }
         public virtual DbSet<Compra> Compras { get; set; }
         public virtual DbSet<Configuracao> Configuracoes { get; set; }
-        public virtual DbSet<ConfiguracoesParametro> ConfiguracoesParametros { get; set; }
+        public virtual DbSet<ConfiguracaoParametro> ConfiguracoesParametros { get; set; }
         public virtual DbSet<DadosBancario> DadosBancarios { get; set; }
         public virtual DbSet<Email> Emails { get; set; }
         public virtual DbSet<Endereco> Enderecos { get; set; }
@@ -275,7 +275,7 @@ namespace basecs.Data
                     .HasConstraintName("FK_Configuracoes_TipoConfiguracaoId");
             });
 
-            modelBuilder.Entity<ConfiguracoesParametro>(entity =>
+            modelBuilder.Entity<ConfiguracaoParametro>(entity =>
             {
                 entity.HasKey(e => e.ConfiguracaoParametroId)
                     .HasName("PK__Configur__E21FA04F8D7FE938");

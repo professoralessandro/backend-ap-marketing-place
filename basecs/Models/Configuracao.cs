@@ -9,7 +9,7 @@ namespace basecs.Models
     {
         public Configuracao()
         {
-            ConfiguracoesParametros = new HashSet<ConfiguracoesParametro>();
+            ConfiguracoesParametros = new HashSet<ConfiguracaoParametro>();
         }
 
         public int ConfiguracaoId { get; set; }
@@ -22,6 +22,6 @@ namespace basecs.Models
         public bool Ativo { get; set; }
 
         public virtual TipoConfiguracao TipoConfiguracao { get; set; }
-        public virtual ICollection<ConfiguracoesParametro> ConfiguracoesParametros { get; set; }
+        public virtual ICollection<ConfiguracaoParametro> ConfiguracoesParametros { get; set; }
     }
 }

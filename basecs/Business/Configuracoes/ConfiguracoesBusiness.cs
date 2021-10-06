@@ -69,7 +69,7 @@ namespace basecs.Business.Configuracoes
         }
         #endregion
 
-        #region UPDATE
+        #region DELETE
         public string DeleteValidation(int id)
         {
             string validation = "";
