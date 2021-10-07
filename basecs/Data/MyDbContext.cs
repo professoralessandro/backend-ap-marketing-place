@@ -375,16 +375,18 @@ namespace basecs.Data
             modelBuilder.Entity<Endereco>(entity =>
             {
                 entity.Property(e => e.Bairro)
-                    .HasMaxLength(50)
+                    .HasMaxLength(30)
                     .IsUnicode(false);
 
                 entity.Property(e => e.Cep)
-                    .HasMaxLength(10)
+                    .IsRequired()
+                    .HasMaxLength(8)
                     .IsUnicode(false)
                     .HasColumnName("CEP");
 
                 entity.Property(e => e.Cidade)
-                    .HasMaxLength(50)
+                    .IsRequired()
+                    .HasMaxLength(30)
                     .IsUnicode(false);
 
                 entity.Property(e => e.Complemento)
@@ -396,16 +398,22 @@ namespace basecs.Data
                 entity.Property(e => e.DataUltimaAlteracao).HasColumnType("datetime");
 
                 entity.Property(e => e.Estado)
-                    .HasMaxLength(50)
+                    .IsRequired()
+                    .HasMaxLength(2)
                     .IsUnicode(false);
 
                 entity.Property(e => e.Logradouro)
                     .IsRequired()
-                    .HasMaxLength(100)
+                    .HasMaxLength(50)
                     .IsUnicode(false);
 
                 entity.Property(e => e.Numero)
+                    .IsRequired()
                     .HasMaxLength(10)
+                    .IsUnicode(false);
+
+                entity.Property(e => e.PontoReferencia)
+                    .HasMaxLength(100)
                     .IsUnicode(false);
 
                 entity.HasOne(d => d.TipoEndereco)

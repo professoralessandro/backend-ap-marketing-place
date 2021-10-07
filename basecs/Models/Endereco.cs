@@ -21,12 +21,13 @@ namespace basecs.Models
         public string Cidade { get; set; }
         public string Estado { get; set; }
         public string Cep { get; set; }
+        public string PontoReferencia { get; set; }
         public int UsuarioInclusaoId { get; set; }
         public int UsuarioUltimaAlteracaoId { get; set; }
         public DateTime DataInclusao { get; set; }
         public DateTime DataUltimaAlteracao { get; set; }
-        public bool Ativo { get; set; }
         public bool IsPrincipal { get; set; }
+        public bool Ativo { get; set; }
 
         public virtual TipoEndereco TipoEndereco { get; set; }
         public virtual ICollection<Compra> Compras { get; set; }
