@@ -1,7 +1,6 @@
-﻿using basecs.Business.Bloqueios;
+﻿using basecs.Business.Enderecos;
 using basecs.Data;
 using basecs.Helpers.Helpers.Validators;
-using basecs.Interfaces.IBloqueiosService;
 using basecs.Models;
 using Microsoft.Data.SqlClient;
 using Microsoft.EntityFrameworkCore;
@@ -12,27 +11,27 @@ using System.Threading.Tasks;
 
 namespace basecs.Services
 {
-    public class BloqueiosService : IBloqueiosService
+    public class EnderecosService
     {
         #region ATRIBUTTES
         private readonly MyDbContext _context;
-        private readonly BloqueiosBusiness _business;
+        private readonly EnderecosBusiness _business;
         #endregion
 
         #region CONTRUCTORS
-        public BloqueiosService(MyDbContext context)
+        public EnderecosService(MyDbContext context)
         {
             _context = context;
-            _business = new BloqueiosBusiness();
+            _business = new EnderecosBusiness();
         }
         #endregion
 
         #region FIND BY ID
-        public async Task<Bloqueio> FindById(int id)
+        public async Task<Endereco> FindById(int id)
         {
             try
             {
-                return await this._context.Bloqueios.SingleOrDefaultAsync(c => c.BloqueioId == id);
+                return await this._context.Enderecos.SingleOrDefaultAsync(c => c.EnderecoId == id);
             }
             catch (Exception ex)
             {
@@ -42,7 +41,7 @@ namespace basecs.Services
         #endregion
 
         #region RETURN LIST WITH PARAMETERS PAGINATED
-        public async Task<List<Bloqueio>> ReturnListWithParametersPaginated(
+        public async Task<List<Endereco>> ReturnListWithParametersPaginated(
                 string param,
                 DateTime? dateAdded,
                 int? pageNumber,
@@ -58,11 +57,11 @@ namespace basecs.Services
                     new SqlParameter("@RowspPage", rowspPage)
                 };
 
-                var storedProcedure = $@"[dbo].[BloqueiosPaginated] @Param, @DateAdded, @PageNumber, @RowspPage";
+                var storedProcedure = $@"[dbo].[EnderecosPaginated] @Param, @DateAdded, @PageNumber, @RowspPage";
 
                 using (var context = this._context)
                 {
-                    return await context.Bloqueios.FromSqlRaw(storedProcedure, Params).ToListAsync();
+                    return await context.Enderecos.FromSqlRaw(storedProcedure, Params).ToListAsync();
                 }
             }
             catch (Exception ex)
@@ -74,7 +73,7 @@ namespace basecs.Services
         #endregion
 
         #region RETURN LIST WITH PARAMETERS
-        public async Task<List<Bloqueio>> ReturnListWithParameters(
+        public async Task<List<Endereco>> ReturnListWithParameters(
                 int? id,
                 string descricao,
                 bool isBloqueiaAcesso,
@@ -85,12 +84,12 @@ namespace basecs.Services
             {
                 using (var context = this._context)
                 {
-                    return await context.Bloqueios.Where(c =>
-                    (c.BloqueioId == id || id == null) &&
-                    (c.NomeBloqueio.Contains(Validators.RemoveInjections(descricao)) || string.IsNullOrEmpty(Validators.RemoveInjections(descricao))) &&
+                    return await context.Enderecos.Where(c =>
+                    (c.EnderecoId == id || id == null) &&
+                    (c.NomeEndereco.Contains(Validators.RemoveInjections(descricao)) || string.IsNullOrEmpty(Validators.RemoveInjections(descricao))) &&
                     (c.IsBloqueiaAcesso.Equals(isBloqueiaAcesso) || !isBloqueiaAcesso.Equals(null)) &&
                     (c.Ativo == ativo || ativo == null)
-                    ).OrderByDescending(x => x.BloqueioId)
+                    ).OrderByDescending(x => x.EnderecoId)
                     .ToListAsync();
                 }
             }
@@ -102,7 +101,7 @@ namespace basecs.Services
         #endregion
 
         #region INSERT
-        public async Task<Bloqueio> Insert(Bloqueio model)
+        public async Task<Endereco> Insert(Endereco model)
         {
             try
             {
@@ -110,7 +109,7 @@ namespace basecs.Services
 
                 if (validationMessage.Equals(""))
                 {
-                    this._context.Bloqueios.Add(model);
+                    this._context.Enderecos.Add(model);
                     await this._context.SaveChangesAsync();
                     return model;
                 }
@@ -127,7 +126,7 @@ namespace basecs.Services
         #endregion
 
         #region UPDATE
-        public async Task<Bloqueio> Update(Bloqueio model)
+        public async Task<Endereco> Update(Endereco model)
         {
             try
             {
@@ -135,7 +134,7 @@ namespace basecs.Services
 
                 if (validationMessage.Equals(""))
                 {
-                    this._context.Bloqueios.Update(model);
+                    this._context.Enderecos.Update(model);
                     await this._context.SaveChangesAsync();
                     return model;
                 }
@@ -152,7 +151,7 @@ namespace basecs.Services
         #endregion        
 
         #region DELETE
-        public async Task<Bloqueio> Delete(int id)
+        public async Task<Endereco> Delete(int id)
         {
             try
             {
@@ -160,7 +159,7 @@ namespace basecs.Services
 
                 if (validationMessage.Equals(""))
                 {
-                    Bloqueio model = await this.FindById(id);
+                    Endereco model = await this.FindById(id);
                     model.Ativo = false;
                     await this.Update(model);
                     return model;

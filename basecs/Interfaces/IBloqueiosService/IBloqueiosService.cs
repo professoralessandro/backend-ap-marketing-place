@@ -1,4 +1,5 @@
 ﻿using basecs.Models;
+using System;
 using System.Collections.Generic;
 using System.Threading.Tasks;
 
@@ -11,11 +12,11 @@ namespace basecs.Interfaces.IBloqueiosService
         #endregion
 
         #region RETURN LIST WITH PARAMETERS PAGINATED
-        Task<List<Bloqueio>> ReturnListWithParametersPaginated(int? id, string descricao, bool? ativo, int? pageNumber, int? rowspPage);
+        Task<List<Bloqueio>> ReturnListWithParametersPaginated(string param, DateTime? dateAdded, int? pageNumber, int? rowspPage);
         #endregion
 
         #region RETURN LIST WITH PARAMETERS
-        Task<List<Bloqueio>> ReturnListWithParameters(int? id, string descricao, bool? ativo);
+        Task<List<Bloqueio>> ReturnListWithParameters(int? id, string descricao, bool isBloqueiaAcesso, bool? ativo);
         #endregion
 
         #region INSERT
