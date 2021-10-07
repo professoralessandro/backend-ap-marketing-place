@@ -8,15 +8,15 @@ using System.Threading.Tasks;
 
 namespace backend_adm.Controllers
 {
-    public class TiposEntregaController : ControllerCS
+    public class EntregasController : ControllerCS
     {
         #region ATRIBUTTES
-        private readonly TiposEntregasService _service;
+        private readonly EntregasService _service;
         private readonly LogsService _log;
         #endregion
 
         #region CONSTRUCTORS
-        public TiposEntregaController([FromServices] TiposEntregasService service, [FromServices] LogsService log)
+        public EntregasController([FromServices] EntregasService service, [FromServices] LogsService log)
         {
             _service = service;
             _log = log;
@@ -25,17 +25,19 @@ namespace backend_adm.Controllers
 
         #region RETURN LIST PAGINATED
         [HttpGet, Route("paginated")]
-        public async Task<ActionResult<List<TipoEntrega>>> ReturnListWithParameters(
-                [FromQuery] int? id,
-                [FromQuery] string descricao,
-                [FromQuery] bool? ativo,
-                [FromQuery] int? pageNumber,
-                [FromQuery] int? rowspPage
+        public async Task<ActionResult<List<Entrega>>> ReturnListWithParameters(
+                 [FromQuery] int? id,
+                 [FromQuery] string nmrDocumento,
+                 [FromQuery] int? tipoDocumentoId,
+                 [FromQuery] string nomeRecebedor,
+                 [FromQuery] bool? ativo,
+                 [FromQuery] int? pageNumber,
+                 [FromQuery] int? rowspPage
             )
         {
             try
             {
-                return Ok(await _service.ReturnListWithParametersPaginated(id, descricao, ativo, pageNumber, rowspPage));
+                return Ok(await _service.ReturnListWithParametersPaginated(id, nmrDocumento, tipoDocumentoId, nomeRecebedor, ativo, pageNumber, rowspPage));
             }
             catch (Exception ex)
             {
@@ -46,15 +48,17 @@ namespace backend_adm.Controllers
 
         #region RETURN LIST WITH PARAMETERS
         [HttpGet]
-        public async Task<ActionResult<List<TipoEntrega>>> ReturnListWithParameters(
-            [FromQuery] int? id,
-            [FromQuery] string descricao,
-            [FromQuery] bool? ativo
+        public async Task<ActionResult<List<Entrega>>> ReturnListWithParameters(
+                [FromQuery] int? id,
+                [FromQuery] string nmrDocumento,
+                [FromQuery] int? tipoDocumentoId,
+                [FromQuery] string nomeRecebedor,
+                [FromQuery] bool? ativo
             )
         {
             try
             {
-                return Ok(await _service.ReturnListWithParameters(id, descricao, ativo));
+                return Ok(await _service.ReturnListWithParameters(id, nmrDocumento, tipoDocumentoId, nomeRecebedor, ativo));
             }
             catch (Exception ex)
             {
@@ -65,7 +69,7 @@ namespace backend_adm.Controllers
 
         #region INSERT
         [HttpPost]
-        public async Task<ActionResult<TipoEntrega>> Insert([FromBody] TipoEntrega model)
+        public async Task<ActionResult<Entrega>> Insert([FromBody] Entrega model)
         {
             try
             {
@@ -84,7 +88,7 @@ namespace backend_adm.Controllers
 
         #region UPDATE
         [HttpPut]
-        public async Task<ActionResult<TipoEntrega>> Update(TipoEntrega model)
+        public async Task<ActionResult<Entrega>> Update(Entrega model)
         {
             try
             {
