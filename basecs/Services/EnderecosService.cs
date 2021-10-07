@@ -1,6 +1,7 @@
 ﻿using basecs.Business.Enderecos;
 using basecs.Data;
 using basecs.Helpers.Helpers.Validators;
+using basecs.Interfaces.IEnderecosService;
 using basecs.Models;
 using Microsoft.Data.SqlClient;
 using Microsoft.EntityFrameworkCore;
@@ -11,7 +12,7 @@ using System.Threading.Tasks;
 
 namespace basecs.Services
 {
-    public class EnderecosService
+    public class EnderecosService : IEnderecosService
     {
         #region ATRIBUTTES
         private readonly MyDbContext _context;
@@ -75,8 +76,13 @@ namespace basecs.Services
         #region RETURN LIST WITH PARAMETERS
         public async Task<List<Endereco>> ReturnListWithParameters(
                 int? id,
-                string descricao,
-                bool isBloqueiaAcesso,
+                int? tipoEnderecoId,
+                string logradouro,
+                string bairro,
+                string cidade,
+                string estado,
+                string cep,
+                bool? isPrincipal,
                 bool? ativo
             )
         {
@@ -85,10 +91,15 @@ namespace basecs.Services
                 using (var context = this._context)
                 {
                     return await context.Enderecos.Where(c =>
-                    (c.EnderecoId == id || id == null) &&
-                    (c.NomeEndereco.Contains(Validators.RemoveInjections(descricao)) || string.IsNullOrEmpty(Validators.RemoveInjections(descricao))) &&
-                    (c.IsBloqueiaAcesso.Equals(isBloqueiaAcesso) || !isBloqueiaAcesso.Equals(null)) &&
-                    (c.Ativo == ativo || ativo == null)
+                    (c.EnderecoId.Equals(id) || id.Equals(null)) &&
+                    (c.TipoEnderecoId.Equals(tipoEnderecoId) || tipoEnderecoId.Equals(tipoEnderecoId)) &&
+                    (c.Logradouro.Contains(Validators.RemoveInjections(logradouro)) || string.IsNullOrEmpty(Validators.RemoveInjections(logradouro))) &&
+                    (c.Bairro.Contains(Validators.RemoveInjections(bairro)) || string.IsNullOrEmpty(Validators.RemoveInjections(bairro))) &&
+                    (c.Cidade.Contains(Validators.RemoveInjections(cidade)) || string.IsNullOrEmpty(Validators.RemoveInjections(cidade))) &&
+                    (c.Estado.Contains(Validators.RemoveInjections(estado)) || string.IsNullOrEmpty(Validators.RemoveInjections(estado))) &&
+                    (c.Cep.Contains(Validators.RemoveInjections(cep)) || string.IsNullOrEmpty(Validators.RemoveInjections(cep))) &&
+                    (c.IsPrincipal.Equals(isPrincipal) || ativo.Equals(null)) &&
+                    (c.Ativo.Equals(ativo) || ativo.Equals(null))
                     ).OrderByDescending(x => x.EnderecoId)
                     .ToListAsync();
                 }

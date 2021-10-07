@@ -46,15 +46,20 @@ namespace backend_adm.Controllers
         #region RETURN LIST WITH PARAMETERS
         [HttpGet]
         public async Task<ActionResult<List<Endereco>>> ReturnListWithParameters(
-            [FromQuery] int? id,
-            [FromQuery] string descricao,
-            [FromQuery] bool isBloqueiaAcesso,
-            [FromQuery] bool? ativo
+                [FromQuery] int? id,
+                [FromQuery] int? tipoEnderecoId,
+                [FromQuery] string logradouro,
+                [FromQuery] string bairro,
+                [FromQuery] string cidade,
+                [FromQuery] string estado,
+                [FromQuery] string cep,
+                [FromQuery] bool? isPrincipal,
+                [FromQuery] bool? ativo
             )
         {
             try
             {
-                return Ok(await _service.ReturnListWithParameters(id, descricao, isBloqueiaAcesso, ativo));
+                return Ok(await _service.ReturnListWithParameters(id, tipoEnderecoId, logradouro, bairro, cidade, estado, cep, isPrincipal, ativo));
             }
             catch (Exception ex)
             {

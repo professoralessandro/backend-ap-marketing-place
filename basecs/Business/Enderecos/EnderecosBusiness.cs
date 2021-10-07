@@ -14,12 +14,44 @@ namespace basecs.Business.Enderecos
                 validation += "Identificação do bloqueios invalido\n";
             }
 
-            if (!string.IsNullOrEmpty(model.NomeEndereco))
+            if (model.TipoEnderecoId < 1)
             {
-                model.NomeEndereco = Validators.RemoveInjections(model.NomeEndereco);
-                if (model.NomeEndereco.Length < 3)
+                validation += "Identificação do tipo de endereço que incluiu e invalido\n";
+            }
+
+            if (!string.IsNullOrEmpty(model.Logradouro))
+            {
+                model.Logradouro = Validators.RemoveInjections(model.Logradouro);
+                if (model.Logradouro.Length < 3)
                 {
-                    validation += "Descrição do bloqueios contem menos de três caracteres\n";
+                    validation += "Descrição do logradouro contem menos de três caracteres\n";
+                }
+            }
+
+            if (!int.TryParse(model.Numero, out int n))
+            {
+                model.Logradouro = Validators.RemoveInjections(model.Logradouro);
+                if (model.Logradouro.Length < 3)
+                {
+                    validation += "O número informado não esta no formato correto\n";
+                }
+            }
+
+            if (!string.IsNullOrEmpty(model.Cidade))
+            {
+                model.Cidade = Validators.RemoveInjections(model.Cidade);
+                if (model.Cidade.Length < 3)
+                {
+                    validation += "Descrição da cidade contem menos de três caracteres\n";
+                }
+            }
+
+            if (!string.IsNullOrEmpty(model.Cep))
+            {
+                model.Cidade = Validators.RemoveInjections(model.Cidade);
+                if (model.Cep.Length != 8)
+                {
+                    validation += "o CEP não esta no formato correto\n";
                 }
             }
 
@@ -33,6 +65,11 @@ namespace basecs.Business.Enderecos
                 validation += "Identificacao do usuario que incluiu e invalido\n";
             }
 
+            if (!model.Ativo)
+            {
+                validation += "O endereco não pode estar bloqueado\n";
+            }
+
             return validation;
         }
         #endregion
@@ -42,18 +79,55 @@ namespace basecs.Business.Enderecos
         {
             string validation = "";
 
-            if (model.EnderecoId == 0)
+            if (model.EnderecoId < 1)
             {
                 validation += "Identificação do bloqueios invalido\n";
             }
 
-            if (!string.IsNullOrEmpty(model.NomeEndereco))
+            if (model.TipoEnderecoId < 1)
             {
-                model.NomeEndereco = Validators.RemoveInjections(model.NomeEndereco);
-                if (model.NomeEndereco.Length < 3)
+                validation += "Identificação do tipo de endereço que incluiu e invalido\n";
+            }
+
+            if (!string.IsNullOrEmpty(model.Logradouro))
+            {
+                model.Logradouro = Validators.RemoveInjections(model.Logradouro);
+                if (model.Logradouro.Length < 3)
                 {
-                    validation += "Descrição do bloqueios contem menos de três caracteres\n";
+                    validation += "Descrição do logradouro contem menos de três caracteres\n";
                 }
+            }
+
+            if (!int.TryParse(model.Numero, out int n))
+            {
+                model.Logradouro = Validators.RemoveInjections(model.Logradouro);
+                if (model.Logradouro.Length < 3)
+                {
+                    validation += "O número informado não esta no formato correto\n";
+                }
+            }
+
+            if (!string.IsNullOrEmpty(model.Cidade))
+            {
+                model.Cidade = Validators.RemoveInjections(model.Cidade);
+                if (model.Cidade.Length < 3)
+                {
+                    validation += "Descrição da cidade contem menos de três caracteres\n";
+                }
+            }
+
+            if (!string.IsNullOrEmpty(model.Cep))
+            {
+                model.Cidade = Validators.RemoveInjections(model.Cidade);
+                if (model.Cep.Length != 8)
+                {
+                    validation += "o CEP não esta no formato correto\n";
+                }
+            }
+
+            if (model.UsuarioInclusaoId < 1)
+            {
+                validation += "Identificação do usuario que incluiu e invalido\n";
             }
 
             if (model.UsuarioUltimaAlteracaoId < 1)
