@@ -442,7 +442,7 @@ namespace basecs.Data
 
                 entity.Property(e => e.NomeRecebedor)
                     .IsRequired()
-                    .HasMaxLength(200)
+                    .HasMaxLength(100)
                     .IsUnicode(false);
 
                 entity.HasOne(d => d.ResponsavelEntrega)
