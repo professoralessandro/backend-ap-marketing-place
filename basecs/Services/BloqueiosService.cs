@@ -35,7 +35,7 @@ namespace basecs.Services
             }
             catch (Exception ex)
             {
-                throw new Exception("Houve um erro ao buscar o Bloqueio desejada!" + ex.Message);
+                throw new Exception("Houve um erro ao buscar o registro desejado!" + ex.Message);
             }
         }
         #endregion
@@ -66,7 +66,7 @@ namespace basecs.Services
             }
             catch (Exception ex)
             {
-                throw new Exception("Não foi possível realizar a busca por tipos workflows: " + ex.Message);
+                throw new Exception("Não foi possível realizar a busca por registros: " + ex.Message);
             }
 
         }
@@ -95,7 +95,7 @@ namespace basecs.Services
             }
             catch (Exception ex)
             {
-                throw new Exception("Não foi possível realizar a busca por tipos bloqueios: " + ex.Message);
+                throw new Exception("Não foi possível realizar a busca por registros: " + ex.Message);
             }
         }
         #endregion
@@ -150,7 +150,7 @@ namespace basecs.Services
         }
         #endregion        
 
-        #region DELETE SERVIÇO DE DELETE
+        #region DELETE
         public async Task<Bloqueio> Delete(int id)
         {
             try
