@@ -28,7 +28,7 @@ namespace basecs.Interfaces.ITiposEntregasService
         Task<TipoEntrega> Update(TipoEntrega model);
         #endregion        
 
-        #region DELETE SERVIÇO DE DELETE
+        #region DELETE
         Task<TipoEntrega> Delete(int id);
         #endregion
     }

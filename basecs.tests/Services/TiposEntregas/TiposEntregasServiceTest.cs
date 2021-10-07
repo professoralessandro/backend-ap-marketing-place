@@ -7,7 +7,7 @@ using Xunit;
 
 namespace basecs.tests.Services.TipoEntrega
 {
-    public class TipoEntregasServiceTest
+    public class TiposEntregasServiceTest
     {
         #region ATRIBUTTES
         TiposEntregasService _service;
@@ -15,7 +15,7 @@ namespace basecs.tests.Services.TipoEntrega
         #endregion
 
         #region CONSTRUCTORS
-        public TipoEntregasServiceTest()
+        public TiposEntregasServiceTest()
         {
             _serviceMock = new Mock<ITiposEntregasService>();
             _service = new TiposEntregasService(new Data.MyDbContext());

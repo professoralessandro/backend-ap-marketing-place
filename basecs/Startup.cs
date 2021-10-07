@@ -14,7 +14,8 @@ namespace basecs
     public class Startup
     {
         #region CLASS ATTRIBITES
-        public IConfiguration Configuration { get; }
+        private IConfiguration Configuration { get; }
+        private static string EnvronmentToString = "";
         #endregion
 
         #region CONSTRUCTORS
@@ -36,7 +37,7 @@ namespace basecs
             #region CONFIGURATION SWAGGER
             services.AddSwaggerGen(c =>
             {
-                c.SwaggerDoc("v1", new OpenApiInfo { Title = "DEV - APP MKT Place", Version = "v1" });
+                c.SwaggerDoc("v1", new OpenApiInfo { Title = $"{EnvronmentToString} - APP MKT Place", Version = "v1" });
             });
             #endregion
 
@@ -54,6 +55,7 @@ namespace basecs
             services.AddScoped<ConfiguracoesService>();
             services.AddScoped<ConfiguracoesParametroService>();
             services.AddScoped<EmailsService>();
+            services.AddScoped<EntregasService>();
             services.AddScoped<EnderecosService>();
             services.AddScoped<TiposBloqueiosService>();
             services.AddScoped<TiposCaracteristicasService>();
@@ -82,10 +84,12 @@ namespace basecs
             #region CONFIGURATION ENVRONMENT
             if (env.IsDevelopment())
             {
+                EnvronmentToString = "DEV";
                 app.UseDeveloperExceptionPage();
             }
             else
             {
+                EnvronmentToString = "PROD";
                 app.UseHttpsRedirection();
             }
             #endregion
