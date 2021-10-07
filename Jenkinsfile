@@ -26,18 +26,12 @@ pipeline {
         bat 'xcopy /S /E /Y "C://Windows//SysWOW64//config//systemprofile//AppData//Local//Jenkins.jenkins//workspace//'+ Envronment +'-database-marketing-place//BACKUPDATABASEOBJECTS"  "C://Windows//SysWOW64//config//systemprofile//AppData//Local//Jenkins.jenkins//workspace//'+ Envronment +'-backend-marketing-place" '
       }
     }
-
-    stage('Restore Project') {
+    
+    stage('Stoping Docker Compose') {
       steps {
-         bat 'cd basecs && dotnet restore'
+         bat 'cd basecs && docker-compose down'
       }
     }
-    
-    // stage('Stoping Docker Compose') {
-    //   steps {
-    //      bat 'cd basecs && docker-compose down'
-    //   }
-    // }
 
     stage('Deploy Project Docker and Starting Docker Compose') {
       steps {
