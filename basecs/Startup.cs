@@ -68,7 +68,6 @@ namespace basecs
             services.AddScoped<TiposParametrosService>();
             services.AddScoped<TiposTelefonesService>();
             services.AddScoped<TiposWorkFlowsService>();
-            services.AddScoped<WelcomeService>();
             services.AddScoped<LogsService>();
             
             return services;
