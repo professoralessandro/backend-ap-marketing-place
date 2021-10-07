@@ -15,7 +15,7 @@ namespace basecs.Models
         public string Assunto { get; set; }
         public string Mensagem { get; set; }
         public bool Html { get; set; }
-        public bool Enviado { get; set; }
+        public int StatusEnvio { get; set; }
         public int Tentativas { get; set; }
         public int UsuarioInclusaoId { get; set; }
         public int UsuarioUltimaAlteracaoId { get; set; }
@@ -23,6 +23,7 @@ namespace basecs.Models
         public DateTime DataUltimaAlteracao { get; set; }
         public bool Ativo { get; set; }
 
+        public virtual StatusEnvioEmail StatusEnvioNavigation { get; set; }
         public virtual TipoEmail TipoEmail { get; set; }
         public virtual Usuario UsuarioEnvio { get; set; }
     }
