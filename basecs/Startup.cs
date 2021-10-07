@@ -54,6 +54,7 @@ namespace basecs
             services.AddScoped<ConfiguracoesService>();
             services.AddScoped<ConfiguracoesParametroService>();
             services.AddScoped<EmailsService>();
+            services.AddScoped<EnderecosService>();
             services.AddScoped<TiposBloqueiosService>();
             services.AddScoped<TiposCaracteristicasService>();
             services.AddScoped<TiposConfiguracoesService>();
@@ -68,7 +69,6 @@ namespace basecs
             services.AddScoped<TiposParametrosService>();
             services.AddScoped<TiposTelefonesService>();
             services.AddScoped<TiposWorkFlowsService>();
-            services.AddScoped<WelcomeService>();
             services.AddScoped<LogsService>();
             
             return services;

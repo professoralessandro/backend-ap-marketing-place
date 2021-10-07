@@ -26,6 +26,7 @@ namespace basecs.Models
         public DateTime DataInclusao { get; set; }
         public DateTime DataUltimaAlteracao { get; set; }
         public bool Ativo { get; set; }
+        public bool IsPrincipal { get; set; }
 
         public virtual TipoEndereco TipoEndereco { get; set; }
         public virtual ICollection<Compra> Compras { get; set; }
