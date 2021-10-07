@@ -46,6 +46,15 @@ namespace basecs.Business.Enderecos
                 }
             }
 
+            if (!string.IsNullOrEmpty(model.Estado))
+            {
+                model.Estado = Validators.RemoveInjections(model.Estado);
+                if (model.Estado.Length != 2)
+                {
+                    validation += "o Estado não esta no formato correto\n";
+                }
+            }
+
             if (!string.IsNullOrEmpty(model.Cep))
             {
                 model.Cidade = Validators.RemoveInjections(model.Cidade);
@@ -113,6 +122,15 @@ namespace basecs.Business.Enderecos
                 if (model.Cidade.Length < 3)
                 {
                     validation += "Descrição da cidade contem menos de três caracteres\n";
+                }
+            }
+
+            if (!string.IsNullOrEmpty(model.Estado))
+            {
+                model.Estado = Validators.RemoveInjections(model.Estado);
+                if (model.Estado.Length != 2)
+                {
+                    validation += "o Estado não esta no formato correto\n";
                 }
             }
 
