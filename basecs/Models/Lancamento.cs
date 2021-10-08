@@ -24,16 +24,18 @@ namespace basecs.Models
         public string Observacao { get; set; }
         public int? UsuarioIdBaixa { get; set; }
         public int? LancamentoIdPai { get; set; }
-        public string NroAutorizacao { get; set; }
-        public string NroAutenticacao { get; set; }
-        public string NroComprovante { get; set; }
-        public string NroPedido { get; set; }
         public int? FormaPagamentoId { get; set; }
         public int? QtdeParcelas { get; set; }
+        public int? NmrParcela { get; set; }
         public decimal? ValorParcela { get; set; }
+        public int UsuarioInclusaoId { get; set; }
+        public int UsuarioUltimaAlteracaoId { get; set; }
+        public DateTime DataInclusao { get; set; }
+        public DateTime DataUltimaAlteracao { get; set; }
+        public bool Ativo { get; set; }
 
-        public virtual Situaco Situacao { get; set; }
-        public virtual TipoLancamento TipoLancamento { get; set; }
+        public virtual Situac Situacao { get; set; }
+        public virtual TipoLancamento TiposLancamentos { get; set; }
         public virtual Usuario Usuario { get; set; }
         public virtual ICollection<Compra> Compras { get; set; }
         public virtual ICollection<UsuariosLancamento> UsuariosLancamentos { get; set; }

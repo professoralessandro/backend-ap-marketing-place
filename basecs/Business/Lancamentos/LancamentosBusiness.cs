@@ -1,15 +1,15 @@
 ﻿using basecs.Helpers.Helpers.Validators;
 
-namespace basecs.Business.Imagens
+namespace basecs.Business.Lancamentos
 {
-    public class ImagensBusiness
+    public class LancamentosBusiness
     {
         #region INSERT
-        public string InsertValidation(basecs.Models.Imagem model)
+        public string InsertValidation(basecs.Models.Lancamento model)
         {
             string validation = "";
 
-            if (model.ImagemId > 0)
+            if (model.LancamentoId > 0)
             {
                 validation += "Identificação do regristro invalido\n";
             }
@@ -43,11 +43,11 @@ namespace basecs.Business.Imagens
         #endregion
 
         #region UPDATE
-        public string UpdateValidation(basecs.Models.Imagem model)
+        public string UpdateValidation(basecs.Models.Lancamento model)
         {
             string validation = "";
 
-            if (model.ImagemId < 1)
+            if (model.LancamentoId < 1)
             {
                 validation += "Identificação do regristro invalido\n";
             }
