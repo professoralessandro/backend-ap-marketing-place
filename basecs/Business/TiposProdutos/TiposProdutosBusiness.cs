@@ -1,27 +1,27 @@
 ﻿using basecs.Helpers.Helpers.Validators;
 
-namespace basecs.Business.TiposParametros
+namespace basecs.Business.TiposProdutos
 {
-    public class TiposParametrosBusiness
+    public class TiposProdutosBusiness
     {
         #region INSERT
-        public string InsertValidation(basecs.Models.TipoParametro model)
+        public string InsertValidation(basecs.Models.TipoProduto model)
         {
             string validation = "";
 
-            if (model.TipoParametroId > 0)
+            if (model.TipoProdutoId > 0)
             {
-                validation += "Identificação do tipo de parametro invalido\n";
+                validation += "Identificação do tipo de dado invalido\n";
             }
 
             if (!string.IsNullOrEmpty(model.Descricao))
             {
                 model.Descricao = Validators.RemoveInjections(model.Descricao);
-                if (model.Descricao.Length < 3)
+                if (model.Descricao.Length < 2)
                 {
-                    validation += "Descrição do parametro contem menos de três caracteres\n";
+                    validation += "Descrição do dado contem menos de dois caracteres\n";
                 }
-            }
+            }            
 
             if (model.UsuarioInclusaoId < 1)
             {
@@ -35,7 +35,7 @@ namespace basecs.Business.TiposParametros
 
             if (!model.Ativo)
             {
-                validation += "Não pode ser adicinado tipo de parametro inativado\n";
+                validation += "Não pode ser adicinado tipo de produto inativada\n";
             }
 
             return validation;
@@ -43,21 +43,21 @@ namespace basecs.Business.TiposParametros
         #endregion
 
         #region UPDATE
-        public string UpdateValidation(basecs.Models.TipoParametro model)
+        public string UpdateValidation(basecs.Models.TipoProduto model)
         {
             string validation = "";
 
-            if (model.TipoParametroId == 0)
+            if (model.TipoProdutoId == 0)
             {
-                validation += "Identificação do tipo de parametro invalido\n";
+                validation += "Identificação do tipo de dado invalido\n";
             }
 
             if (!string.IsNullOrEmpty(model.Descricao))
             {
                 model.Descricao = Validators.RemoveInjections(model.Descricao);
-                if (model.Descricao.Length < 3)
+                if (model.Descricao.Length < 2)
                 {
-                    validation += "Descrição do parametro contem menos de três caracteres\n";
+                    validation += "Descrição do dado contem menos de dois caracteres\n";
                 }
             }
 
@@ -70,14 +70,14 @@ namespace basecs.Business.TiposParametros
         }
         #endregion
 
-        #region DELETE
+        #region UPDATE
         public string DeleteValidation(int id)
         {
             string validation = "";
 
             if (id == 0)
             {
-                validation += "Identificação do tipo de parametro invalido\n";
+                validation += "Identificação do tipo de dado invalido\n";
             }
 
             return validation;

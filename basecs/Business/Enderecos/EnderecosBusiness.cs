@@ -71,7 +71,7 @@ namespace basecs.Business.Enderecos
 
             if (model.UsuarioUltimaAlteracaoId < 1)
             {
-                validation += "Identificacao do usuario que incluiu e invalido\n";
+                validation += "Identificação do usuario que incluiu e invalido\n";
             }
 
             if (!model.Ativo)
@@ -150,14 +150,14 @@ namespace basecs.Business.Enderecos
 
             if (model.UsuarioUltimaAlteracaoId < 1)
             {
-                validation += "Identificacao do usuario que incluiu e invalido\n";
+                validation += "Identificação do usuario que incluiu e invalido\n";
             }
 
             return validation;
         }
         #endregion
 
-        #region UPDATE
+        #region DELETE
         public string DeleteValidation(int id)
         {
             string validation = "";

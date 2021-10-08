@@ -61,7 +61,6 @@ namespace basecs.Data
         public virtual DbSet<TipoParametro> TiposParametros { get; set; }
         public virtual DbSet<TipoProduto> TiposProdutos { get; set; }
         public virtual DbSet<TipoTelefone> TiposTelefones { get; set; }
-        public virtual DbSet<TipoUsuario> TiposUsuarios { get; set; }
         public virtual DbSet<TipoWorkFlow> TiposWorkFlows { get; set; }
         public virtual DbSet<Usuario> Usuarios { get; set; }
         public virtual DbSet<UsuariosDadosBancario> UsuariosDadosBancarios { get; set; }
@@ -1066,23 +1065,6 @@ namespace basecs.Data
                 entity.Property(e => e.Descricao)
                     .IsRequired()
                     .HasMaxLength(150)
-                    .IsUnicode(false);
-            });
-
-            modelBuilder.Entity<TipoUsuario>(entity =>
-            {
-                entity.HasKey(e => e.TipoUsuarioId)
-                    .HasName("PK__TiposUsu__7F22C722FA3A3F80");
-
-                entity.ToTable("TiposUsuarios", "seg");
-
-                entity.Property(e => e.DataInclusao).HasColumnType("datetime");
-
-                entity.Property(e => e.DataUltimaAlteracao).HasColumnType("datetime");
-
-                entity.Property(e => e.Descricao)
-                    .IsRequired()
-                    .HasMaxLength(50)
                     .IsUnicode(false);
             });
 

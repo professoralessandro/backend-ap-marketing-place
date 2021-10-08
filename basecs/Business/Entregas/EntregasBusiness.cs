@@ -53,12 +53,12 @@ namespace basecs.Business.Entregas
 
             if (model.UsuarioUltimaAlteracaoId < 1)
             {
-                validation += "Identificacao do usuario que incluiu e invalido\n";
+                validation += "Identificação do usuario que incluiu e invalido\n";
             }
 
             if (!model.Ativo)
             {
-                validation += "Não e possível adicionar uma entrega já cancelada\n";
+                validation += "Não e possível adicionar uma entrega inativada\n";
             }
 
             return validation;
@@ -114,7 +114,7 @@ namespace basecs.Business.Entregas
 
             if (model.UsuarioUltimaAlteracaoId < 1)
             {
-                validation += "Identificacao do usuario que incluiu e invalido\n";
+                validation += "Identificação do usuario que incluiu e invalido\n";
             }
 
             return validation;

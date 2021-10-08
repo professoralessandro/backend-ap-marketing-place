@@ -60,8 +60,6 @@ namespace basecs.Business.Emails
                 }
             }
 
-            // LINHAS DE TESTE
-            // VERIFICAR AQUI SE O STATUS DO EMAIL E IGUAL A ENVIADO E MUDAR ESTA CONDICAO
             if (model.StatusEnvio < 1)
             {
                 validation += "O email que esta tentando inserir esta com status enviado\n";
@@ -80,12 +78,12 @@ namespace basecs.Business.Emails
 
             if (model.UsuarioUltimaAlteracaoId < 1)
             {
-                validation += "Identificacao do usuario que incluiu e invalido\n";
+                validation += "Identificação do usuario que incluiu e invalido\n";
             }
 
             if (!model.Ativo)
             {
-                validation += "Um email excluido nao pode ser inserido\n";
+                validation += "Não pode ser adicinado email inativado\n";
             }
 
             return validation;
@@ -162,7 +160,7 @@ namespace basecs.Business.Emails
 
             if (model.UsuarioUltimaAlteracaoId < 1)
             {
-                validation += "Identificacao do usuario que incluiu e invalido\n";
+                validation += "Identificação do usuario que incluiu e invalido\n";
             }
 
             if (!model.Ativo)
