@@ -75,7 +75,7 @@ namespace basecs.Business.TiposNotasFiscais
         {
             string validation = "";
 
-            if (id == 0)
+            if (id < 1)
             {
                 validation += "Identificação do tipo de nota fiscal invalido\n";
             }

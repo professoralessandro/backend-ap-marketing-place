@@ -152,7 +152,7 @@ namespace basecs.Services
         }
         #endregion        
 
-        #region DELETE SERVIÇO DE DELETE
+        #region DELETE
         public async Task<TipoWorkFlow> Delete(int id)
         {
             try

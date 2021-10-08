@@ -26,7 +26,7 @@ namespace basecs.Interfaces.IConfiguracoesService
         Task<Configuracao> Update(Configuracao model);
         #endregion        
 
-        #region DELETE SERVIÇO DE DELETE
+        #region DELETE
         Task<Configuracao> Delete(int id);
         #endregion
     }

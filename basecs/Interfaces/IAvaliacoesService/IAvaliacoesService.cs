@@ -26,7 +26,7 @@ namespace basecs.Interfaces.IAvaliacoesService
         Task<Avaliacao> Update(Avaliacao model);
         #endregion        
 
-        #region DELETE SERVIÇO DE DELETE
+        #region DELETE
         Task<Avaliacao> Delete(int id);
         #endregion
     }

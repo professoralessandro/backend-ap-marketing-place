@@ -26,7 +26,7 @@ namespace basecs.Interfaces.ITiposGarantiasService
         Task<TipoGarantia> Update(TipoGarantia model);
         #endregion        
 
-        #region DELETE SERVIÇO DE DELETE
+        #region DELETE
         Task<TipoGarantia> Delete(int id);
         #endregion
     }

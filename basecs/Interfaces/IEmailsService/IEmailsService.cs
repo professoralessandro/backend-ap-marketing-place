@@ -27,7 +27,7 @@ namespace basecs.Interfaces.IEmailsService
         Task<Email> Update(Email model);
         #endregion        
 
-        #region DELETE SERVIÇO DE DELETE
+        #region DELETE
         Task<Email> Delete(int id);
         #endregion
     }

@@ -15,16 +15,13 @@ namespace basecs.Models
 
         public int LancamentoId { get; set; }
         public int TipoLancamentoId { get; set; }
-        public int UsuarioId { get; set; }
         public int SituacaoId { get; set; }
         public string Referencia { get; set; }
         public decimal? ValorLancamento { get; set; }
-        public DateTime? DataMovimento { get; set; }
         public DateTime? DataBaixa { get; set; }
         public string Observacao { get; set; }
         public int? UsuarioIdBaixa { get; set; }
         public int? LancamentoIdPai { get; set; }
-        public int? FormaPagamentoId { get; set; }
         public int? QtdeParcelas { get; set; }
         public int? NmrParcela { get; set; }
         public decimal? ValorParcela { get; set; }
@@ -34,9 +31,9 @@ namespace basecs.Models
         public DateTime DataUltimaAlteracao { get; set; }
         public bool Ativo { get; set; }
 
-        public virtual Situac Situacao { get; set; }
+        public virtual Situaco Situacao { get; set; }
         public virtual TipoLancamento TiposLancamentos { get; set; }
-        public virtual Usuario Usuario { get; set; }
+        public virtual Usuario UsuarioInclusao { get; set; }
         public virtual ICollection<Compra> Compras { get; set; }
         public virtual ICollection<UsuariosLancamento> UsuariosLancamentos { get; set; }
     }

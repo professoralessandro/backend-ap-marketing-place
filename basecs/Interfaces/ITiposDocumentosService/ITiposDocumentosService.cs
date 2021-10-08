@@ -26,7 +26,7 @@ namespace basecs.Interfaces.ITiposDocumentosService
         Task<TipoDocumento> Update(TipoDocumento model);
         #endregion        
 
-        #region DELETE SERVIÇO DE DELETE
+        #region DELETE
         Task<TipoDocumento> Delete(int id);
         #endregion
     }

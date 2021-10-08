@@ -26,7 +26,7 @@ namespace basecs.Interfaces.ITiposEmailsService
         Task<TipoEmail> Update(TipoEmail model);
         #endregion        
 
-        #region DELETE SERVIÇO DE DELETE
+        #region DELETE
         Task<TipoEmail> Delete(int id);
         #endregion
     }

@@ -56,7 +56,7 @@ namespace basecs.Business.ImagensProdutos
         {
             string validation = "";
 
-            if (id == 0)
+            if (id < 1)
             {
                 validation += "Identificação do registro invalida\n";
             }

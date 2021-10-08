@@ -56,7 +56,7 @@ namespace basecs.Business.ConfiguracoesParametros
         {
             string validation = "";
 
-            if (id == 0)
+            if (id < 1)
             {
                 validation += "Identificação da configuração invalido\n";
             }

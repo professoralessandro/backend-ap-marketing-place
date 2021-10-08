@@ -75,7 +75,7 @@ namespace basecs.Business.TiposCaracteristicas
         {
             string validation = "";
 
-            if (id == 0)
+            if (id < 1)
             {
                 validation += "Identificação do tipo de caracteristica invalido\n";
             }

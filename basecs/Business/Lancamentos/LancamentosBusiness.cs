@@ -14,13 +14,38 @@ namespace basecs.Business.Lancamentos
                 validation += "Identificação do regristro invalido\n";
             }
 
-            if (!string.IsNullOrEmpty(model.File))
+            if (model.TipoLancamentoId < 1)
             {
-                model.File = Validators.RemoveInjections(model.File);
-                if (model.File.Length < 3)
+                validation += "Identificação do tipo de lancamento invalido\n";
+            }
+
+            if (model.SituacaoId < 1)
+            {
+                validation += "Identificação da sitação e invalido\n";
+            }
+
+            if (!string.IsNullOrEmpty(model.Referencia))
+            {
+                model.Referencia = Validators.RemoveInjections(model.Referencia);
+                if (model.Referencia.Length < 3)
                 {
-                    validation += "O arquivo contem menos de três caracteres\n";
+                    validation += "A referência contem menos de três caracteres\n";
                 }
+            }
+
+            if (model.ValorLancamento.Equals(null))
+            {
+                validation += "Identificação do valor do lançamento e invalido\n";
+            }
+
+            if (model.NmrParcela.Equals(null))
+            {
+                validation += "Identificação da parcela e invalido\n";
+            }
+
+            if (model.QtdeParcelas.Equals(null))
+            {
+                validation += "Identificação da quantidade de parcelas e invalido\n";
             }
 
             if (model.UsuarioInclusaoId < 1)
@@ -33,9 +58,9 @@ namespace basecs.Business.Lancamentos
                 validation += "Identificação do usuario que incluiu e invalido\n";
             }
 
-            if (model.Publico.Equals(null))
+            if (!model.Ativo)
             {
-                validation += "O campo publico deve ser informado\n";
+                validation += "Não pode ser adicinado lancamento inativado\n";
             }
 
             return validation;
@@ -52,13 +77,38 @@ namespace basecs.Business.Lancamentos
                 validation += "Identificação do regristro invalido\n";
             }
 
-            if (!string.IsNullOrEmpty(model.File))
+            if (model.TipoLancamentoId < 1)
             {
-                model.File = Validators.RemoveInjections(model.File);
-                if (model.File.Length < 3)
+                validation += "Identificação do tipo de lancamento invalido\n";
+            }
+
+            if (model.SituacaoId < 1)
+            {
+                validation += "Identificação da sitação e invalido\n";
+            }
+
+            if (!string.IsNullOrEmpty(model.Referencia))
+            {
+                model.Referencia = Validators.RemoveInjections(model.Referencia);
+                if (model.Referencia.Length < 3)
                 {
-                    validation += "O arquivo contem menos de três caracteres\n";
+                    validation += "A referência contem menos de três caracteres\n";
                 }
+            }
+
+            if (model.ValorLancamento.Equals(null))
+            {
+                validation += "Identificação do valor do lançamento e invalido\n";
+            }
+
+            if (model.NmrParcela.Equals(null))
+            {
+                validation += "Identificação da parcela e invalido\n";
+            }
+
+            if (model.QtdeParcelas.Equals(null))
+            {
+                validation += "Identificação da quantidade de parcelas e invalido\n";
             }
 
             if (model.UsuarioInclusaoId < 1)
@@ -71,11 +121,6 @@ namespace basecs.Business.Lancamentos
                 validation += "Identificação do usuario que incluiu e invalido\n";
             }
 
-            if (model.Publico.Equals(null))
-            {
-                validation += "O campo publico deve ser informado\n";
-            }
-
             return validation;
         }
         #endregion
@@ -85,7 +130,7 @@ namespace basecs.Business.Lancamentos
         {
             string validation = "";
 
-            if (id == 0)
+            if (id < 1)
             {
                 validation += "Identificação do registro invalida\n";
             }

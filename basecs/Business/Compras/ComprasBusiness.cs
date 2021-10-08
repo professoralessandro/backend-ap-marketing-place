@@ -171,7 +171,7 @@ namespace basecs.Business.Compras
         {
             string validation = "";
 
-            if (id == 0)
+            if (id < 1)
             {
                 validation += "Identificação da compra invalido\n";
             }

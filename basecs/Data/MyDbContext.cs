@@ -603,8 +603,6 @@ namespace basecs.Data
 
                 entity.Property(e => e.DataInclusao).HasColumnType("datetime");
 
-                entity.Property(e => e.DataMovimento).HasColumnType("datetime");
-
                 entity.Property(e => e.DataUltimaAlteracao).HasColumnType("datetime");
 
                 entity.Property(e => e.Observacao).IsUnicode(false);
@@ -630,11 +628,11 @@ namespace basecs.Data
                     .OnDelete(DeleteBehavior.ClientSetNull)
                     .HasConstraintName("FK_Lancamentos_TipoLancamentoId");
 
-                entity.HasOne(d => d.Usuario)
+                entity.HasOne(d => d.UsuarioInclusao)
                     .WithMany(p => p.Lancamentos)
-                    .HasForeignKey(d => d.UsuarioId)
+                    .HasForeignKey(d => d.UsuarioInclusaoId)
                     .OnDelete(DeleteBehavior.ClientSetNull)
-                    .HasConstraintName("FK_Lancamentos_UsuarioId");
+                    .HasConstraintName("FK_Lancamentos_UsuarioInclusaoId");
             });
 
             modelBuilder.Entity<Log>(entity =>

@@ -151,7 +151,7 @@ namespace basecs.Services
         }
         #endregion        
 
-        #region DELETE SERVIÇO DE DELETE
+        #region DELETE
         public async Task<TipoGarantia> Delete(int id)
         {
             try

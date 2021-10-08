@@ -65,7 +65,7 @@ namespace basecs.Interfaces.IComprasService
         Task<Compra> Update(Compra model);
         #endregion        
 
-        #region DELETE SERVIÇO DE DELETE
+        #region DELETE
         Task<Compra> Delete(int id);
         #endregion
     }

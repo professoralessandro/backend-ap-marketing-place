@@ -126,7 +126,7 @@ namespace basecs.Business.Entregas
         {
             string validation = "";
 
-            if (id == 0)
+            if (id < 1)
             {
                 validation += "Identificação do tipo de entrega invalido\n";
             }

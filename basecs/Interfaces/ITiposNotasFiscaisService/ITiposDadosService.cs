@@ -26,7 +26,7 @@ namespace basecs.Interfaces.ITiposNotasFiscaisService
         Task<TipoNotaFiscal> Update(TipoNotaFiscal model);
         #endregion        
 
-        #region DELETE SERVIÇO DE DELETE
+        #region DELETE
         Task<TipoNotaFiscal> Delete(int id);
         #endregion
     }

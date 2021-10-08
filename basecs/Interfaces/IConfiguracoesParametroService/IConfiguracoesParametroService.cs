@@ -28,7 +28,7 @@ namespace basecs.Interfaces.IConfiguracoesParametroService
         Task<ConfiguracaoParametro> Update(ConfiguracaoParametro model);
         #endregion        
 
-        #region DELETE SERVIÇO DE DELETE
+        #region DELETE
         Task<ConfiguracaoParametro> Delete(int id);
         #endregion
     }
