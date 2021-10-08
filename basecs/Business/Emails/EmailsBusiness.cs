@@ -177,7 +177,7 @@ namespace basecs.Business.Emails
         {
             string validation = "";
 
-            if (id == 0)
+            if (id < 1)
             {
                 validation += "Identificação do email invalida\n";
             }

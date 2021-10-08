@@ -27,7 +27,7 @@ namespace basecs.Interfaces.ICaracteristicasService
         Task<Caracteristica> Update(Caracteristica model);
         #endregion        
 
-        #region DELETE SERVIÇO DE DELETE
+        #region DELETE
         Task<Caracteristica> Delete(int id);
         #endregion
     }

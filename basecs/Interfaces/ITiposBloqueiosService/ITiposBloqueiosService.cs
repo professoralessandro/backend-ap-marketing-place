@@ -26,7 +26,7 @@ namespace basecs.Interfaces.ITiposBloqueiosService
         Task<TipoBloqueio> Update(TipoBloqueio model);
         #endregion        
 
-        #region DELETE SERVIÇO DE DELETE
+        #region DELETE
         Task<TipoBloqueio> Delete(int id);
         #endregion
     }

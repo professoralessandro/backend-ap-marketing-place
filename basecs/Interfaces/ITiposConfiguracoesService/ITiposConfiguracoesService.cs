@@ -26,7 +26,7 @@ namespace basecs.Interfaces.ITiposConfiguracoesService
         Task<TipoConfiguracao> Update(TipoConfiguracao model);
         #endregion        
 
-        #region DELETE SERVIÇO DE DELETE
+        #region DELETE
         Task<TipoConfiguracao> Delete(int id);
         #endregion
     }

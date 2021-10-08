@@ -601,28 +601,15 @@ namespace basecs.Data
             {
                 entity.Property(e => e.DataBaixa).HasColumnType("datetime");
 
-                entity.Property(e => e.DataMovimento).HasColumnType("datetime");
+                entity.Property(e => e.DataInclusao).HasColumnType("datetime");
 
-                entity.Property(e => e.NroAutenticacao)
-                    .HasMaxLength(20)
-                    .IsUnicode(false);
-
-                entity.Property(e => e.NroAutorizacao)
-                    .HasMaxLength(20)
-                    .IsUnicode(false);
-
-                entity.Property(e => e.NroComprovante)
-                    .HasMaxLength(20)
-                    .IsUnicode(false);
-
-                entity.Property(e => e.NroPedido)
-                    .HasMaxLength(20)
-                    .IsUnicode(false);
+                entity.Property(e => e.DataUltimaAlteracao).HasColumnType("datetime");
 
                 entity.Property(e => e.Observacao).IsUnicode(false);
 
                 entity.Property(e => e.Referencia)
-                    .HasMaxLength(150)
+                    .IsRequired()
+                    .HasMaxLength(50)
                     .IsUnicode(false);
 
                 entity.Property(e => e.ValorLancamento).HasColumnType("decimal(10, 2)");
@@ -635,17 +622,17 @@ namespace basecs.Data
                     .OnDelete(DeleteBehavior.ClientSetNull)
                     .HasConstraintName("FK_Lancamentos_SituacaoId");
 
-                entity.HasOne(d => d.TipoLancamento)
+                entity.HasOne(d => d.TiposLancamentos)
                     .WithMany(p => p.Lancamentos)
                     .HasForeignKey(d => d.TipoLancamentoId)
                     .OnDelete(DeleteBehavior.ClientSetNull)
                     .HasConstraintName("FK_Lancamentos_TipoLancamentoId");
 
-                entity.HasOne(d => d.Usuario)
+                entity.HasOne(d => d.UsuarioInclusao)
                     .WithMany(p => p.Lancamentos)
-                    .HasForeignKey(d => d.UsuarioId)
+                    .HasForeignKey(d => d.UsuarioInclusaoId)
                     .OnDelete(DeleteBehavior.ClientSetNull)
-                    .HasConstraintName("FK_Lancamentos_UsuarioId");
+                    .HasConstraintName("FK_Lancamentos_UsuarioInclusaoId");
             });
 
             modelBuilder.Entity<Log>(entity =>

@@ -26,7 +26,7 @@ namespace basecs.Interfaces.ITiposEnderecosService
         Task<TipoEndereco> Update(TipoEndereco model);
         #endregion        
 
-        #region DELETE SERVIÇO DE DELETE
+        #region DELETE
         Task<TipoEndereco> Delete(int id);
         #endregion
     }

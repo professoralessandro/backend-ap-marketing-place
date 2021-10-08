@@ -150,7 +150,7 @@ namespace basecs.Services
         }
         #endregion        
 
-        #region DELETE SERVIÇO DE DELETE
+        #region DELETE
         public async Task<ImagemProduto> Delete(int id)
         {
             try

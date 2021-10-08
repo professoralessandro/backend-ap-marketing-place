@@ -1,5 +1,4 @@
-﻿
-using basecs.Helpers.Helpers.Validators;
+﻿using basecs.Helpers.Helpers.Validators;
 
 namespace basecs.Business.Imagens
 {
@@ -86,7 +85,7 @@ namespace basecs.Business.Imagens
         {
             string validation = "";
 
-            if (id == 0)
+            if (id < 1)
             {
                 validation += "Identificação do registro invalida\n";
             }

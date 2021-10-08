@@ -26,7 +26,7 @@ namespace basecs.Interfaces.ITiposParametrosService
         Task<TipoParametro> Update(TipoParametro model);
         #endregion        
 
-        #region DELETE SERVIÇO DE DELETE
+        #region DELETE
         Task<TipoParametro> Delete(int id);
         #endregion
     }

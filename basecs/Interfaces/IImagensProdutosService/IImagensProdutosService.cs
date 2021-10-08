@@ -26,7 +26,7 @@ namespace basecs.Interfaces.IImagensProdutosService
         Task<ImagemProduto> Update(ImagemProduto model);
         #endregion        
 
-        #region DELETE SERVIÇO DE DELETE
+        #region DELETE
         Task<ImagemProduto> Delete(int id);
         #endregion
     }

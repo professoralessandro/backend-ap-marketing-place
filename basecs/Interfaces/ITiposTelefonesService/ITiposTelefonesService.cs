@@ -26,7 +26,7 @@ namespace basecs.Interfaces.ITiposTelefonesService
         Task<TipoTelefone> Update(TipoTelefone model);
         #endregion        
 
-        #region DELETE SERVIÇO DE DELETE
+        #region DELETE
         Task<TipoTelefone> Delete(int id);
         #endregion
     }

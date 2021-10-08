@@ -75,7 +75,7 @@ namespace basecs.Business.TiposWorkFlows
         {
             string validation = "";
 
-            if (id == 0)
+            if (id < 1)
             {
                 validation += "Identificação do tipo de workflow invalido\n";
             }
