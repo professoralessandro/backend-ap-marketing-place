@@ -38,6 +38,11 @@ namespace basecs.Business.Garantias
                 validation += "Identificacao do usuario que incluiu e invalido\n";
             }
 
+            if (!model.Ativo)
+            {
+                validation += "Não pode ser adicinada garantia inativada\n";
+            }
+
             return validation;
         }
         #endregion
