@@ -7,8 +7,13 @@ namespace basecs.Models
 {
     public partial class Imagen
     {
+        public Imagen()
+        {
+            ImagensProdutos = new HashSet<ImagemProduto>();
+        }
+
         public int ImagemId { get; set; }
-        public string Path { get; set; }
+        public string Imagem { get; set; }
         public string Descricao { get; set; }
         public bool ImagemPrincipal { get; set; }
         public bool Publico { get; set; }
@@ -16,6 +21,7 @@ namespace basecs.Models
         public int UsuarioUltimaAlteracaoId { get; set; }
         public DateTime DataInclusao { get; set; }
         public DateTime DataUltimaAlteracao { get; set; }
-        public bool Ativo { get; set; }
+
+        public virtual ICollection<ImagemProduto> ImagensProdutos { get; set; }
     }
 }

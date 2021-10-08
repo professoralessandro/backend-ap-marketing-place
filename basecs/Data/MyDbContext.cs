@@ -34,6 +34,7 @@ namespace basecs.Data
         public virtual DbSet<GruposRecurso> GruposRecursos { get; set; }
         public virtual DbSet<GruposUsuario> GruposUsuarios { get; set; }
         public virtual DbSet<Imagen> Imagens { get; set; }
+        public virtual DbSet<ImagemProduto> ImagensProdutos { get; set; }
         public virtual DbSet<Lancamento> Lancamentos { get; set; }
         public virtual DbSet<Log> Logs { get; set; }
         public virtual DbSet<Mensagen> Mensagens { get; set; }
@@ -90,7 +91,7 @@ namespace basecs.Data
                 entity.Property(e => e.Valor).HasColumnType("decimal(10, 2)");
 
                 entity.HasOne(d => d.Produto)
-                    .WithMany(p => p.Avaliacos)
+                    .WithMany(p => p.Avaliacoes)
                     .HasForeignKey(d => d.ProdutoId)
                     .OnDelete(DeleteBehavior.ClientSetNull)
                     .HasConstraintName("FK_Avaliacoes_ProdutoId");
@@ -560,7 +561,7 @@ namespace basecs.Data
             modelBuilder.Entity<Imagen>(entity =>
             {
                 entity.HasKey(e => e.ImagemId)
-                    .HasName("PK__Imagens__0CBF2AEE31339B2B");
+                    .HasName("PK__Imagens__0CBF2AEEBA45A64F");
 
                 entity.Property(e => e.DataInclusao).HasColumnType("datetime");
 
@@ -568,13 +569,30 @@ namespace basecs.Data
 
                 entity.Property(e => e.Descricao)
                     .IsRequired()
-                    .HasMaxLength(50)
                     .IsUnicode(false);
 
-                entity.Property(e => e.Path)
+                entity.Property(e => e.Imagem)
                     .IsRequired()
                     .HasMaxLength(100)
                     .IsUnicode(false);
+            });
+
+            modelBuilder.Entity<ImagemProduto>(entity =>
+            {
+                entity.HasKey(e => e.ImagemProdutoId)
+                    .HasName("PK__ImagensP__55F8C56B55EC4758");
+
+                entity.HasOne(d => d.Imagem)
+                    .WithMany(p => p.ImagensProdutos)
+                    .HasForeignKey(d => d.ImagemId)
+                    .OnDelete(DeleteBehavior.ClientSetNull)
+                    .HasConstraintName("FK_ImagensProdutos_ImagemId");
+
+                entity.HasOne(d => d.Produto)
+                    .WithMany(p => p.ImagensProdutos)
+                    .HasForeignKey(d => d.ProdutoId)
+                    .OnDelete(DeleteBehavior.ClientSetNull)
+                    .HasConstraintName("FK_ImagensProdutos_ProdutoId");
             });
 
             modelBuilder.Entity<Lancamento>(entity =>
