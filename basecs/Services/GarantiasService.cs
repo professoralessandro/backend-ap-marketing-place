@@ -45,8 +45,8 @@ namespace basecs.Services
         public async Task<List<Garantia>> ReturnListWithParametersPaginated(
                 int? id,
                 string descricao,
-                DateTime inicio,
-                DateTime fim,
+                DateTime? inicio,
+                DateTime? fim,
                 bool? ativo,
                 int? pageNumber,
                 int? rowspPage
@@ -83,8 +83,8 @@ namespace basecs.Services
         public async Task<List<Garantia>> ReturnListWithParameters(
                 int? id,
                 string descricao,
-                DateTime inicio,
-                DateTime fim,
+                DateTime? inicio,
+                DateTime? fim,
                 bool? ativo
             )
         {
