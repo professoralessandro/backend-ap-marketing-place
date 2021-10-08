@@ -122,7 +122,7 @@ namespace basecs.Services
             }
             catch (Exception ex)
             {
-                throw new Exception("Houve um erro ao incluir tipos bloqueios: " + ex.Message);
+                throw new Exception("Houve um erro ao incluir tipos registro: " + ex.Message);
             }
         }
         #endregion
