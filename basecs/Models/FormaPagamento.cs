@@ -5,9 +5,9 @@ using System.Collections.Generic;
 
 namespace basecs.Models
 {
-    public partial class FormasPagamento
+    public partial class FormaPagamento
     {
-        public FormasPagamento()
+        public FormaPagamento()
         {
             Compras = new HashSet<Compra>();
         }

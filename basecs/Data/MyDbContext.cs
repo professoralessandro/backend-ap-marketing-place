@@ -28,7 +28,7 @@ namespace basecs.Data
         public virtual DbSet<Email> Emails { get; set; }
         public virtual DbSet<Endereco> Enderecos { get; set; }
         public virtual DbSet<Entrega> Entregas { get; set; }
-        public virtual DbSet<FormasPagamento> FormasPagamentos { get; set; }
+        public virtual DbSet<FormaPagamento> FormasPagamentos { get; set; }
         public virtual DbSet<Garantia> Garantias { get; set; }
         public virtual DbSet<Grupo> Grupos { get; set; }
         public virtual DbSet<GruposRecurso> GruposRecursos { get; set; }
@@ -458,7 +458,7 @@ namespace basecs.Data
                     .HasConstraintName("FK_Entregas_TipoEntregaId");
             });
 
-            modelBuilder.Entity<FormasPagamento>(entity =>
+            modelBuilder.Entity<FormaPagamento>(entity =>
             {
                 entity.HasKey(e => e.FormaPagamentoId)
                     .HasName("PK__FormasPa__3FBCDE069923437D");
@@ -481,12 +481,20 @@ namespace basecs.Data
 
                 entity.Property(e => e.Descricao)
                     .IsRequired()
-                    .HasMaxLength(150)
+                    .HasMaxLength(50)
                     .IsUnicode(false);
 
-                entity.Property(e => e.Periodo).HasColumnType("datetime");
+                entity.Property(e => e.Detalhes)
+                    .IsRequired()
+                    .IsUnicode(false);
 
-                entity.Property(e => e.PrecoVenda).HasColumnType("decimal(10, 2)");
+                entity.Property(e => e.Fim).HasColumnType("datetime");
+
+                entity.Property(e => e.Inicio).HasColumnType("datetime");
+
+                entity.Property(e => e.Periodo)
+                    .HasMaxLength(20)
+                    .IsUnicode(false);
 
                 entity.HasOne(d => d.TipoGarantia)
                     .WithMany(p => p.Garantia)

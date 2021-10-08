@@ -15,9 +15,10 @@ namespace basecs.Models
         public int GarantiaId { get; set; }
         public int TipoGarantiaId { get; set; }
         public string Descricao { get; set; }
-        public decimal PrecoVenda { get; set; }
-        public bool Bloqueado { get; set; }
-        public DateTime Periodo { get; set; }
+        public string Detalhes { get; set; }
+        public string Periodo { get; set; }
+        public DateTime? Inicio { get; set; }
+        public DateTime? Fim { get; set; }
         public int UsuarioInclusaoId { get; set; }
         public int UsuarioUltimaAlteracaoId { get; set; }
         public DateTime DataInclusao { get; set; }
