@@ -30,7 +30,12 @@ namespace basecs.Business.FormasPagamentos
 
             if (model.UsuarioUltimaAlteracaoId < 1)
             {
-                validation += "Identificacao do usuario que incluiu e invalido\n";
+                validation += "Identificação do usuario que incluiu e invalido\n";
+            }
+
+            if (!model.Ativo)
+            {
+                validation += "Não pode ser adicinado forma de pagamento inativado\n";
             }
 
             return validation;
@@ -58,14 +63,14 @@ namespace basecs.Business.FormasPagamentos
 
             if (model.UsuarioUltimaAlteracaoId < 1)
             {
-                validation += "Identificacao do usuario que incluiu e invalido\n";
+                validation += "Identificação do usuario que incluiu e invalido\n";
             }
 
             return validation;
         }
         #endregion
 
-        #region UPDATE
+        #region DELETE
         public string DeleteValidation(int id)
         {
             string validation = "";

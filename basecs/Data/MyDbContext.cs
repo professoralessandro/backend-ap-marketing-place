@@ -33,7 +33,8 @@ namespace basecs.Data
         public virtual DbSet<Grupo> Grupos { get; set; }
         public virtual DbSet<GruposRecurso> GruposRecursos { get; set; }
         public virtual DbSet<GruposUsuario> GruposUsuarios { get; set; }
-        public virtual DbSet<Imagen> Imagens { get; set; }
+        public virtual DbSet<Imagem> Imagens { get; set; }
+        public virtual DbSet<ImagemProduto> ImagensProdutos { get; set; }
         public virtual DbSet<Lancamento> Lancamentos { get; set; }
         public virtual DbSet<Log> Logs { get; set; }
         public virtual DbSet<Mensagen> Mensagens { get; set; }
@@ -61,7 +62,6 @@ namespace basecs.Data
         public virtual DbSet<TipoParametro> TiposParametros { get; set; }
         public virtual DbSet<TipoProduto> TiposProdutos { get; set; }
         public virtual DbSet<TipoTelefone> TiposTelefones { get; set; }
-        public virtual DbSet<TipoUsuario> TiposUsuarios { get; set; }
         public virtual DbSet<TipoWorkFlow> TiposWorkFlows { get; set; }
         public virtual DbSet<Usuario> Usuarios { get; set; }
         public virtual DbSet<UsuariosDadosBancario> UsuariosDadosBancarios { get; set; }
@@ -91,7 +91,7 @@ namespace basecs.Data
                 entity.Property(e => e.Valor).HasColumnType("decimal(10, 2)");
 
                 entity.HasOne(d => d.Produto)
-                    .WithMany(p => p.Avaliacos)
+                    .WithMany(p => p.Avaliacoes)
                     .HasForeignKey(d => d.ProdutoId)
                     .OnDelete(DeleteBehavior.ClientSetNull)
                     .HasConstraintName("FK_Avaliacoes_ProdutoId");
@@ -558,24 +558,43 @@ namespace basecs.Data
                     .HasConstraintName("FK_GruposUsuarios_UsuarioId");
             });
 
-            modelBuilder.Entity<Imagen>(entity =>
+            modelBuilder.Entity<Imagem>(entity =>
             {
                 entity.HasKey(e => e.ImagemId)
-                    .HasName("PK__Imagens__0CBF2AEE31339B2B");
+                    .HasName("PK__Imagens__0CBF2AEEF241AC23");
 
                 entity.Property(e => e.DataInclusao).HasColumnType("datetime");
 
                 entity.Property(e => e.DataUltimaAlteracao).HasColumnType("datetime");
 
-                entity.Property(e => e.Descricao)
-                    .IsRequired()
-                    .HasMaxLength(50)
-                    .IsUnicode(false);
+                entity.Property(e => e.Descricao).IsUnicode(false);
 
-                entity.Property(e => e.Path)
+                entity.Property(e => e.File)
                     .IsRequired()
                     .HasMaxLength(100)
                     .IsUnicode(false);
+
+                entity.Property(e => e.Titulo)
+                    .HasMaxLength(50)
+                    .IsUnicode(false);
+            });
+
+            modelBuilder.Entity<ImagemProduto>(entity =>
+            {
+                entity.HasKey(e => e.ImagemProdutoId)
+                    .HasName("PK__ImagensP__55F8C56B55EC4758");
+
+                entity.HasOne(d => d.Imagem)
+                    .WithMany(p => p.ImagensProdutos)
+                    .HasForeignKey(d => d.ImagemId)
+                    .OnDelete(DeleteBehavior.ClientSetNull)
+                    .HasConstraintName("FK_ImagensProdutos_ImagemId");
+
+                entity.HasOne(d => d.Produto)
+                    .WithMany(p => p.ImagensProdutos)
+                    .HasForeignKey(d => d.ProdutoId)
+                    .OnDelete(DeleteBehavior.ClientSetNull)
+                    .HasConstraintName("FK_ImagensProdutos_ProdutoId");
             });
 
             modelBuilder.Entity<Lancamento>(entity =>
@@ -1066,23 +1085,6 @@ namespace basecs.Data
                 entity.Property(e => e.Descricao)
                     .IsRequired()
                     .HasMaxLength(150)
-                    .IsUnicode(false);
-            });
-
-            modelBuilder.Entity<TipoUsuario>(entity =>
-            {
-                entity.HasKey(e => e.TipoUsuarioId)
-                    .HasName("PK__TiposUsu__7F22C722FA3A3F80");
-
-                entity.ToTable("TiposUsuarios", "seg");
-
-                entity.Property(e => e.DataInclusao).HasColumnType("datetime");
-
-                entity.Property(e => e.DataUltimaAlteracao).HasColumnType("datetime");
-
-                entity.Property(e => e.Descricao)
-                    .IsRequired()
-                    .HasMaxLength(50)
                     .IsUnicode(false);
             });
 

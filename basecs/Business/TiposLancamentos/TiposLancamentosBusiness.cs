@@ -11,7 +11,7 @@ namespace basecs.Business.TiposLancamentosLancamentos
 
             if (model.TipoLancamentoId > 0)
             {
-                validation += "Identificação do tipo de lancamento invalido\n";
+                validation += "Identificação do tipo de lançamento invalido\n";
             }
 
             if (!string.IsNullOrEmpty(model.Descricao))
@@ -19,7 +19,7 @@ namespace basecs.Business.TiposLancamentosLancamentos
                 model.Descricao = Validators.RemoveInjections(model.Descricao);
                 if (model.Descricao.Length < 3)
                 {
-                    validation += "Descrição do lancamento contem menos de três caracteres\n";
+                    validation += "Descrição do lançamento contem menos de três caracteres\n";
                 }
             }
 
@@ -30,7 +30,12 @@ namespace basecs.Business.TiposLancamentosLancamentos
 
             if (model.UsuarioUltimaAlteracaoId < 1)
             {
-                validation += "Identificacao do usuario que incluiu e invalido\n";
+                validation += "Identificação do usuario que incluiu e invalido\n";
+            }
+
+            if (!model.Ativo)
+            {
+                validation += "Não pode ser adicinado tipo de lançamento inativado\n";
             }
 
             return validation;
@@ -44,7 +49,7 @@ namespace basecs.Business.TiposLancamentosLancamentos
 
             if (model.TipoLancamentoId == 0)
             {
-                validation += "Identificação do tipo de lancamento invalido\n";
+                validation += "Identificação do tipo de lançamento invalido\n";
             }
 
             if (!string.IsNullOrEmpty(model.Descricao))
@@ -52,13 +57,13 @@ namespace basecs.Business.TiposLancamentosLancamentos
                 model.Descricao = Validators.RemoveInjections(model.Descricao);
                 if (model.Descricao.Length < 3)
                 {
-                    validation += "Descrição do lancamento contem menos de três caracteres\n";
+                    validation += "Descrição do lançamento contem menos de três caracteres\n";
                 }
             }
 
             if (model.UsuarioUltimaAlteracaoId < 1)
             {
-                validation += "Identificacao do usuario que incluiu e invalido\n";
+                validation += "Identificaçao do usuario que incluiu e invalido\n";
             }
 
             return validation;
@@ -72,7 +77,7 @@ namespace basecs.Business.TiposLancamentosLancamentos
 
             if (id == 0)
             {
-                validation += "Identificação do tipo de lancamento invalido\n";
+                validation += "Identificação do tipo de lançamento invalido\n";
             }
 
             return validation;

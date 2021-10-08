@@ -35,12 +35,12 @@ namespace basecs.Business.Garantias
 
             if (model.UsuarioUltimaAlteracaoId < 1)
             {
-                validation += "Identificacao do usuario que incluiu e invalido\n";
+                validation += "Identificação do usuario que incluiu e invalido\n";
             }
 
             if (!model.Ativo)
             {
-                validation += "Não pode ser adicinada garantia inativada\n";
+                validation += "Não pode ser adicinado garantia inativado\n";
             }
 
             return validation;
@@ -52,9 +52,14 @@ namespace basecs.Business.Garantias
         {
             string validation = "";
 
-            if (model.GarantiaId == 0)
+            if (model.GarantiaId < 1)
             {
                 validation += "Identificação do tipo de garantia invalido\n";
+            }
+
+            if (model.TipoGarantiaId < 1)
+            {
+                validation += "Identificação do tipo de garantia que incluiu e invalido\n";
             }
 
             if (!string.IsNullOrEmpty(model.Descricao))
@@ -66,16 +71,21 @@ namespace basecs.Business.Garantias
                 }
             }
 
+            if (model.UsuarioInclusaoId < 1)
+            {
+                validation += "Identificação do usuario que incluiu e invalido\n";
+            }
+
             if (model.UsuarioUltimaAlteracaoId < 1)
             {
-                validation += "Identificacao do usuario que incluiu e invalido\n";
+                validation += "Identificação do usuario que incluiu e invalido\n";
             }
 
             return validation;
         }
         #endregion
 
-        #region UPDATE
+        #region DELETE
         public string DeleteValidation(int id)
         {
             string validation = "";

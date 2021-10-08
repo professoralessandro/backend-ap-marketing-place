@@ -9,8 +9,9 @@ namespace basecs.Models
     {
         public Produto()
         {
-            Avaliacos = new HashSet<Avaliacao>();
+            Avaliacoes = new HashSet<Avaliacao>();
             Compras = new HashSet<Compra>();
+            ImagensProdutos = new HashSet<ImagemProduto>();
         }
 
         public int ProdutoId { get; set; }
@@ -32,7 +33,8 @@ namespace basecs.Models
         public bool Ativo { get; set; }
 
         public virtual TipoProduto TipoProduto { get; set; }
-        public virtual ICollection<Avaliacao> Avaliacos { get; set; }
+        public virtual ICollection<Avaliacao> Avaliacoes { get; set; }
         public virtual ICollection<Compra> Compras { get; set; }
+        public virtual ICollection<ImagemProduto> ImagensProdutos { get; set; }
     }
 }

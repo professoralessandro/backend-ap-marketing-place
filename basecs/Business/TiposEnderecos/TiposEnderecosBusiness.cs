@@ -31,7 +31,12 @@ namespace basecs.Business.TiposEnderecos
 
             if (model.UsuarioUltimaAlteracaoId < 1)
             {
-                validation += "Identificacao do usuario que incluiu e invalido\n";
+                validation += "Identificaçao do usuario que incluiu e invalido\n";
+            }
+
+            if (!model.Ativo)
+            {
+                validation += "Não pode ser adicinado tipo de endereço inativado\n";
             }
 
             return validation;
@@ -59,7 +64,7 @@ namespace basecs.Business.TiposEnderecos
 
             if (model.UsuarioUltimaAlteracaoId < 1)
             {
-                validation += "Identificacao do usuario que incluiu e invalido\n";
+                validation += "Identificaçao do usuario que incluiu e invalido\n";
             }
 
             return validation;

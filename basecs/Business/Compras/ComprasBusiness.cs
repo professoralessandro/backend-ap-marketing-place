@@ -16,62 +16,67 @@ namespace basecs.Business.Compras
 
             if (model.ProdutoId < 1)
             {
-                validation += "Identificacao do produto que incluiu e invalido\n";
+                validation += "Identificação do produto que incluiu e invalido\n";
             }
 
             if (model.CompradorId < 1)
             {
-                validation += "Identificacao da compra que incluiu e invalido\n";
+                validation += "Identificação da compra que incluiu e invalido\n";
             }
 
             if (model.FormaPagamentoId < 1)
             {
-                validation += "Identificacao da forma de pagamento que incluiu e invalido\n";
+                validation += "Identificação da forma de pagamento que incluiu e invalido\n";
             }
 
             if (model.StatusCompraId < 1)
             {
-                validation += "Identificacao do status da compra que incluiu e invalido\n";
+                validation += "Identificação do status da compra que incluiu e invalido\n";
             }
 
             if (model.EntregaId < 1)
             {
-                validation += "Identificacao da entrega que incluiu e invalido\n";
+                validation += "Identificação da entrega que incluiu e invalido\n";
             }
 
             if (model.LancamentoPaiId < 1)
             {
-                validation += "Identificacao do lancamento que incluiu e invalido\n";
+                validation += "Identificação do lancamento que incluiu e invalido\n";
             }
 
             if (model.EnderecoId < 1)
             {
-                validation += "Identificacao do endereço que incluiu e invalido\n";
+                validation += "Identificação do endereço que incluiu e invalido\n";
             }
 
             if (model.EnderecoId < 1)
             {
-                validation += "Identificacao do endereço que incluiu e invalido\n";
+                validation += "Identificação do endereço que incluiu e invalido\n";
             }
 
             if (model.GarantiaId < 1)
             {
-                validation += "Identificacao da garantia que incluiu e invalido\n";
+                validation += "Identificação da garantia que incluiu e invalido\n";
             }
 
             if (model.TelefoneId < 1)
             {
-                validation += "Identificacao da telefone que incluiu e invalido\n";
+                validation += "Identificação da telefone que incluiu e invalido\n";
             }
 
             if (model.VendedorId < 1)
             {
-                validation += "Identificacao do vendedor que incluiu e invalido\n";
+                validation += "Identificação do vendedor que incluiu e invalido\n";
             }
 
             if (model.AvaliacaoId < 1)
             {
-                validation += "Identificacao da avaliação que incluiu e invalido\n";
+                validation += "Identificação da avaliação que incluiu e invalido\n";
+            }
+
+            if (!model.Ativo)
+            {
+                validation += "Não pode ser adicinada compra inativada\n";
             }
 
             return validation;
@@ -99,69 +104,69 @@ namespace basecs.Business.Compras
 
             if (model.ProdutoId < 1)
             {
-                validation += "Identificacao do produto que incluiu e invalido\n";
+                validation += "Identificação do produto que incluiu e invalido\n";
             }
 
             if (model.CompradorId < 1)
             {
-                validation += "Identificacao da compra que incluiu e invalido\n";
+                validation += "Identificação da compra que incluiu e invalido\n";
             }
 
             if (model.FormaPagamentoId < 1)
             {
-                validation += "Identificacao da forma de pagamento que incluiu e invalido\n";
+                validation += "Identificação da forma de pagamento que incluiu e invalido\n";
             }
 
             if (model.StatusCompraId < 1)
             {
-                validation += "Identificacao do status da compra que incluiu e invalido\n";
+                validation += "Identificação do status da compra que incluiu e invalido\n";
             }
 
             if (model.EntregaId < 1)
             {
-                validation += "Identificacao da entrega que incluiu e invalido\n";
+                validation += "Identificação da entrega que incluiu e invalido\n";
             }
 
             if (model.LancamentoPaiId < 1)
             {
-                validation += "Identificacao do lancamento que incluiu e invalido\n";
+                validation += "Identificação do lancamento que incluiu e invalido\n";
             }
 
             if (model.EnderecoId < 1)
             {
-                validation += "Identificacao do endereço que incluiu e invalido\n";
+                validation += "Identificação do endereço que incluiu e invalido\n";
             }
 
             if (model.EnderecoId < 1)
             {
-                validation += "Identificacao do endereço que incluiu e invalido\n";
+                validation += "Identificação do endereço que incluiu e invalido\n";
             }
 
             if (model.GarantiaId < 1)
             {
-                validation += "Identificacao da garantia que incluiu e invalido\n";
+                validation += "Identificação da garantia que incluiu e invalido\n";
             }
 
             if (model.TelefoneId < 1)
             {
-                validation += "Identificacao da telefone que incluiu e invalido\n";
+                validation += "Identificação da telefone que incluiu e invalido\n";
             }
 
             if (model.VendedorId < 1)
             {
-                validation += "Identificacao do vendedor que incluiu e invalido\n";
+                validation += "Identificação do vendedor que incluiu e invalido\n";
             }
 
             if (model.AvaliacaoId < 1)
             {
-                validation += "Identificacao da avaliação que incluiu e invalido\n";
+                validation += "Identificação da avaliação que incluiu e invalido\n";
             }
 
             return validation;
         }
         #endregion
 
-        #region UPDATE
+        #region DELETE
         public string DeleteValidation(int id)
         {
             string validation = "";

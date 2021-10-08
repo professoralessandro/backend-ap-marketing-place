@@ -7,7 +7,7 @@ using Xunit;
 
 namespace basecs.tests.Services.ConfiguracaoParametro
 {
-    public class ConfiguracoesParametroServiceTest
+    public class ConfiguracoesParametrosServiceTest
     {
         #region ATRIBUTTES
         ConfiguracoesParametroService _service;
@@ -15,7 +15,7 @@ namespace basecs.tests.Services.ConfiguracaoParametro
         #endregion
 
         #region CONSTRUCTORS
-        public ConfiguracoesParametroServiceTest()
+        public ConfiguracoesParametrosServiceTest()
         {
             _serviceMock = new Mock<IConfiguracoesParametroService>();
             _service = new ConfiguracoesParametroService(new Data.MyDbContext());

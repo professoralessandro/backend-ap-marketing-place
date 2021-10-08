@@ -33,6 +33,11 @@ namespace basecs.Business.Configuracoes
                 validation += "Identificação do usuario que incluiu e invalido\n";
             }
 
+            if (!model.Ativo)
+            {
+                validation += "Não pode ser adicinado tipo de configuração inativado\n";
+            }
+
             return validation;
         }
         #endregion

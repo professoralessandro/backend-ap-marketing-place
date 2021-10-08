@@ -59,6 +59,8 @@ namespace basecs
             services.AddScoped<EnderecosService>();
             services.AddScoped<FormasPagamentosService>();
             services.AddScoped<GarantiasService>();
+            services.AddScoped<ImagensProdutosService>();
+            services.AddScoped<ImagensService>();
             services.AddScoped<TiposBloqueiosService>();
             services.AddScoped<TiposCaracteristicasService>();
             services.AddScoped<TiposConfiguracoesService>();
@@ -71,6 +73,7 @@ namespace basecs
             services.AddScoped<TiposLancamentosService>();
             services.AddScoped<TiposNotasFiscaisService>();
             services.AddScoped<TiposParametrosService>();
+            services.AddScoped<TiposProdutosService>();
             services.AddScoped<TiposTelefonesService>();
             services.AddScoped<TiposWorkFlowsService>();
             services.AddScoped<LogsService>();

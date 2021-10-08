@@ -30,7 +30,12 @@ namespace basecs.Business.TiposWorkFlows
 
             if (model.UsuarioUltimaAlteracaoId < 1)
             {
-                validation += "Identificacao do usuario que incluiu e invalido\n";
+                validation += "Identificação do usuario que incluiu e invalido\n";
+            }
+
+            if (!model.Ativo)
+            {
+                validation += "Não pode ser adicinado tipo de workflow inativado\n";
             }
 
             return validation;
@@ -58,7 +63,7 @@ namespace basecs.Business.TiposWorkFlows
 
             if (model.UsuarioUltimaAlteracaoId < 1)
             {
-                validation += "Identificacao do usuario que incluiu e invalido\n";
+                validation += "Identificação do usuario que incluiu e invalido\n";
             }
 
             return validation;
