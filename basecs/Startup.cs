@@ -62,6 +62,7 @@ namespace basecs
             services.AddScoped<ImagensService>();
             services.AddScoped<ImagensProdutosService>();
             services.AddScoped<LancamentosService>();
+            services.AddScoped<MensagensService>();
             services.AddScoped<TiposBloqueiosService>();
             services.AddScoped<TiposCaracteristicasService>();
             services.AddScoped<TiposConfiguracoesService>();

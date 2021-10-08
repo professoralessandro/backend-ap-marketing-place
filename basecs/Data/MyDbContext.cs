@@ -37,7 +37,7 @@ namespace basecs.Data
         public virtual DbSet<ImagemProduto> ImagensProdutos { get; set; }
         public virtual DbSet<Lancamento> Lancamentos { get; set; }
         public virtual DbSet<Log> Logs { get; set; }
-        public virtual DbSet<Mensagen> Mensagens { get; set; }
+        public virtual DbSet<Mensagem> Mensagens { get; set; }
         public virtual DbSet<NotasFiscai> NotasFiscais { get; set; }
         public virtual DbSet<Pagamento> Pagamentos { get; set; }
         public virtual DbSet<Parametro> Parametros { get; set; }
@@ -662,7 +662,7 @@ namespace basecs.Data
                     .HasConstraintName("FK_Logs_UserAddedId");
             });
 
-            modelBuilder.Entity<Mensagen>(entity =>
+            modelBuilder.Entity<Mensagem>(entity =>
             {
                 entity.HasKey(e => e.MensagemId)
                     .HasName("PK__Mensagen__7C0322C677B5D331");
@@ -671,7 +671,7 @@ namespace basecs.Data
 
                 entity.Property(e => e.DataUltimaAlteracao).HasColumnType("datetime");
 
-                entity.Property(e => e.Mensagem)
+                entity.Property(e => e.MensagemContexto)
                     .IsRequired()
                     .IsUnicode(false);
 
