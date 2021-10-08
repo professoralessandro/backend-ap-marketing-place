@@ -721,7 +721,7 @@ namespace basecs.Data
             modelBuilder.Entity<Produto>(entity =>
             {
                 entity.Property(e => e.CodigoBarras)
-                    .HasMaxLength(50)
+                    .HasMaxLength(30)
                     .IsUnicode(false);
 
                 entity.Property(e => e.DataInclusao).HasColumnType("datetime");
@@ -730,10 +730,16 @@ namespace basecs.Data
 
                 entity.Property(e => e.Descricao)
                     .IsRequired()
-                    .HasMaxLength(150)
+                    .HasMaxLength(50)
                     .IsUnicode(false);
 
-                entity.Property(e => e.Marca).IsUnicode(false);
+                entity.Property(e => e.Detalhes)
+                    .IsRequired()
+                    .IsUnicode(false);
+
+                entity.Property(e => e.Marca)
+                    .HasMaxLength(30)
+                    .IsUnicode(false);
 
                 entity.Property(e => e.MargemLucro).HasColumnType("decimal(10, 2)");
 
