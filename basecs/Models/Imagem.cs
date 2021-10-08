@@ -5,9 +5,9 @@ using System.Collections.Generic;
 
 namespace basecs.Models
 {
-    public partial class Imagen
+    public partial class Imagem
     {
-        public Imagen()
+        public Imagem()
         {
             ImagensProdutos = new HashSet<ImagemProduto>();
         }

@@ -33,7 +33,7 @@ namespace basecs.Data
         public virtual DbSet<Grupo> Grupos { get; set; }
         public virtual DbSet<GruposRecurso> GruposRecursos { get; set; }
         public virtual DbSet<GruposUsuario> GruposUsuarios { get; set; }
-        public virtual DbSet<Imagen> Imagens { get; set; }
+        public virtual DbSet<Imagem> Imagens { get; set; }
         public virtual DbSet<ImagemProduto> ImagensProdutos { get; set; }
         public virtual DbSet<Lancamento> Lancamentos { get; set; }
         public virtual DbSet<Log> Logs { get; set; }
@@ -558,7 +558,7 @@ namespace basecs.Data
                     .HasConstraintName("FK_GruposUsuarios_UsuarioId");
             });
 
-            modelBuilder.Entity<Imagen>(entity =>
+            modelBuilder.Entity<Imagem>(entity =>
             {
                 entity.HasKey(e => e.ImagemId)
                     .HasName("PK__Imagens__0CBF2AEEBA45A64F");

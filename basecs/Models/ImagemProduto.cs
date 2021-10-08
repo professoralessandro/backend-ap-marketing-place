@@ -11,7 +11,7 @@ namespace basecs.Models
         public int ImagemId { get; set; }
         public int ProdutoId { get; set; }
 
-        public virtual Imagen Imagem { get; set; }
+        public virtual Imagem Imagem { get; set; }
         public virtual Produto Produto { get; set; }
     }
 }
