@@ -17,6 +17,7 @@ namespace basecs.Models
         public int ProdutoId { get; set; }
         public int TipoProdutoId { get; set; }
         public string Descricao { get; set; }
+        public string Detalhes { get; set; }
         public string CodigoBarras { get; set; }
         public string Marca { get; set; }
         public int Quantidade { get; set; }
@@ -25,7 +26,6 @@ namespace basecs.Models
         public decimal PrecoCusto { get; set; }
         public decimal PrecoVenda { get; set; }
         public decimal MargemLucro { get; set; }
-        public bool Bloqueado { get; set; }
         public int UsuarioInclusaoId { get; set; }
         public int UsuarioUltimaAlteracaoId { get; set; }
         public DateTime DataInclusao { get; set; }
