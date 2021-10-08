@@ -12,11 +12,11 @@ namespace basecs.Interfaces.IGarantiasService
         #endregion
 
         #region RETURN LIST WITH PARAMETERS PAGINATED
-        Task<List<Garantia>> ReturnListWithParametersPaginated(int? id, string descricao, DateTime inicio, DateTime fim, bool? ativo, int? pageNumber, int? rowspPage);
+        Task<List<Garantia>> ReturnListWithParametersPaginated(int? id, string descricao, DateTime? inicio, DateTime? fim, bool? ativo, int? pageNumber, int? rowspPage);
         #endregion
 
         #region RETURN LIST WITH PARAMETERS
-        Task<List<Garantia>> ReturnListWithParameters(int? id, string descricao, DateTime inicio, DateTime fim, bool? ativo);
+        Task<List<Garantia>> ReturnListWithParameters(int? id, string descricao, DateTime? inicio, DateTime? fim, bool? ativo);
         #endregion
 
         #region INSERT

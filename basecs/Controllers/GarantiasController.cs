@@ -51,8 +51,8 @@ namespace backend_adm.Controllers
         public async Task<ActionResult<List<Garantia>>> ReturnListWithParameters(
                 [FromQuery] int? id,
                 [FromQuery] string descricao,
-                [FromQuery] DateTime inicio,
-                [FromQuery] DateTime fim,
+                [FromQuery] DateTime? inicio,
+                [FromQuery] DateTime? fim,
                 [FromQuery] bool? ativo
             )
         {
