@@ -7,7 +7,7 @@ using Xunit;
 
 namespace basecs.tests.Services.TipoBloqueio
 {
-    public class TipoBloqueiosServiceTest
+    public class TiposBloqueiosServiceTest
     {
         #region ATRIBUTTES
         TiposBloqueiosService _service;
@@ -15,7 +15,7 @@ namespace basecs.tests.Services.TipoBloqueio
         #endregion
 
         #region CONSTRUCTORS
-        public TipoBloqueiosServiceTest()
+        public TiposBloqueiosServiceTest()
         {
             _serviceMock = new Mock<ITiposBloqueiosService>();
             _service = new TiposBloqueiosService(new Data.MyDbContext());
