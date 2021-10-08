@@ -13,7 +13,8 @@ namespace basecs.Models
         }
 
         public int ImagemId { get; set; }
-        public string Imagem { get; set; }
+        public string Titulo { get; set; }
+        public string File { get; set; }
         public string Descricao { get; set; }
         public bool ImagemPrincipal { get; set; }
         public bool Publico { get; set; }

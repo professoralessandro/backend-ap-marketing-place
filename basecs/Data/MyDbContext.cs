@@ -561,19 +561,21 @@ namespace basecs.Data
             modelBuilder.Entity<Imagem>(entity =>
             {
                 entity.HasKey(e => e.ImagemId)
-                    .HasName("PK__Imagens__0CBF2AEEBA45A64F");
+                    .HasName("PK__Imagens__0CBF2AEEF241AC23");
 
                 entity.Property(e => e.DataInclusao).HasColumnType("datetime");
 
                 entity.Property(e => e.DataUltimaAlteracao).HasColumnType("datetime");
 
-                entity.Property(e => e.Descricao)
-                    .IsRequired()
-                    .IsUnicode(false);
+                entity.Property(e => e.Descricao).IsUnicode(false);
 
-                entity.Property(e => e.Imagem)
+                entity.Property(e => e.File)
                     .IsRequired()
                     .HasMaxLength(100)
+                    .IsUnicode(false);
+
+                entity.Property(e => e.Titulo)
+                    .HasMaxLength(50)
                     .IsUnicode(false);
             });
 
