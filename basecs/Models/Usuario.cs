@@ -18,7 +18,7 @@ namespace basecs.Models
             GruposUsuarios = new HashSet<GruposUsuario>();
             Lancamentos = new HashSet<Lancamento>();
             Logs = new HashSet<Log>();
-            Mensagens = new HashSet<Mensagen>();
+            Mensagens = new HashSet<Mensagem>();
             UsuariosDadosBancarios = new HashSet<UsuariosDadosBancario>();
             UsuariosLancamentos = new HashSet<UsuariosLancamento>();
             Venda = new HashSet<Venda>();
@@ -54,7 +54,7 @@ namespace basecs.Models
         public virtual ICollection<GruposUsuario> GruposUsuarios { get; set; }
         public virtual ICollection<Lancamento> Lancamentos { get; set; }
         public virtual ICollection<Log> Logs { get; set; }
-        public virtual ICollection<Mensagen> Mensagens { get; set; }
+        public virtual ICollection<Mensagem> Mensagens { get; set; }
         public virtual ICollection<UsuariosDadosBancario> UsuariosDadosBancarios { get; set; }
         public virtual ICollection<UsuariosLancamento> UsuariosLancamentos { get; set; }
         public virtual ICollection<Venda> Venda { get; set; }

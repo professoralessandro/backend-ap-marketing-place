@@ -4,11 +4,11 @@
 
 namespace basecs.Models
 {
-    public partial class Mensagen
+    public partial class Mensagem
     {
         public long MensagemId { get; set; }
         public int RemetenteId { get; set; }
-        public string Mensagem { get; set; }
+        public string MensagemContexto { get; set; }
         public int TipoMensagemId { get; set; }
         public bool IsHtml { get; set; }
         public int DestinatarioId { get; set; }
