@@ -30,7 +30,7 @@ namespace basecs.Models
         public virtual Usuario Comprador { get; set; }
         public virtual Endereco Endereco { get; set; }
         public virtual Entrega Entrega { get; set; }
-        public virtual FormasPagamento FormaPagamento { get; set; }
+        public virtual FormaPagamento FormaPagamento { get; set; }
         public virtual Garantia Garantia { get; set; }
         public virtual Lancamento LancamentoPai { get; set; }
         public virtual Produto Produto { get; set; }
