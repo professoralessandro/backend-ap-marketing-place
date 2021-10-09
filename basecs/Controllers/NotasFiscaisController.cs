@@ -8,15 +8,15 @@ using System.Threading.Tasks;
 
 namespace backend_adm.Controllers
 {
-    public class BloqueiosController : ControllerCS
+    public class NotasFiscaisController : ControllerCS
     {
         #region ATRIBUTTES
-        private readonly BloqueiosService _service;
+        private readonly NotasFiscaisService _service;
         private readonly LogsService _log;
         #endregion
 
         #region CONSTRUCTORS
-        public BloqueiosController([FromServices] BloqueiosService service, [FromServices] LogsService log)
+        public NotasFiscaisController([FromServices] NotasFiscaisService service, [FromServices] LogsService log)
         {
             _service = service;
             _log = log;
@@ -25,7 +25,7 @@ namespace backend_adm.Controllers
 
         #region RETURN LIST PAGINATED
         [HttpGet, Route("paginated")]
-        public async Task<ActionResult<List<Bloqueio>>> ReturnListWithParameters(
+        public async Task<ActionResult<List<NotaFiscal>>> ReturnListWithParameters(
                 [FromQuery] string param,
                 [FromQuery] DateTime? dateAdded,
                 [FromQuery] int? pageNumber,
@@ -45,16 +45,18 @@ namespace backend_adm.Controllers
 
         #region RETURN LIST WITH PARAMETERS
         [HttpGet]
-        public async Task<ActionResult<List<Bloqueio>>> ReturnListWithParameters(
+        public async Task<ActionResult<List<NotaFiscal>>> ReturnListWithParameters(
                 [FromQuery] int? id,
-                [FromQuery] string descricao,
-                [FromQuery] bool isBloqueiaAcesso,
+                [FromQuery] int? tipoNotaFiscalId,
+                [FromQuery] string chaveAcesso,
+                [FromQuery] int? emitenteId,
+                [FromQuery] int? destinatarioId,
                 [FromQuery] bool? ativo
             )
         {
             try
             {
-                return Ok(await _service.ReturnListWithParameters(id, descricao, isBloqueiaAcesso, ativo));
+                return Ok(await _service.ReturnListWithParameters(id, tipoNotaFiscalId, chaveAcesso, emitenteId, destinatarioId, ativo));
             }
             catch (Exception ex)
             {
@@ -65,7 +67,7 @@ namespace backend_adm.Controllers
 
         #region INSERT
         [HttpPost]
-        public async Task<ActionResult<Bloqueio>> Insert([FromBody] Bloqueio model)
+        public async Task<ActionResult<NotaFiscal>> Insert([FromBody] NotaFiscal model)
         {
             try
             {
@@ -84,7 +86,7 @@ namespace backend_adm.Controllers
 
         #region UPDATE
         [HttpPut]
-        public async Task<ActionResult<Bloqueio>> Update(Bloqueio model)
+        public async Task<ActionResult<NotaFiscal>> Update(NotaFiscal model)
         {
             try
             {

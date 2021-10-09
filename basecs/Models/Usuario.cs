@@ -9,7 +9,7 @@ namespace basecs.Models
     {
         public Usuario()
         {
-            Avaliacos = new HashSet<Avaliacao>();
+            Avaliacoes = new HashSet<Avaliacao>();
             CartoesBancarios = new HashSet<CartoesBancario>();
             Compras = new HashSet<Compra>();
             DadosBancarios = new HashSet<DadosBancario>();
@@ -19,6 +19,8 @@ namespace basecs.Models
             Lancamentos = new HashSet<Lancamento>();
             Logs = new HashSet<Log>();
             Mensagens = new HashSet<Mensagem>();
+            NotasFiscaiDestinatarios = new HashSet<NotaFiscal>();
+            NotasFiscaiUsuarios = new HashSet<NotaFiscal>();
             UsuariosDadosBancarios = new HashSet<UsuariosDadosBancario>();
             UsuariosLancamentos = new HashSet<UsuariosLancamento>();
             Venda = new HashSet<Venda>();
@@ -45,7 +47,7 @@ namespace basecs.Models
         public bool Ativo { get; set; }
 
         public virtual TipoDocumento TipoDocumento { get; set; }
-        public virtual ICollection<Avaliacao> Avaliacos { get; set; }
+        public virtual ICollection<Avaliacao> Avaliacoes { get; set; }
         public virtual ICollection<CartoesBancario> CartoesBancarios { get; set; }
         public virtual ICollection<Compra> Compras { get; set; }
         public virtual ICollection<DadosBancario> DadosBancarios { get; set; }
@@ -55,6 +57,8 @@ namespace basecs.Models
         public virtual ICollection<Lancamento> Lancamentos { get; set; }
         public virtual ICollection<Log> Logs { get; set; }
         public virtual ICollection<Mensagem> Mensagens { get; set; }
+        public virtual ICollection<NotaFiscal> NotasFiscaiDestinatarios { get; set; }
+        public virtual ICollection<NotaFiscal> NotasFiscaiUsuarios { get; set; }
         public virtual ICollection<UsuariosDadosBancario> UsuariosDadosBancarios { get; set; }
         public virtual ICollection<UsuariosLancamento> UsuariosLancamentos { get; set; }
         public virtual ICollection<Venda> Venda { get; set; }
