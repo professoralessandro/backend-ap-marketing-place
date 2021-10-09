@@ -10,6 +10,7 @@ namespace basecs.Models
         public Lancamento()
         {
             Compras = new HashSet<Compra>();
+            Pagamentos = new HashSet<Pagamento>();
             UsuariosLancamentos = new HashSet<UsuariosLancamento>();
         }
 
@@ -35,6 +36,7 @@ namespace basecs.Models
         public virtual TipoLancamento TiposLancamentos { get; set; }
         public virtual Usuario UsuarioInclusao { get; set; }
         public virtual ICollection<Compra> Compras { get; set; }
+        public virtual ICollection<Pagamento> Pagamentos { get; set; }
         public virtual ICollection<UsuariosLancamento> UsuariosLancamentos { get; set; }
     }
 }

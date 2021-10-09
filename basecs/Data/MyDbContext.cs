@@ -38,7 +38,7 @@ namespace basecs.Data
         public virtual DbSet<Lancamento> Lancamentos { get; set; }
         public virtual DbSet<Log> Logs { get; set; }
         public virtual DbSet<Mensagem> Mensagens { get; set; }
-        public virtual DbSet<NotasFiscai> NotasFiscais { get; set; }
+        public virtual DbSet<NotaFiscal> NotasFiscais { get; set; }
         public virtual DbSet<Pagamento> Pagamentos { get; set; }
         public virtual DbSet<Parametro> Parametros { get; set; }
         public virtual DbSet<Produto> Produtos { get; set; }
@@ -97,7 +97,7 @@ namespace basecs.Data
                     .HasConstraintName("FK_Avaliacoes_ProdutoId");
 
                 entity.HasOne(d => d.Vendedor)
-                    .WithMany(p => p.Avaliacos)
+                    .WithMany(p => p.Avaliacoes)
                     .HasForeignKey(d => d.VendedorId)
                     .OnDelete(DeleteBehavior.ClientSetNull)
                     .HasConstraintName("FK_Avaliacoes_VendedorId");
@@ -682,16 +682,58 @@ namespace basecs.Data
                     .HasConstraintName("FK_Mensagens_RemetenteId");
             });
 
-            modelBuilder.Entity<NotasFiscai>(entity =>
+            modelBuilder.Entity<NotaFiscal>(entity =>
             {
                 entity.HasKey(e => e.NotaFiscalId)
-                    .HasName("PK__NotasFis__F82B6CF6EE19118D");
+                    .HasName("PK__NotasFis__F82B6CF6CEDB7B11");
+
+                entity.Property(e => e.ChaveAcesso)
+                    .HasMaxLength(50)
+                    .IsUnicode(false);
+
+                entity.Property(e => e.DadosAdicionais).IsUnicode(false);
+
+                entity.Property(e => e.DataInclusao).HasColumnType("datetime");
+
+                entity.Property(e => e.DataUltimaAlteracao).HasColumnType("datetime");
+
+                entity.HasOne(d => d.Destinatario)
+                    .WithMany(p => p.NotasFiscaiDestinatarios)
+                    .HasForeignKey(d => d.DestinatarioId)
+                    .OnDelete(DeleteBehavior.ClientSetNull)
+                    .HasConstraintName("FK_NotasFiscais_DestinatarioId");
 
                 entity.HasOne(d => d.TipoNotaFiscal)
                     .WithMany(p => p.NotasFiscais)
                     .HasForeignKey(d => d.TipoNotaFiscalId)
                     .OnDelete(DeleteBehavior.ClientSetNull)
                     .HasConstraintName("FK_NotasFiscais_TipoNotaFiscalId");
+
+                entity.HasOne(d => d.Usuario)
+                    .WithMany(p => p.NotasFiscaiUsuarios)
+                    .HasForeignKey(d => d.UsuarioId)
+                    .OnDelete(DeleteBehavior.ClientSetNull)
+                    .HasConstraintName("FK_NotasFiscais_UsuarioId"); ;
+            });
+
+            modelBuilder.Entity<Pagamento>(entity =>
+            {
+                entity.Property(e => e.ChagoExterno)
+                    .HasMaxLength(50)
+                    .IsUnicode(false);
+
+                entity.Property(e => e.CodigoPagamento)
+                    .HasMaxLength(30)
+                    .IsUnicode(false);
+
+                entity.Property(e => e.DataInclusao).HasColumnType("datetime");
+
+                entity.Property(e => e.DataUltimaAlteracao).HasColumnType("datetime");
+
+                entity.HasOne(d => d.Lancamento)
+                    .WithMany(p => p.Pagamentos)
+                    .HasForeignKey(d => d.LancamentoId)
+                    .HasConstraintName("FK_Pagamentos_LancamentoId");
             });
 
             modelBuilder.Entity<Parametro>(entity =>

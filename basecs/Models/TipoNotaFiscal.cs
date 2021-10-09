@@ -9,7 +9,7 @@ namespace basecs.Models
     {
         public TipoNotaFiscal()
         {
-            NotasFiscais = new HashSet<NotasFiscai>();
+            NotasFiscais = new HashSet<NotaFiscal>();
         }
 
         public int TipoNotaFiscalId { get; set; }
@@ -20,6 +20,6 @@ namespace basecs.Models
         public DateTime DataUltimaAlteracao { get; set; }
         public bool Ativo { get; set; }
 
-        public virtual ICollection<NotasFiscai> NotasFiscais { get; set; }
+        public virtual ICollection<NotaFiscal> NotasFiscais { get; set; }
     }
 }
