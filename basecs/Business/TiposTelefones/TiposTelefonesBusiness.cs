@@ -47,7 +47,7 @@ namespace basecs.Business.TiposTelefones
         {
             string validation = "";
 
-            if (model.TipoTelefoneId == 0)
+            if (model.TipoTelefoneId < 1)
             {
                 validation += "Identificação do tipo de telefone invalido\n";
             }

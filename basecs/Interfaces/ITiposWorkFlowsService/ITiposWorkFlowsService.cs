@@ -2,32 +2,32 @@
 using System.Collections.Generic;
 using System.Threading.Tasks;
 
-namespace basecs.Interfaces.ITiposWorkFlowsService
+namespace basecs.Interfaces.ITiposWorkflowsService
 {
-    public interface ITiposWorkFlowsService
+    public interface ITiposWorkflowsService
     {
         #region FIND BY ID
-        Task<TipoWorkFlow> FindById(int id);
+        Task<TipoWorkflow> FindById(int id);
         #endregion
 
         #region RETURN LIST WITH PARAMETERS PAGINATED
-        Task<List<TipoWorkFlow>> ReturnListWithParametersPaginated(int? id, string descricao, bool? ativo, int? pageNumber, int? rowspPage);
+        Task<List<TipoWorkflow>> ReturnListWithParametersPaginated(int? id, string descricao, bool? ativo, int? pageNumber, int? rowspPage);
         #endregion
 
         #region RETURN LIST WITH PARAMETERS
-        Task<List<TipoWorkFlow>> ReturnListWithParameters(int? id, string descricao, bool? ativo);
+        Task<List<TipoWorkflow>> ReturnListWithParameters(int? id, string descricao, bool? ativo);
         #endregion
 
         #region INSERT
-        Task<TipoWorkFlow> Insert(TipoWorkFlow model);
+        Task<TipoWorkflow> Insert(TipoWorkflow model);
         #endregion
 
         #region UPDATE
-        Task<TipoWorkFlow> Update(TipoWorkFlow model);
+        Task<TipoWorkflow> Update(TipoWorkflow model);
         #endregion        
 
         #region DELETE
-        Task<TipoWorkFlow> Delete(int id);
+        Task<TipoWorkflow> Delete(int id);
         #endregion
     }
 }

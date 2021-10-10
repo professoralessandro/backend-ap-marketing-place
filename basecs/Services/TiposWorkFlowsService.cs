@@ -2,37 +2,37 @@ using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Threading.Tasks;
-using basecs.Business.TiposWorkFlows;
+using basecs.Business.TiposWorkflows;
 using basecs.Data;
 using basecs.Helpers.Helpers.Validators;
-using basecs.Interfaces.ITiposWorkFlowsService;
+using basecs.Interfaces.ITiposWorkflowsService;
 using basecs.Models;
 using Microsoft.Data.SqlClient;
 using Microsoft.EntityFrameworkCore;
 
 namespace basecs.Services
 {
-    public class TiposWorkFlowsService : ITiposWorkFlowsService
+    public class TiposWorkflowsService : ITiposWorkflowsService
     {
         #region ATRIBUTTES
         private readonly MyDbContext _context;
-        private readonly TiposWorkFlowsBusiness _business;
+        private readonly TiposWorkflowsBusiness _business;
         #endregion
 
         #region CONTRUCTORS
-        public TiposWorkFlowsService(MyDbContext context)
+        public TiposWorkflowsService(MyDbContext context)
         {
             _context = context;
-            _business = new TiposWorkFlowsBusiness();
+            _business = new TiposWorkflowsBusiness();
         }
         #endregion
 
         #region FIND BY ID
-        public async Task<TipoWorkFlow> FindById(int id)
+        public async Task<TipoWorkflow> FindById(int id)
         {
             try
             {
-                return await this._context.TiposWorkFlows.SingleOrDefaultAsync(c => c.TipoWorkFlowId == id);
+                return await this._context.TiposWorkflows.SingleOrDefaultAsync(c => c.TipoWorkflowId == id);
             }
             catch (Exception ex)
             {
@@ -42,7 +42,7 @@ namespace basecs.Services
         #endregion
 
         #region RETURN LIST WITH PARAMETERS PAGINATED
-        public async Task<List<TipoWorkFlow>> ReturnListWithParametersPaginated(
+        public async Task<List<TipoWorkflow>> ReturnListWithParametersPaginated(
                 int? id,
                 string descricao,
                 bool? ativo,
@@ -60,11 +60,11 @@ namespace basecs.Services
                     new SqlParameter("@RowspPage", rowspPage)
                 };
 
-                var storedProcedure = $@"[dbo].[TiposWorkFlowsPaginated] @Id, @Descricao, @Ativo, @PageNumber, @RowspPage";
+                var storedProcedure = $@"[dbo].[TiposWorkflowsPaginated] @Id, @Descricao, @Ativo, @PageNumber, @RowspPage";
 
                 using (var context = this._context)
                 {
-                    return await context.TiposWorkFlows.FromSqlRaw(storedProcedure, Params).ToListAsync();
+                    return await context.TiposWorkflows.FromSqlRaw(storedProcedure, Params).ToListAsync();
                 }
             }
             catch (Exception ex)
@@ -76,7 +76,7 @@ namespace basecs.Services
         #endregion
 
         #region RETURN LIST WITH PARAMETERS
-        public async Task<List<TipoWorkFlow>> ReturnListWithParameters(
+        public async Task<List<TipoWorkflow>> ReturnListWithParameters(
                 int? id,
                 string descricao,
                 bool? ativo
@@ -86,11 +86,11 @@ namespace basecs.Services
             {
                 using (var context = this._context)
                 {
-                    return await context.TiposWorkFlows.Where(c =>
-                    (c.TipoWorkFlowId == id || id == null) &&
+                    return await context.TiposWorkflows.Where(c =>
+                    (c.TipoWorkflowId == id || id == null) &&
                     (c.Descricao.Contains(Validators.RemoveInjections(descricao)) || string.IsNullOrEmpty(Validators.RemoveInjections(descricao))) &&
                     (c.Ativo == ativo || ativo == null))
-                    .OrderByDescending(x => x.TipoWorkFlowId)
+                    .OrderByDescending(x => x.TipoWorkflowId)
                     .ToListAsync();
                 }
             }
@@ -103,7 +103,7 @@ namespace basecs.Services
         #endregion
 
         #region INSERT
-        public async Task<TipoWorkFlow> Insert(TipoWorkFlow model)
+        public async Task<TipoWorkflow> Insert(TipoWorkflow model)
         {
             try
             {
@@ -111,7 +111,7 @@ namespace basecs.Services
 
                 if (validationMessage.Equals(""))
                 {
-                    this._context.TiposWorkFlows.Add(model);
+                    this._context.TiposWorkflows.Add(model);
                     await this._context.SaveChangesAsync();
                     return model;
                 }
@@ -128,7 +128,7 @@ namespace basecs.Services
         #endregion
 
         #region UPDATE
-        public async Task<TipoWorkFlow> Update(TipoWorkFlow model)
+        public async Task<TipoWorkflow> Update(TipoWorkflow model)
         {
             try
             {
@@ -136,7 +136,7 @@ namespace basecs.Services
 
                 if (validationMessage.Equals(""))
                 {
-                    this._context.TiposWorkFlows.Update(model);
+                    this._context.TiposWorkflows.Update(model);
                     await this._context.SaveChangesAsync();
                     return model;
                 }
@@ -153,7 +153,7 @@ namespace basecs.Services
         #endregion        
 
         #region DELETE
-        public async Task<TipoWorkFlow> Delete(int id)
+        public async Task<TipoWorkflow> Delete(int id)
         {
             try
             {
@@ -161,7 +161,7 @@ namespace basecs.Services
 
                 if (validationMessage.Equals(""))
                 {
-                    TipoWorkFlow model = await this.FindById(id);
+                    TipoWorkflow model = await this.FindById(id);
                     model.Ativo = false;
                     await this.Update(model);
                     return model;

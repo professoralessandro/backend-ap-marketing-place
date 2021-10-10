@@ -8,15 +8,15 @@ using System.Threading.Tasks;
 
 namespace backend_adm.Controllers
 {
-    public class TiposWorkFlowsController : ControllerCS
+    public class TiposWorkflowsController : ControllerCS
     {
         #region ATRIBUTTES
-        private readonly TiposWorkFlowsService _service;
+        private readonly TiposWorkflowsService _service;
         private readonly LogsService _log;
         #endregion
 
         #region CONSTRUCTORS
-        public TiposWorkFlowsController([FromServices] TiposWorkFlowsService service, [FromServices] LogsService log)
+        public TiposWorkflowsController([FromServices] TiposWorkflowsService service, [FromServices] LogsService log)
         {
             _service = service;
             _log = log;
@@ -25,7 +25,7 @@ namespace backend_adm.Controllers
 
         #region RETURN LIST PAGINATED
         [HttpGet, Route("paginated")]
-        public async Task<ActionResult<List<TipoWorkFlow>>> ReturnListWithParameters(
+        public async Task<ActionResult<List<TipoWorkflow>>> ReturnListWithParameters(
                 [FromQuery] int? id,
                 [FromQuery] string descricao,
                 [FromQuery] bool? ativo,
@@ -46,7 +46,7 @@ namespace backend_adm.Controllers
 
         #region RETURN LIST WITH PARAMETERS
         [HttpGet]
-        public async Task<ActionResult<List<TipoWorkFlow>>> ReturnListWithParameters(
+        public async Task<ActionResult<List<TipoWorkflow>>> ReturnListWithParameters(
                 [FromQuery] int? id,
                 [FromQuery] string descricao,
                 [FromQuery] bool? ativo
@@ -65,7 +65,7 @@ namespace backend_adm.Controllers
 
         #region INSERT
         [HttpPost]
-        public async Task<ActionResult<TipoWorkFlow>> Insert([FromBody] TipoWorkFlow model)
+        public async Task<ActionResult<TipoWorkflow>> Insert([FromBody] TipoWorkflow model)
         {
             try
             {
@@ -84,7 +84,7 @@ namespace backend_adm.Controllers
 
         #region UPDATE
         [HttpPut]
-        public async Task<ActionResult<TipoWorkFlow>> Update(TipoWorkFlow model)
+        public async Task<ActionResult<TipoWorkflow>> Update(TipoWorkflow model)
         {
             try
             {

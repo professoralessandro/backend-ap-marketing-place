@@ -27,12 +27,12 @@ namespace basecs.Data
         public virtual DbSet<DadosBancario> DadosBancarios { get; set; }
         public virtual DbSet<Email> Emails { get; set; }
         public virtual DbSet<Endereco> Enderecos { get; set; }
+        public virtual DbSet<EnderecoUsuario> EnderecosUsuarios { get; set; }
         public virtual DbSet<Entrega> Entregas { get; set; }
         public virtual DbSet<FormaPagamento> FormasPagamentos { get; set; }
         public virtual DbSet<Garantia> Garantias { get; set; }
         public virtual DbSet<Grupo> Grupos { get; set; }
-        public virtual DbSet<GruposRecurso> GruposRecursos { get; set; }
-        public virtual DbSet<GruposUsuario> GruposUsuarios { get; set; }
+        public virtual DbSet<GrupoRecurso> GruposRecursos { get; set; }
         public virtual DbSet<Imagem> Imagens { get; set; }
         public virtual DbSet<ImagemProduto> ImagensProdutos { get; set; }
         public virtual DbSet<Lancamento> Lancamentos { get; set; }
@@ -44,10 +44,11 @@ namespace basecs.Data
         public virtual DbSet<Produto> Produtos { get; set; }
         public virtual DbSet<Reclamaco> Reclamacoes { get; set; }
         public virtual DbSet<Recurso> Recursos { get; set; }
-        public virtual DbSet<Situaco> Situacoes { get; set; }
-        public virtual DbSet<StatusAprovaco> StatusAprovacoes { get; set; }
-        public virtual DbSet<StatusEnvioEmail> StatusEnvioEmails { get; set; }
+        public virtual DbSet<Situacao> Situacoes { get; set; }
+        public virtual DbSet<StatusAprovacao> StatusAprovacoes { get; set; }
+        public virtual DbSet<StatusEnvio> StatusEnvios { get; set; }
         public virtual DbSet<Telefone> Telefones { get; set; }
+        public virtual DbSet<TelefoneUsuario> TelefonesUsuarios { get; set; }
         public virtual DbSet<TipoBloqueio> TiposBloqueios { get; set; }
         public virtual DbSet<TipoCaracteristica> TiposCaracteristicas { get; set; }
         public virtual DbSet<TipoConfiguracao> TiposConfiguracoes { get; set; }
@@ -62,12 +63,10 @@ namespace basecs.Data
         public virtual DbSet<TipoParametro> TiposParametros { get; set; }
         public virtual DbSet<TipoProduto> TiposProdutos { get; set; }
         public virtual DbSet<TipoTelefone> TiposTelefones { get; set; }
-        public virtual DbSet<TipoWorkFlow> TiposWorkFlows { get; set; }
+        public virtual DbSet<TipoWorkflow> TiposWorkflows { get; set; }
         public virtual DbSet<Usuario> Usuarios { get; set; }
-        public virtual DbSet<UsuariosDadosBancario> UsuariosDadosBancarios { get; set; }
-        public virtual DbSet<UsuariosLancamento> UsuariosLancamentos { get; set; }
         public virtual DbSet<Venda> Vendas { get; set; }
-        public virtual DbSet<WorkFlow> WorkFlows { get; set; }
+        public virtual DbSet<Workflow> Workflows { get; set; }
         #endregion
 
         #region METHODS
@@ -78,7 +77,7 @@ namespace basecs.Data
             modelBuilder.Entity<Avaliacao>(entity =>
             {
                 entity.HasKey(e => e.AvaliacaoId)
-                    .HasName("PK__Avaliaco__FC95FF18C11BE5B5");
+                    .HasName("PK__Avaliaco__FC95FF18B2CE55EB");
 
                 entity.Property(e => e.DataInclusao).HasColumnType("datetime");
 
@@ -97,7 +96,7 @@ namespace basecs.Data
                     .HasConstraintName("FK_Avaliacoes_ProdutoId");
 
                 entity.HasOne(d => d.Vendedor)
-                    .WithMany(p => p.Avaliacoes)
+                    .WithMany(p => p.Avaliacos)
                     .HasForeignKey(d => d.VendedorId)
                     .OnDelete(DeleteBehavior.ClientSetNull)
                     .HasConstraintName("FK_Avaliacoes_VendedorId");
@@ -423,6 +422,24 @@ namespace basecs.Data
                     .HasConstraintName("FK_Enderecos_TipoEnderecoId");
             });
 
+            modelBuilder.Entity<EnderecoUsuario>(entity =>
+            {
+                entity.HasKey(e => e.EnderecoUsuarioId)
+                    .HasName("PK__Endereco__FEFA68CA68A51DAB");
+
+                entity.HasOne(d => d.Endereco)
+                    .WithMany(p => p.EnderecosUsuarios)
+                    .HasForeignKey(d => d.EnderecoId)
+                    .OnDelete(DeleteBehavior.ClientSetNull)
+                    .HasConstraintName("FK_EnderecosUsuarios_EnderecoId");
+
+                entity.HasOne(d => d.Usuario)
+                    .WithMany(p => p.EnderecosUsuarios)
+                    .HasForeignKey(d => d.UsuarioId)
+                    .OnDelete(DeleteBehavior.ClientSetNull)
+                    .HasConstraintName("FK_EnderecosUsuarios_UsuarioId");
+            });
+
             modelBuilder.Entity<Entrega>(entity =>
             {
                 entity.Property(e => e.DataEfetivaEnrega).HasColumnType("datetime");
@@ -511,17 +528,17 @@ namespace basecs.Data
 
                 entity.Property(e => e.DataUltimaAlteracao).HasColumnType("datetime");
 
-                entity.Property(e => e.Grupo1)
+                entity.Property(e => e.Descricao)
                     .IsRequired()
                     .HasMaxLength(50)
                     .IsUnicode(false)
-                    .HasColumnName("Grupo");
+                    .HasColumnName("Descricao");
             });
 
-            modelBuilder.Entity<GruposRecurso>(entity =>
+            modelBuilder.Entity<GrupoRecurso>(entity =>
             {
                 entity.HasKey(e => e.GrupoRecursoId)
-                    .HasName("PK__GruposRe__5A5BD2573CD48AEC");
+                    .HasName("PK__GruposRe__5A5BD257AE108E58");
 
                 entity.ToTable("GruposRecursos", "seg");
 
@@ -535,27 +552,7 @@ namespace basecs.Data
                     .WithMany(p => p.GruposRecursos)
                     .HasForeignKey(d => d.RecursoId)
                     .OnDelete(DeleteBehavior.ClientSetNull)
-                    .HasConstraintName("FK_GruposRecursos_RecursoId");
-            });
-
-            modelBuilder.Entity<GruposUsuario>(entity =>
-            {
-                entity.HasKey(e => e.GrupoUsuarioId)
-                    .HasName("PK__GruposUs__B303C450CDCA92A9");
-
-                entity.ToTable("GruposUsuarios", "seg");
-
-                entity.HasOne(d => d.Grupo)
-                    .WithMany(p => p.GruposUsuarios)
-                    .HasForeignKey(d => d.GrupoId)
-                    .OnDelete(DeleteBehavior.ClientSetNull)
-                    .HasConstraintName("FK_GruposUsuarios_GrupoId");
-
-                entity.HasOne(d => d.Usuario)
-                    .WithMany(p => p.GruposUsuarios)
-                    .HasForeignKey(d => d.UsuarioId)
-                    .OnDelete(DeleteBehavior.ClientSetNull)
-                    .HasConstraintName("FK_GruposUsuarios_UsuarioId");
+                    .HasConstraintName("FK_TelefonesUsuarios_RecursoId");
             });
 
             modelBuilder.Entity<Imagem>(entity =>
@@ -738,6 +735,10 @@ namespace basecs.Data
 
             modelBuilder.Entity<Parametro>(entity =>
             {
+                entity.Property(e => e.DataInclusao).HasColumnType("datetime");
+
+                entity.Property(e => e.DataUltimaAlteracao).HasColumnType("datetime");
+
                 entity.Property(e => e.Descricao)
                     .IsRequired()
                     .HasMaxLength(100)
@@ -845,7 +846,7 @@ namespace basecs.Data
                     .IsUnicode(false);
             });
 
-            modelBuilder.Entity<Situaco>(entity =>
+            modelBuilder.Entity<Situacao>(entity =>
             {
                 entity.HasKey(e => e.SituacaoId)
                     .HasName("PK__Situacoe__62444474E66A93FB");
@@ -860,7 +861,7 @@ namespace basecs.Data
                     .IsUnicode(false);
             });
 
-            modelBuilder.Entity<StatusAprovaco>(entity =>
+            modelBuilder.Entity<StatusAprovacao>(entity =>
             {
                 entity.HasKey(e => e.StatusAprovacaoId)
                     .HasName("PK__StatusAp__E9CC69FD0AD1DCE1");
@@ -880,8 +881,10 @@ namespace basecs.Data
                     .IsUnicode(false);
             });
 
-            modelBuilder.Entity<StatusEnvioEmail>(entity =>
+            modelBuilder.Entity<StatusEnvio>(entity =>
             {
+                entity.ToTable("StatusEnvio");
+
                 entity.Property(e => e.DataInclusao).HasColumnType("datetime");
 
                 entity.Property(e => e.DataUltimaAlteracao).HasColumnType("datetime");
@@ -898,17 +901,34 @@ namespace basecs.Data
 
                 entity.Property(e => e.DataUltimaAlteracao).HasColumnType("datetime");
 
-                entity.Property(e => e.Telefone1)
+                entity.Property(e => e.Numero)
                     .IsRequired()
                     .HasMaxLength(20)
-                    .IsUnicode(false)
-                    .HasColumnName("Telefone");
+                    .IsUnicode(false);
 
                 entity.HasOne(d => d.TipoTelefone)
                     .WithMany(p => p.Telefones)
                     .HasForeignKey(d => d.TipoTelefoneId)
                     .OnDelete(DeleteBehavior.ClientSetNull)
                     .HasConstraintName("FK_Telefones_TipoTelefoneId");
+            });
+
+            modelBuilder.Entity<TelefoneUsuario>(entity =>
+            {
+                entity.HasKey(e => e.TelefoneUsuarioId)
+                    .HasName("PK__Telefone__FEFA68CA2BB73680");
+
+                entity.HasOne(d => d.Telefone)
+                    .WithMany(p => p.TelefonesUsuarios)
+                    .HasForeignKey(d => d.TelefoneId)
+                    .OnDelete(DeleteBehavior.ClientSetNull)
+                    .HasConstraintName("FK_TelefonesUsuarios_TelefoneId");
+
+                entity.HasOne(d => d.Usuario)
+                    .WithMany(p => p.TelefonesUsuarios)
+                    .HasForeignKey(d => d.UsuarioId)
+                    .OnDelete(DeleteBehavior.ClientSetNull)
+                    .HasConstraintName("FK_TelefonesUsuarios_UsuarioId");
             });
 
             modelBuilder.Entity<TipoBloqueio>(entity =>
@@ -1096,8 +1116,6 @@ namespace basecs.Data
                 entity.HasKey(e => e.TipoProdutoId)
                     .HasName("PK__TiposPro__99B538CBDC6EB712");
 
-                entity.ToTable("TiposProdutos", "seg");
-
                 entity.Property(e => e.DataInclusao).HasColumnType("datetime");
 
                 entity.Property(e => e.DataUltimaAlteracao).HasColumnType("datetime");
@@ -1123,9 +1141,9 @@ namespace basecs.Data
                     .IsUnicode(false);
             });
 
-            modelBuilder.Entity<TipoWorkFlow>(entity =>
+            modelBuilder.Entity<TipoWorkflow>(entity =>
             {
-                entity.HasKey(e => e.TipoWorkFlowId)
+                entity.HasKey(e => e.TipoWorkflowId)
                     .HasName("PK__TiposWor__12D351935E5497E2");
 
                 entity.Property(e => e.DataInclusao).HasColumnType("datetime");
@@ -1168,7 +1186,7 @@ namespace basecs.Data
 
                 entity.Property(e => e.Nome)
                     .IsRequired()
-                    .HasMaxLength(255)
+                    .HasMaxLength(100)
                     .IsUnicode(false);
 
                 entity.Property(e => e.Senha)
@@ -1179,11 +1197,17 @@ namespace basecs.Data
                     .HasMaxLength(1)
                     .IsUnicode(false);
 
-                entity.Property(e => e.Usuario1)
+                entity.Property(e => e.Login)
                     .IsRequired()
                     .HasMaxLength(50)
                     .IsUnicode(false)
-                    .HasColumnName("Usuario");
+                    .HasColumnName("Login");
+
+                entity.HasOne(d => d.GrupoUsarui)
+                    .WithMany(p => p.Usuarios)
+                    .HasForeignKey(d => d.GrupoUsaruiId)
+                    .OnDelete(DeleteBehavior.ClientSetNull)
+                    .HasConstraintName("FK_Usuarios_GrupoUsaruiId");
 
                 entity.HasOne(d => d.TipoDocumento)
                     .WithMany(p => p.Usuarios)
@@ -1192,80 +1216,34 @@ namespace basecs.Data
                     .HasConstraintName("FK_Usuarios_TipoDocumentoId");
             });
 
-            modelBuilder.Entity<UsuariosDadosBancario>(entity =>
+            modelBuilder.Entity<Workflow>(entity =>
             {
-                entity.HasKey(e => e.UsuarioDadoBancarioId)
-                    .HasName("PK__Usuarios__BD9070E210232EC5");
-
-                entity.HasOne(d => d.DadoBancario)
-                    .WithMany(p => p.UsuariosDadosBancarios)
-                    .HasForeignKey(d => d.DadoBancarioId)
-                    .OnDelete(DeleteBehavior.ClientSetNull)
-                    .HasConstraintName("FK_UsuariosDadosBancarios_DadoBancarioId");
-
-                entity.HasOne(d => d.Usuario)
-                    .WithMany(p => p.UsuariosDadosBancarios)
-                    .HasForeignKey(d => d.UsuarioId)
-                    .OnDelete(DeleteBehavior.ClientSetNull)
-                    .HasConstraintName("FK_UsuariosDadosBancarios_UsuarioId");
-            });
-
-            modelBuilder.Entity<UsuariosLancamento>(entity =>
-            {
-                entity.HasKey(e => e.UsuarioLancamentoId)
-                    .HasName("PK__Usuarios__632770F5021DE550");
-
-                entity.HasOne(d => d.Lancamento)
-                    .WithMany(p => p.UsuariosLancamentos)
-                    .HasForeignKey(d => d.LancamentoId)
-                    .OnDelete(DeleteBehavior.ClientSetNull)
-                    .HasConstraintName("FK_UsuariosLancamentos_LancamentoId");
-
-                entity.HasOne(d => d.Usuario)
-                    .WithMany(p => p.UsuariosLancamentos)
-                    .HasForeignKey(d => d.UsuarioId)
-                    .OnDelete(DeleteBehavior.ClientSetNull)
-                    .HasConstraintName("FK_UsuariosLancamentos_UsuarioId");
-            });
-
-            modelBuilder.Entity<Venda>(entity =>
-            {
-                entity.Property(e => e.DataInclusao).HasColumnType("datetime");
-
-                entity.Property(e => e.DataUltimaAlteracao).HasColumnType("datetime");
-
-                entity.HasOne(d => d.Usuario)
-                    .WithMany(p => p.Venda)
-                    .HasForeignKey(d => d.UsuarioId)
-                    .OnDelete(DeleteBehavior.ClientSetNull)
-                    .HasConstraintName("FK_Vendas_UsuarioId");
-            });
-
-            modelBuilder.Entity<WorkFlow>(entity =>
-            {
-                entity.ToTable("WorkFlows", "seg");
+                entity.ToTable("Workflows", "seg");
 
                 entity.Property(e => e.DataInclusao).HasColumnType("datetime");
 
                 entity.Property(e => e.DataUltimaAlteracao).HasColumnType("datetime");
 
-                entity.Property(e => e.DataWorkFlow).HasColumnType("datetime");
+                entity.Property(e => e.DataWorkflowVerificacao).HasColumnType("datetime");
 
-                entity.Property(e => e.DataWorkFlowVerificacao).HasColumnType("datetime");
+                entity.Property(e => e.Descricao)
+                    .IsRequired()
+                    .HasMaxLength(50)
+                    .IsUnicode(false);
 
                 entity.Property(e => e.Observacao).IsUnicode(false);
 
                 entity.HasOne(d => d.StatusAprovacao)
-                    .WithMany(p => p.WorkFlows)
+                    .WithMany(p => p.Workflows)
                     .HasForeignKey(d => d.StatusAprovacaoId)
                     .OnDelete(DeleteBehavior.ClientSetNull)
-                    .HasConstraintName("FK_WorkFlows_StatusAprovacaoId");
+                    .HasConstraintName("FK_Workflows_StatusAprovacaoId");
 
                 entity.HasOne(d => d.TipoWorkflow)
-                    .WithMany(p => p.WorkFlows)
+                    .WithMany(p => p.Workflows)
                     .HasForeignKey(d => d.TipoWorkflowId)
                     .OnDelete(DeleteBehavior.ClientSetNull)
-                    .HasConstraintName("FK_WorkFlows_TipoWorkflowId");
+                    .HasConstraintName("FK_Workflows_TipoWorkflowId");
             });
 
             OnModelCreatingPartial(modelBuilder);

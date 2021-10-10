@@ -1,5 +1,4 @@
 ﻿using System;
-using System.Collections.Generic;
 
 #nullable disable
 
@@ -7,11 +6,6 @@ namespace basecs.Models
 {
     public partial class DadosBancario
     {
-        public DadosBancario()
-        {
-            UsuariosDadosBancarios = new HashSet<UsuariosDadosBancario>();
-        }
-
         public int DadoBancarioId { get; set; }
         public int UsuarioId { get; set; }
         public string Banco { get; set; }
@@ -25,6 +19,5 @@ namespace basecs.Models
         public bool Ativo { get; set; }
 
         public virtual Usuario Usuario { get; set; }
-        public virtual ICollection<UsuariosDadosBancario> UsuariosDadosBancarios { get; set; }
     }
 }

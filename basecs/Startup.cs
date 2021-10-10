@@ -53,12 +53,15 @@ namespace basecs
             services.AddScoped<CaracteristicasService>();
             services.AddScoped<ComprasService>();
             services.AddScoped<ConfiguracoesService>();
-            services.AddScoped<ConfiguracoesParametroService>();
+            services.AddScoped<ConfiguracoesParametrosService>();
             services.AddScoped<EmailsService>();
             services.AddScoped<EntregasService>();
             services.AddScoped<EnderecosService>();
+            services.AddScoped<EnderecosUsuariosService>();
             services.AddScoped<FormasPagamentosService>();
             services.AddScoped<GarantiasService>();
+            services.AddScoped<GruposService>();
+            services.AddScoped<GruposRecursosService>();
             services.AddScoped<ImagensService>();
             services.AddScoped<ImagensProdutosService>();
             services.AddScoped<LancamentosService>();
@@ -66,6 +69,13 @@ namespace basecs
             services.AddScoped<ProdutosService>();
             services.AddScoped<NotasFiscaisService>();
             services.AddScoped<PagamentosService>();
+            services.AddScoped<RecursosService>();
+            services.AddScoped<SituacoesService>();
+            services.AddScoped<StatusAprovacoesService>();
+            services.AddScoped<StatusEnviosService>();
+            services.AddScoped<ParametrosService>();
+            services.AddScoped<TelefonesService>();
+            services.AddScoped<TelefonesUsuariosService>();
             services.AddScoped<TiposBloqueiosService>();
             services.AddScoped<TiposCaracteristicasService>();
             services.AddScoped<TiposConfiguracoesService>();
@@ -80,9 +90,11 @@ namespace basecs
             services.AddScoped<TiposParametrosService>();
             services.AddScoped<TiposProdutosService>();
             services.AddScoped<TiposTelefonesService>();
-            services.AddScoped<TiposWorkFlowsService>();
+            services.AddScoped<TiposWorkflowsService>();
             services.AddScoped<LogsService>();
-            
+            services.AddScoped<WorkflowsService>();
+            services.AddScoped<UsuariosService>();
+
             return services;
         }
         #endregion

@@ -47,7 +47,7 @@ namespace basecs.Business.Tipoemails
         {
             string validation = "";
 
-            if (model.TipoEmailId == 0)
+            if (model.TipoEmailId < 1)
             {
                 validation += "Identificação do tipo de email invalido\n";
             }

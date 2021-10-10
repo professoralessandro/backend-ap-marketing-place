@@ -26,6 +26,7 @@ namespace basecs.Models
         public decimal PrecoCusto { get; set; }
         public decimal PrecoVenda { get; set; }
         public decimal MargemLucro { get; set; }
+        public bool Bloqueado { get; set; }
         public int UsuarioInclusaoId { get; set; }
         public int UsuarioUltimaAlteracaoId { get; set; }
         public DateTime DataInclusao { get; set; }

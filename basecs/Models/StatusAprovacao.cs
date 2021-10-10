@@ -5,21 +5,22 @@ using System.Collections.Generic;
 
 namespace basecs.Models
 {
-    public partial class StatusEnvioEmail
+    public partial class StatusAprovacao
     {
-        public StatusEnvioEmail()
+        public StatusAprovacao()
         {
-            Emails = new HashSet<Email>();
+            Workflows = new HashSet<Workflow>();
         }
 
-        public int StatusEnvioEmailId { get; set; }
+        public int StatusAprovacaoId { get; set; }
         public string Descricao { get; set; }
+        public string Valor { get; set; }
         public int UsuarioInclusaoId { get; set; }
         public int UsuarioUltimaAlteracaoId { get; set; }
         public DateTime DataInclusao { get; set; }
         public DateTime DataUltimaAlteracao { get; set; }
         public bool Ativo { get; set; }
 
-        public virtual ICollection<Email> Emails { get; set; }
+        public virtual ICollection<Workflow> Workflows { get; set; }
     }
 }

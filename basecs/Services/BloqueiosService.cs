@@ -86,10 +86,10 @@ namespace basecs.Services
                 using (var context = this._context)
                 {
                     return await context.Bloqueios.Where(c =>
-                    (c.BloqueioId == id || id == null) &&
+                    (c.BloqueioId.Equals(id) || id.Equals(null)) &&
                     (c.NomeBloqueio.Contains(Validators.RemoveInjections(descricao)) || string.IsNullOrEmpty(Validators.RemoveInjections(descricao))) &&
-                    (c.IsBloqueiaAcesso.Equals(isBloqueiaAcesso) || !isBloqueiaAcesso.Equals(null)) &&
-                    (c.Ativo == ativo || ativo == null)
+                    (c.IsBloqueiaAcesso.Equals(isBloqueiaAcesso) || isBloqueiaAcesso.Equals(null)) &&
+                    (c.Ativo.Equals(ativo) || ativo.Equals(null))
                     ).OrderByDescending(x => x.BloqueioId)
                     .ToListAsync();
                 }
@@ -121,7 +121,7 @@ namespace basecs.Services
             }
             catch (Exception ex)
             {
-                throw new Exception("Houve um erro ao incluir tipos bloqueios: " + ex.Message);
+                throw new Exception("Houve um erro ao incluir o registro: " + ex.Message);
             }
         }
         #endregion

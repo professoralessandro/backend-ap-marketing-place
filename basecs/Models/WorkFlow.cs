@@ -5,22 +5,22 @@ using System.Collections.Generic;
 
 namespace basecs.Models
 {
-    public partial class WorkFlow
+    public partial class Workflow
     {
-        public int WorkFlowId { get; set; }
+        public int WorkflowId { get; set; }
         public int TipoWorkflowId { get; set; }
         public int StatusAprovacaoId { get; set; }
         public int UsuarioResponsavel { get; set; }
-        public DateTime DataWorkFlow { get; set; }
+        public string Descricao { get; set; }
         public string Observacao { get; set; }
-        public DateTime? DataWorkFlowVerificacao { get; set; }
+        public DateTime? DataWorkflowVerificacao { get; set; }
         public int UsuarioInclusaoId { get; set; }
         public int UsuarioUltimaAlteracaoId { get; set; }
         public DateTime DataInclusao { get; set; }
         public DateTime DataUltimaAlteracao { get; set; }
         public bool Ativo { get; set; }
 
-        public virtual StatusAprovaco StatusAprovacao { get; set; }
-        public virtual TipoWorkFlow TipoWorkflow { get; set; }
+        public virtual StatusAprovacao StatusAprovacao { get; set; }
+        public virtual TipoWorkflow TipoWorkflow { get; set; }
     }
 }

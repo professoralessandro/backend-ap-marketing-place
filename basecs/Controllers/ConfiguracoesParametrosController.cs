@@ -11,12 +11,12 @@ namespace backend_adm.Controllers
     public class ConfiguracoesParametrosController : ControllerCS
     {
         #region ATRIBUTTES
-        private readonly ConfiguracoesParametroService _service;
+        private readonly ConfiguracoesParametrosService _service;
         private readonly LogsService _log;
         #endregion
 
         #region CONSTRUCTORS
-        public ConfiguracoesParametrosController([FromServices] ConfiguracoesParametroService service, [FromServices] LogsService log)
+        public ConfiguracoesParametrosController([FromServices] ConfiguracoesParametrosService service, [FromServices] LogsService log)
         {
             _service = service;
             _log = log;

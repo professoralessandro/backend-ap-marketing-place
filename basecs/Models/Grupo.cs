@@ -9,19 +9,19 @@ namespace basecs.Models
     {
         public Grupo()
         {
-            GruposRecursos = new HashSet<GruposRecurso>();
-            GruposUsuarios = new HashSet<GruposUsuario>();
+            GruposRecursos = new HashSet<GrupoRecurso>();
+            Usuarios = new HashSet<Usuario>();
         }
 
         public int GrupoId { get; set; }
-        public string Grupo1 { get; set; }
+        public string Descricao { get; set; }
         public int UsuarioInclusaoId { get; set; }
         public int UsuarioUltimaAlteracaoId { get; set; }
         public DateTime DataInclusao { get; set; }
         public DateTime DataUltimaAlteracao { get; set; }
         public bool Ativo { get; set; }
 
-        public virtual ICollection<GruposRecurso> GruposRecursos { get; set; }
-        public virtual ICollection<GruposUsuario> GruposUsuarios { get; set; }
+        public virtual ICollection<GrupoRecurso> GruposRecursos { get; set; }
+        public virtual ICollection<Usuario> Usuarios { get; set; }
     }
 }

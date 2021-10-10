@@ -5,14 +5,14 @@ using System.Collections.Generic;
 
 namespace basecs.Models
 {
-    public partial class TipoWorkFlow
+    public partial class TipoWorkflow
     {
-        public TipoWorkFlow()
+        public TipoWorkflow()
         {
-            WorkFlows = new HashSet<WorkFlow>();
+            Workflows = new HashSet<Workflow>();
         }
 
-        public int TipoWorkFlowId { get; set; }
+        public int TipoWorkflowId { get; set; }
         public string Descricao { get; set; }
         public int UsuarioInclusaoId { get; set; }
         public int UsuarioUltimaAlteracaoId { get; set; }
@@ -20,6 +20,6 @@ namespace basecs.Models
         public DateTime DataUltimaAlteracao { get; set; }
         public bool Ativo { get; set; }
 
-        public virtual ICollection<WorkFlow> WorkFlows { get; set; }
+        public virtual ICollection<Workflow> Workflows { get; set; }
     }
 }

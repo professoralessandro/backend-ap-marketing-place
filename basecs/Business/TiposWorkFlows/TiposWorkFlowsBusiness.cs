@@ -1,15 +1,15 @@
 ﻿using basecs.Helpers.Helpers.Validators;
 
-namespace basecs.Business.TiposWorkFlows
+namespace basecs.Business.TiposWorkflows
 {
-    public class TiposWorkFlowsBusiness
+    public class TiposWorkflowsBusiness
     {
         #region INSERT
-        public string InsertValidation(basecs.Models.TipoWorkFlow model)
+        public string InsertValidation(basecs.Models.TipoWorkflow model)
         {
             string validation = "";
 
-            if (model.TipoWorkFlowId > 0)
+            if (model.TipoWorkflowId > 0)
             {
                 validation += "Identificação do tipo de workflow invalido\n";
             }
@@ -43,11 +43,11 @@ namespace basecs.Business.TiposWorkFlows
         #endregion
 
         #region UPDATE
-        public string UpdateValidation(basecs.Models.TipoWorkFlow model)
+        public string UpdateValidation(basecs.Models.TipoWorkflow model)
         {
             string validation = "";
 
-            if (model.TipoWorkFlowId == 0)
+            if (model.TipoWorkflowId < 1)
             {
                 validation += "Identificação do tipo de workflow invalido\n";
             }

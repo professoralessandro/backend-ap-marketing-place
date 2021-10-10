@@ -5,15 +5,14 @@ using System.Collections.Generic;
 
 namespace basecs.Models
 {
-    public partial class Situaco
+    public partial class StatusEnvio
     {
-        public Situaco()
+        public StatusEnvio()
         {
-            Compras = new HashSet<Compra>();
-            Lancamentos = new HashSet<Lancamento>();
+            Emails = new HashSet<Email>();
         }
 
-        public int SituacaoId { get; set; }
+        public int StatusEnvioId { get; set; }
         public string Descricao { get; set; }
         public int UsuarioInclusaoId { get; set; }
         public int UsuarioUltimaAlteracaoId { get; set; }
@@ -21,7 +20,6 @@ namespace basecs.Models
         public DateTime DataUltimaAlteracao { get; set; }
         public bool Ativo { get; set; }
 
-        public virtual ICollection<Compra> Compras { get; set; }
-        public virtual ICollection<Lancamento> Lancamentos { get; set; }
+        public virtual ICollection<Email> Emails { get; set; }
     }
 }

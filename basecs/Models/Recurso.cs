@@ -9,7 +9,7 @@ namespace basecs.Models
     {
         public Recurso()
         {
-            GruposRecursos = new HashSet<GruposRecurso>();
+            GruposRecursos = new HashSet<GrupoRecurso>();
         }
 
         public int RecursoId { get; set; }
@@ -26,6 +26,6 @@ namespace basecs.Models
         public string Path { get; set; }
         public bool IsSubMenu { get; set; }
 
-        public virtual ICollection<GruposRecurso> GruposRecursos { get; set; }
+        public virtual ICollection<GrupoRecurso> GruposRecursos { get; set; }
     }
 }

@@ -6,7 +6,7 @@ using System.Threading.Tasks;
 
 namespace basecs.Interfaces.IConfiguracoesParametroService
 {
-    public interface IConfiguracoesParametroService
+    public interface IConfiguracoesParametrosService
     {
         #region FIND BY ID
         Task<ConfiguracaoParametro> FindById(int id);

@@ -1,11 +1,8 @@
-﻿using System;
-using System.Collections.Generic;
-
-#nullable disable
+﻿#nullable disable
 
 namespace basecs.Models
 {
-    public partial class GruposRecurso
+    public partial class GrupoRecurso
     {
         public int GrupoRecursoId { get; set; }
         public int GrupoId { get; set; }

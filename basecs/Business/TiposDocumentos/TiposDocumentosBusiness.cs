@@ -47,7 +47,7 @@ namespace basecs.Business.TiposDocumentos
         {
             string validation = "";
 
-            if (model.TipoDocumentoId == 0)
+            if (model.TipoDocumentoId < 1)
             {
                 validation += "Identificação do tipo de documento invalido\n";
             }
