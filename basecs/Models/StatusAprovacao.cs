@@ -9,7 +9,7 @@ namespace basecs.Models
     {
         public StatusAprovacao()
         {
-            WorkFlows = new HashSet<WorkFlow>();
+            Workflows = new HashSet<Workflow>();
         }
 
         public int StatusAprovacaoId { get; set; }
@@ -21,6 +21,6 @@ namespace basecs.Models
         public DateTime DataUltimaAlteracao { get; set; }
         public bool Ativo { get; set; }
 
-        public virtual ICollection<WorkFlow> WorkFlows { get; set; }
+        public virtual ICollection<Workflow> Workflows { get; set; }
     }
 }

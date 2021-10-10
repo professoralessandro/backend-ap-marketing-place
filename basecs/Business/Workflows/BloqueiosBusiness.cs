@@ -1,17 +1,32 @@
 ﻿using basecs.Helpers.Helpers.Validators;
 
-namespace basecs.Business.TiposWorkflows
+namespace basecs.Business.Workflows
 {
-    public class TiposWorkflowsBusiness
+    public class WorkflowsBusiness
     {
         #region INSERT
-        public string InsertValidation(basecs.Models.TipoWorkflow model)
+        public string InsertValidation(basecs.Models.Workflow model)
         {
             string validation = "";
 
-            if (model.TipoWorkflowId > 0)
+            if (model.WorkflowId > 0)
+            {
+                validation += "Identificação do bloqueios invalido\n";
+            }
+
+            if (model.TipoWorkflowId < 1)
             {
                 validation += "Identificação do tipo de workflow invalido\n";
+            }
+
+            if (model.StatusAprovacaoId < 1)
+            {
+                validation += "Identificação do status do workflow invalido\n";
+            }
+
+            if (model.UsuarioResponsavel < 1)
+            {
+                validation += "Identificação do usuario responsavel pelo workflow invalido\n";
             }
 
             if (!string.IsNullOrEmpty(model.Descricao))
@@ -19,7 +34,7 @@ namespace basecs.Business.TiposWorkflows
                 model.Descricao = Validators.RemoveInjections(model.Descricao);
                 if (model.Descricao.Length < 3)
                 {
-                    validation += "Descrição do workflow contem menos de três caracteres\n";
+                    validation += "Descrição do bloqueios contem menos de três caracteres\n";
                 }
             }
 
@@ -35,7 +50,7 @@ namespace basecs.Business.TiposWorkflows
 
             if (!model.Ativo)
             {
-                validation += "Não pode ser adicinado tipo de workflow inativado\n";
+                validation += "Não pode ser adicinado bloqueio inativado\n";
             }
 
             return validation;
@@ -43,13 +58,28 @@ namespace basecs.Business.TiposWorkflows
         #endregion
 
         #region UPDATE
-        public string UpdateValidation(basecs.Models.TipoWorkflow model)
+        public string UpdateValidation(basecs.Models.Workflow model)
         {
             string validation = "";
+
+            if (model.WorkflowId < 1)
+            {
+                validation += "Identificação do bloqueios invalido\n";
+            }
 
             if (model.TipoWorkflowId < 1)
             {
                 validation += "Identificação do tipo de workflow invalido\n";
+            }
+
+            if (model.StatusAprovacaoId < 1)
+            {
+                validation += "Identificação do status do workflow invalido\n";
+            }
+
+            if (model.UsuarioResponsavel < 1)
+            {
+                validation += "Identificação do usuario responsavel pelo workflow invalido\n";
             }
 
             if (!string.IsNullOrEmpty(model.Descricao))
@@ -57,8 +87,13 @@ namespace basecs.Business.TiposWorkflows
                 model.Descricao = Validators.RemoveInjections(model.Descricao);
                 if (model.Descricao.Length < 3)
                 {
-                    validation += "Descrição do workflow contem menos de três caracteres\n";
+                    validation += "Descrição do bloqueios contem menos de três caracteres\n";
                 }
+            }
+
+            if (model.UsuarioInclusaoId < 1)
+            {
+                validation += "Identificação do usuario que incluiu e invalido\n";
             }
 
             if (model.UsuarioUltimaAlteracaoId < 1)
@@ -77,7 +112,7 @@ namespace basecs.Business.TiposWorkflows
 
             if (id < 1)
             {
-                validation += "Identificação do tipo de workflow invalido\n";
+                validation += "Identificação do bloqueios invalido\n";
             }
 
             return validation;

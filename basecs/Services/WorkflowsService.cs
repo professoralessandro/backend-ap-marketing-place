@@ -1,6 +1,7 @@
-﻿using basecs.Business.ConfiguracoesParametros;
+﻿using basecs.Business.Workflows;
 using basecs.Data;
-using basecs.Interfaces.IConfiguracoesParametroService;
+using basecs.Helpers.Helpers.Validators;
+using basecs.Interfaces.IWorkflowsService;
 using basecs.Models;
 using Microsoft.Data.SqlClient;
 using Microsoft.EntityFrameworkCore;
@@ -11,40 +12,42 @@ using System.Threading.Tasks;
 
 namespace basecs.Services
 {
-    public class ConfiguracoesParametroService : IConfiguracoesParametroService
+    public class WorkflowsService : IWorkflowsService
     {
         #region ATRIBUTTES
         private readonly MyDbContext _context;
-        private readonly ConfiguracoesParametrosBusiness _business;
+        private readonly WorkflowsBusiness _business;
         #endregion
 
         #region CONTRUCTORS
-        public ConfiguracoesParametroService(MyDbContext context)
+        public WorkflowsService(MyDbContext context)
         {
             _context = context;
-            _business = new ConfiguracoesParametrosBusiness();
+            _business = new WorkflowsBusiness();
         }
         #endregion
 
         #region FIND BY ID
-        public async Task<ConfiguracaoParametro> FindById(int id)
+        public async Task<Workflow> FindById(int id)
         {
             try
             {
-                return await this._context.ConfiguracoesParametros.SingleOrDefaultAsync(c => c.ConfiguracaoParametroId == id);
+                return await this._context.Workflows.SingleOrDefaultAsync(c => c.WorkflowId == id);
             }
             catch (Exception ex)
             {
-                throw new Exception("Houve um erro ao buscar o configuracao desejada!" + ex.Message);
+                throw new Exception("Houve um erro ao buscar o registro desejado!" + ex.Message);
             }
         }
         #endregion
 
         #region RETURN LIST WITH PARAMETERS PAGINATED
-        public async Task<List<ConfiguracaoParametro>> ReturnListWithParametersPaginated(
+        public async Task<List<Workflow>> ReturnListWithParametersPaginated(
                 int? id,
-                int? configuracaoId,
-                int? parametroId,
+                int? tipoWorkflowId,
+                int? statusAprovacaoId,
+                string descricao,
+                bool? ativo,
                 int? pageNumber,
                 int? rowspPage
             )
@@ -53,55 +56,61 @@ namespace basecs.Services
             {
                 SqlParameter[] Params = {
                     new SqlParameter("@Id", id.Equals(null) ? DBNull.Value : id),
-                    new SqlParameter("@ConfiguracaoId", configuracaoId.Equals(null) ? DBNull.Value : configuracaoId),
-                    new SqlParameter("@ParametroId", parametroId.Equals(null) ? DBNull.Value : parametroId),
+                    new SqlParameter("@TipoWorkflowId", tipoWorkflowId.Equals(null) ? DBNull.Value : tipoWorkflowId),
+                    new SqlParameter("@StatusAprovacaoId", statusAprovacaoId.Equals(null) ? DBNull.Value : statusAprovacaoId),
+                    new SqlParameter("@Descricao", string.IsNullOrEmpty(Validators.RemoveInjections(descricao)) ? DBNull.Value : descricao),
+                    new SqlParameter("@Ativo", ativo.Equals(null) ? DBNull.Value : ativo),
                     new SqlParameter("@PageNumber", pageNumber),
                     new SqlParameter("@RowspPage", rowspPage)
                 };
 
-                var storedProcedure = $@"[dbo].[ConfiguracoesParametrosPaginated] @Id, @Descricao, @Ativo, @PageNumber, @RowspPage";
+                var storedProcedure = $@"[dbo].[WorkflowsPaginated] @Id, @TipoWorkflowId, @StatusAprovacaoId, @Descricao, @Ativo, @PageNumber, @RowspPage";
 
                 using (var context = this._context)
                 {
-                    return await context.ConfiguracoesParametros.FromSqlRaw(storedProcedure, Params).ToListAsync();
+                    return await context.Workflows.FromSqlRaw(storedProcedure, Params).ToListAsync();
                 }
             }
             catch (Exception ex)
             {
-                throw new Exception("Não foi possível realizar a buscar os registros: " + ex.Message);
+                throw new Exception("Não foi possível realizar a busca por registros: " + ex.Message);
             }
 
         }
         #endregion
 
         #region RETURN LIST WITH PARAMETERS
-        public async Task<List<ConfiguracaoParametro>> ReturnListWithParameters(
+        public async Task<List<Workflow>> ReturnListWithParameters(
                 int? id,
-                int? configuracaoId,
-                int? parametroId
+                int? tipoWorkflowId,
+                int? statusAprovacaoId,
+                string descricao,
+                bool? ativo
             )
         {
             try
             {
                 using (var context = this._context)
                 {
-                    return await context.ConfiguracoesParametros.Where(c =>
-                    (c.ConfiguracaoParametroId == id || id == null) &&
-                    (c.ConfiguracaoId == configuracaoId || configuracaoId == null) &&
-                    (c.ParametroId == parametroId || parametroId == null)
-                    ).OrderByDescending(x => x.ConfiguracaoParametroId)
+                    return await context.Workflows.Where(c =>
+                    (c.WorkflowId.Equals(id) || id.Equals(null)) &&
+                    (c.TipoWorkflowId.Equals(tipoWorkflowId) || tipoWorkflowId.Equals(null)) &&
+                    (c.StatusAprovacaoId.Equals(statusAprovacaoId) || statusAprovacaoId.Equals(null)) &&
+                    (c.Descricao.Contains(Validators.RemoveInjections(descricao)) || string.IsNullOrEmpty(Validators.RemoveInjections(descricao))) &&
+                    (c.Ativo.Equals(ativo) || ativo.Equals(null))
+                    ).OrderByDescending(x => x.WorkflowId)
                     .ToListAsync();
                 }
             }
             catch (Exception ex)
             {
-                throw new Exception("Não foi possível realizar a buscar os registros: " + ex.Message);
+                throw new Exception("Não foi possível realizar a busca por registros: " + ex.Message);
             }
         }
         #endregion
 
         #region INSERT
-        public async Task<ConfiguracaoParametro> Insert(ConfiguracaoParametro model)
+        public async Task<Workflow> Insert(Workflow model)
         {
             try
             {
@@ -109,7 +118,7 @@ namespace basecs.Services
 
                 if (validationMessage.Equals(""))
                 {
-                    this._context.ConfiguracoesParametros.Add(model);
+                    this._context.Workflows.Add(model);
                     await this._context.SaveChangesAsync();
                     return model;
                 }
@@ -126,7 +135,7 @@ namespace basecs.Services
         #endregion
 
         #region UPDATE
-        public async Task<ConfiguracaoParametro> Update(ConfiguracaoParametro model)
+        public async Task<Workflow> Update(Workflow model)
         {
             try
             {
@@ -134,7 +143,7 @@ namespace basecs.Services
 
                 if (validationMessage.Equals(""))
                 {
-                    this._context.ConfiguracoesParametros.Update(model);
+                    this._context.Workflows.Update(model);
                     await this._context.SaveChangesAsync();
                     return model;
                 }
@@ -151,7 +160,7 @@ namespace basecs.Services
         #endregion        
 
         #region DELETE
-        public async Task<ConfiguracaoParametro> Delete(int id)
+        public async Task<Workflow> Delete(int id)
         {
             try
             {
@@ -159,9 +168,9 @@ namespace basecs.Services
 
                 if (validationMessage.Equals(""))
                 {
-                    ConfiguracaoParametro model = await this.FindById(id);
-                    this._context.ConfiguracoesParametros.Remove(model);
-                    await this._context.SaveChangesAsync();
+                    Workflow model = await this.FindById(id);
+                    model.Ativo = false;
+                    await this.Update(model);
                     return model;
                 }
                 else

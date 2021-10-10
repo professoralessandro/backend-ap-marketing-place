@@ -8,15 +8,15 @@ using System.Threading.Tasks;
 
 namespace backend_adm.Controllers
 {
-    public class TiposWorkflowsController : ControllerCS
+    public class WorkflowsController : ControllerCS
     {
         #region ATRIBUTTES
-        private readonly TiposWorkflowsService _service;
+        private readonly WorkflowsService _service;
         private readonly LogsService _log;
         #endregion
 
         #region CONSTRUCTORS
-        public TiposWorkflowsController([FromServices] TiposWorkflowsService service, [FromServices] LogsService log)
+        public WorkflowsController([FromServices] WorkflowsService service, [FromServices] LogsService log)
         {
             _service = service;
             _log = log;
@@ -25,17 +25,19 @@ namespace backend_adm.Controllers
 
         #region RETURN LIST PAGINATED
         [HttpGet, Route("paginated")]
-        public async Task<ActionResult<List<TipoWorkflow>>> ReturnListWithParameters(
-                [FromQuery] int? id,
-                [FromQuery] string descricao,
-                [FromQuery] bool? ativo,
-                [FromQuery] int? pageNumber,
-                [FromQuery] int? rowspPage
+        public async Task<ActionResult<List<Workflow>>> ReturnListWithParameters(
+                 [FromQuery] int? id,
+                 [FromQuery] int? tipoWorkflowId,
+                 [FromQuery] int? statusAprovacaoId,
+                 [FromQuery] string descricao,
+                 [FromQuery] bool? ativo,
+                 [FromQuery] int? pageNumber,
+                 [FromQuery] int? rowspPage
             )
         {
             try
             {
-                return Ok(await _service.ReturnListWithParametersPaginated(id, descricao, ativo, pageNumber, rowspPage));
+                return Ok(await _service.ReturnListWithParametersPaginated(id, tipoWorkflowId, statusAprovacaoId, descricao, ativo, pageNumber, rowspPage));
             }
             catch (Exception ex)
             {
@@ -46,15 +48,17 @@ namespace backend_adm.Controllers
 
         #region RETURN LIST WITH PARAMETERS
         [HttpGet]
-        public async Task<ActionResult<List<TipoWorkflow>>> ReturnListWithParameters(
+        public async Task<ActionResult<List<Workflow>>> ReturnListWithParameters(
                 [FromQuery] int? id,
+                [FromQuery] int? tipoWorkflowId,
+                [FromQuery] int? statusAprovacaoId,
                 [FromQuery] string descricao,
                 [FromQuery] bool? ativo
             )
         {
             try
             {
-                return Ok(await _service.ReturnListWithParameters(id, descricao, ativo));
+                return Ok(await _service.ReturnListWithParameters(id, tipoWorkflowId, statusAprovacaoId, descricao, ativo));
             }
             catch (Exception ex)
             {
@@ -65,7 +69,7 @@ namespace backend_adm.Controllers
 
         #region INSERT
         [HttpPost]
-        public async Task<ActionResult<TipoWorkflow>> Insert([FromBody] TipoWorkflow model)
+        public async Task<ActionResult<Workflow>> Insert([FromBody] Workflow model)
         {
             try
             {
@@ -84,7 +88,7 @@ namespace backend_adm.Controllers
 
         #region UPDATE
         [HttpPut]
-        public async Task<ActionResult<TipoWorkflow>> Update(TipoWorkflow model)
+        public async Task<ActionResult<Workflow>> Update(Workflow model)
         {
             try
             {

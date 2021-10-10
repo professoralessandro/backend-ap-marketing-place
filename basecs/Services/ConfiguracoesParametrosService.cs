@@ -1,51 +1,50 @@
+﻿using basecs.Business.ConfiguracoesParametros;
+using basecs.Data;
+using basecs.Interfaces.IConfiguracoesParametroService;
+using basecs.Models;
+using Microsoft.Data.SqlClient;
+using Microsoft.EntityFrameworkCore;
 using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Threading.Tasks;
-using basecs.Business.TiposWorkflows;
-using basecs.Data;
-using basecs.Helpers.Helpers.Validators;
-using basecs.Interfaces.ITiposWorkflowsService;
-using basecs.Models;
-using Microsoft.Data.SqlClient;
-using Microsoft.EntityFrameworkCore;
 
 namespace basecs.Services
 {
-    public class TiposWorkflowsService : ITiposWorkflowsService
+    public class ConfiguracoesParametrosService : IConfiguracoesParametrosService
     {
         #region ATRIBUTTES
         private readonly MyDbContext _context;
-        private readonly TiposWorkflowsBusiness _business;
+        private readonly ConfiguracoesParametrosBusiness _business;
         #endregion
 
         #region CONTRUCTORS
-        public TiposWorkflowsService(MyDbContext context)
+        public ConfiguracoesParametrosService(MyDbContext context)
         {
             _context = context;
-            _business = new TiposWorkflowsBusiness();
+            _business = new ConfiguracoesParametrosBusiness();
         }
         #endregion
 
         #region FIND BY ID
-        public async Task<TipoWorkflow> FindById(int id)
+        public async Task<ConfiguracaoParametro> FindById(int id)
         {
             try
             {
-                return await this._context.TiposWorkflows.SingleOrDefaultAsync(c => c.TipoWorkflowId == id);
+                return await this._context.ConfiguracoesParametros.SingleOrDefaultAsync(c => c.ConfiguracaoParametroId == id);
             }
             catch (Exception ex)
             {
-                throw new Exception("Houve um erro ao o tipo de workflow desejado! " + ex.Message);
+                throw new Exception("Houve um erro ao buscar o configuracao desejada!" + ex.Message);
             }
         }
         #endregion
 
         #region RETURN LIST WITH PARAMETERS PAGINATED
-        public async Task<List<TipoWorkflow>> ReturnListWithParametersPaginated(
+        public async Task<List<ConfiguracaoParametro>> ReturnListWithParametersPaginated(
                 int? id,
-                string descricao,
-                bool? ativo,
+                int? configuracaoId,
+                int? parametroId,
                 int? pageNumber,
                 int? rowspPage
             )
@@ -54,56 +53,55 @@ namespace basecs.Services
             {
                 SqlParameter[] Params = {
                     new SqlParameter("@Id", id.Equals(null) ? DBNull.Value : id),
-                    new SqlParameter("@Descricao", string.IsNullOrEmpty(Validators.RemoveInjections(descricao)) ? DBNull.Value : Validators.RemoveInjections(descricao)),
-                    new SqlParameter("@Ativo", ativo.Equals(null) ? DBNull.Value : ativo),
+                    new SqlParameter("@ConfiguracaoId", configuracaoId.Equals(null) ? DBNull.Value : configuracaoId),
+                    new SqlParameter("@ParametroId", parametroId.Equals(null) ? DBNull.Value : parametroId),
                     new SqlParameter("@PageNumber", pageNumber),
                     new SqlParameter("@RowspPage", rowspPage)
                 };
 
-                var storedProcedure = $@"[dbo].[TiposWorkflowsPaginated] @Id, @Descricao, @Ativo, @PageNumber, @RowspPage";
+                var storedProcedure = $@"[dbo].[ConfiguracoesParametrosPaginated] @Id, @Descricao, @Ativo, @PageNumber, @RowspPage";
 
                 using (var context = this._context)
                 {
-                    return await context.TiposWorkflows.FromSqlRaw(storedProcedure, Params).ToListAsync();
+                    return await context.ConfiguracoesParametros.FromSqlRaw(storedProcedure, Params).ToListAsync();
                 }
             }
             catch (Exception ex)
             {
-                throw new Exception("Não foi possível realizar a busca por tipos workflows: " + ex.Message);
+                throw new Exception("Não foi possível realizar a buscar os registros: " + ex.Message);
             }
 
         }
         #endregion
 
         #region RETURN LIST WITH PARAMETERS
-        public async Task<List<TipoWorkflow>> ReturnListWithParameters(
+        public async Task<List<ConfiguracaoParametro>> ReturnListWithParameters(
                 int? id,
-                string descricao,
-                bool? ativo
+                int? configuracaoId,
+                int? parametroId
             )
         {
             try
             {
                 using (var context = this._context)
                 {
-                    return await context.TiposWorkflows.Where(c =>
-                    (c.TipoWorkflowId == id || id == null) &&
-                    (c.Descricao.Contains(Validators.RemoveInjections(descricao)) || string.IsNullOrEmpty(Validators.RemoveInjections(descricao))) &&
-                    (c.Ativo == ativo || ativo == null))
-                    .OrderByDescending(x => x.TipoWorkflowId)
+                    return await context.ConfiguracoesParametros.Where(c =>
+                    (c.ConfiguracaoParametroId == id || id == null) &&
+                    (c.ConfiguracaoId == configuracaoId || configuracaoId == null) &&
+                    (c.ParametroId == parametroId || parametroId == null)
+                    ).OrderByDescending(x => x.ConfiguracaoParametroId)
                     .ToListAsync();
                 }
             }
             catch (Exception ex)
             {
-                throw new Exception("Não foi possível realizar a busca por tipos workflows: " + ex.Message);
+                throw new Exception("Não foi possível realizar a buscar os registros: " + ex.Message);
             }
-
         }
         #endregion
 
         #region INSERT
-        public async Task<TipoWorkflow> Insert(TipoWorkflow model)
+        public async Task<ConfiguracaoParametro> Insert(ConfiguracaoParametro model)
         {
             try
             {
@@ -111,7 +109,7 @@ namespace basecs.Services
 
                 if (validationMessage.Equals(""))
                 {
-                    this._context.TiposWorkflows.Add(model);
+                    this._context.ConfiguracoesParametros.Add(model);
                     await this._context.SaveChangesAsync();
                     return model;
                 }
@@ -122,13 +120,13 @@ namespace basecs.Services
             }
             catch (Exception ex)
             {
-                throw new Exception("Houve um erro ao incluir tipos workflows: " + ex.Message);
+                throw new Exception("Houve um erro ao incluir o registro: " + ex.Message);
             }
         }
         #endregion
 
         #region UPDATE
-        public async Task<TipoWorkflow> Update(TipoWorkflow model)
+        public async Task<ConfiguracaoParametro> Update(ConfiguracaoParametro model)
         {
             try
             {
@@ -136,7 +134,7 @@ namespace basecs.Services
 
                 if (validationMessage.Equals(""))
                 {
-                    this._context.TiposWorkflows.Update(model);
+                    this._context.ConfiguracoesParametros.Update(model);
                     await this._context.SaveChangesAsync();
                     return model;
                 }
@@ -153,7 +151,7 @@ namespace basecs.Services
         #endregion        
 
         #region DELETE
-        public async Task<TipoWorkflow> Delete(int id)
+        public async Task<ConfiguracaoParametro> Delete(int id)
         {
             try
             {
@@ -161,9 +159,9 @@ namespace basecs.Services
 
                 if (validationMessage.Equals(""))
                 {
-                    TipoWorkflow model = await this.FindById(id);
-                    model.Ativo = false;
-                    await this.Update(model);
+                    ConfiguracaoParametro model = await this.FindById(id);
+                    this._context.ConfiguracoesParametros.Remove(model);
+                    await this._context.SaveChangesAsync();
                     return model;
                 }
                 else

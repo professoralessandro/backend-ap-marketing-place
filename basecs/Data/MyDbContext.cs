@@ -62,10 +62,10 @@ namespace basecs.Data
         public virtual DbSet<TipoParametro> TiposParametros { get; set; }
         public virtual DbSet<TipoProduto> TiposProdutos { get; set; }
         public virtual DbSet<TipoTelefone> TiposTelefones { get; set; }
-        public virtual DbSet<TipoWorkFlow> TiposWorkFlows { get; set; }
+        public virtual DbSet<TipoWorkflow> TiposWorkflows { get; set; }
         public virtual DbSet<Usuario> Usuarios { get; set; }
         public virtual DbSet<Venda> Vendas { get; set; }
-        public virtual DbSet<WorkFlow> WorkFlows { get; set; }
+        public virtual DbSet<Workflow> Workflows { get; set; }
         #endregion
 
         #region METHODS
@@ -527,11 +527,11 @@ namespace basecs.Data
 
                 entity.Property(e => e.DataUltimaAlteracao).HasColumnType("datetime");
 
-                entity.Property(e => e.Grupo1)
+                entity.Property(e => e.Descricao)
                     .IsRequired()
                     .HasMaxLength(50)
                     .IsUnicode(false)
-                    .HasColumnName("Grupo");
+                    .HasColumnName("Descricao");
             });
 
             modelBuilder.Entity<Imagem>(entity =>
@@ -894,7 +894,7 @@ namespace basecs.Data
 
             modelBuilder.Entity<TelefoneUsuario>(entity =>
             {
-                entity.HasKey(e => e.EnderecoUsuarioId)
+                entity.HasKey(e => e.TelefoneUsuarioId)
                     .HasName("PK__Telefone__FEFA68CA2BB73680");
 
                 entity.HasOne(d => d.Telefone)
@@ -1095,8 +1095,6 @@ namespace basecs.Data
                 entity.HasKey(e => e.TipoProdutoId)
                     .HasName("PK__TiposPro__99B538CBDC6EB712");
 
-                entity.ToTable("TiposProdutos", "seg");
-
                 entity.Property(e => e.DataInclusao).HasColumnType("datetime");
 
                 entity.Property(e => e.DataUltimaAlteracao).HasColumnType("datetime");
@@ -1122,9 +1120,9 @@ namespace basecs.Data
                     .IsUnicode(false);
             });
 
-            modelBuilder.Entity<TipoWorkFlow>(entity =>
+            modelBuilder.Entity<TipoWorkflow>(entity =>
             {
-                entity.HasKey(e => e.TipoWorkFlowId)
+                entity.HasKey(e => e.TipoWorkflowId)
                     .HasName("PK__TiposWor__12D351935E5497E2");
 
                 entity.Property(e => e.DataInclusao).HasColumnType("datetime");
@@ -1197,31 +1195,34 @@ namespace basecs.Data
                     .HasConstraintName("FK_Usuarios_TipoDocumentoId");
             });
 
-            modelBuilder.Entity<WorkFlow>(entity =>
+            modelBuilder.Entity<Workflow>(entity =>
             {
-                entity.ToTable("WorkFlows", "seg");
+                entity.ToTable("Workflows", "seg");
 
                 entity.Property(e => e.DataInclusao).HasColumnType("datetime");
 
                 entity.Property(e => e.DataUltimaAlteracao).HasColumnType("datetime");
 
-                entity.Property(e => e.DataWorkFlow).HasColumnType("datetime");
+                entity.Property(e => e.DataWorkflowVerificacao).HasColumnType("datetime");
 
-                entity.Property(e => e.DataWorkFlowVerificacao).HasColumnType("datetime");
+                entity.Property(e => e.Descricao)
+                    .IsRequired()
+                    .HasMaxLength(50)
+                    .IsUnicode(false);
 
                 entity.Property(e => e.Observacao).IsUnicode(false);
 
                 entity.HasOne(d => d.StatusAprovacao)
-                    .WithMany(p => p.WorkFlows)
+                    .WithMany(p => p.Workflows)
                     .HasForeignKey(d => d.StatusAprovacaoId)
                     .OnDelete(DeleteBehavior.ClientSetNull)
-                    .HasConstraintName("FK_WorkFlows_StatusAprovacaoId");
+                    .HasConstraintName("FK_Workflows_StatusAprovacaoId");
 
                 entity.HasOne(d => d.TipoWorkflow)
-                    .WithMany(p => p.WorkFlows)
+                    .WithMany(p => p.Workflows)
                     .HasForeignKey(d => d.TipoWorkflowId)
                     .OnDelete(DeleteBehavior.ClientSetNull)
-                    .HasConstraintName("FK_WorkFlows_TipoWorkflowId");
+                    .HasConstraintName("FK_Workflows_TipoWorkflowId");
             });
 
             OnModelCreatingPartial(modelBuilder);

@@ -8,15 +8,15 @@ using System.Threading.Tasks;
 
 namespace backend_adm.Controllers
 {
-    public class TiposWorkflowsController : ControllerCS
+    public class GruposController : ControllerCS
     {
         #region ATRIBUTTES
-        private readonly TiposWorkflowsService _service;
+        private readonly GruposService _service;
         private readonly LogsService _log;
         #endregion
 
         #region CONSTRUCTORS
-        public TiposWorkflowsController([FromServices] TiposWorkflowsService service, [FromServices] LogsService log)
+        public GruposController([FromServices] GruposService service, [FromServices] LogsService log)
         {
             _service = service;
             _log = log;
@@ -25,12 +25,12 @@ namespace backend_adm.Controllers
 
         #region RETURN LIST PAGINATED
         [HttpGet, Route("paginated")]
-        public async Task<ActionResult<List<TipoWorkflow>>> ReturnListWithParameters(
-                [FromQuery] int? id,
-                [FromQuery] string descricao,
-                [FromQuery] bool? ativo,
-                [FromQuery] int? pageNumber,
-                [FromQuery] int? rowspPage
+        public async Task<ActionResult<List<Grupo>>> ReturnListWithParameters(
+                int? id,
+                string descricao,
+                bool? ativo,
+                int? pageNumber,
+                int? rowspPage
             )
         {
             try
@@ -46,7 +46,7 @@ namespace backend_adm.Controllers
 
         #region RETURN LIST WITH PARAMETERS
         [HttpGet]
-        public async Task<ActionResult<List<TipoWorkflow>>> ReturnListWithParameters(
+        public async Task<ActionResult<List<Grupo>>> ReturnListWithParameters(
                 [FromQuery] int? id,
                 [FromQuery] string descricao,
                 [FromQuery] bool? ativo
@@ -65,7 +65,7 @@ namespace backend_adm.Controllers
 
         #region INSERT
         [HttpPost]
-        public async Task<ActionResult<TipoWorkflow>> Insert([FromBody] TipoWorkflow model)
+        public async Task<ActionResult<Grupo>> Insert([FromBody] Grupo model)
         {
             try
             {
@@ -84,7 +84,7 @@ namespace backend_adm.Controllers
 
         #region UPDATE
         [HttpPut]
-        public async Task<ActionResult<TipoWorkflow>> Update(TipoWorkflow model)
+        public async Task<ActionResult<Grupo>> Update(Grupo model)
         {
             try
             {

@@ -10,15 +10,15 @@ namespace basecs.tests.Services.ConfiguracaoParametro
     public class ConfiguracoesParametrosServiceTest
     {
         #region ATRIBUTTES
-        ConfiguracoesParametroService _service;
-        Mock<IConfiguracoesParametroService> _serviceMock;
+        ConfiguracoesParametrosService _service;
+        Mock<IConfiguracoesParametrosService> _serviceMock;
         #endregion
 
         #region CONSTRUCTORS
         public ConfiguracoesParametrosServiceTest()
         {
-            _serviceMock = new Mock<IConfiguracoesParametroService>();
-            _service = new ConfiguracoesParametroService(new Data.MyDbContext());
+            _serviceMock = new Mock<IConfiguracoesParametrosService>();
+            _service = new ConfiguracoesParametrosService(new Data.MyDbContext());
         }
         #endregion
 

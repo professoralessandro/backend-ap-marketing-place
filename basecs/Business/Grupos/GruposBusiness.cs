@@ -1,17 +1,17 @@
 ﻿using basecs.Helpers.Helpers.Validators;
 
-namespace basecs.Business.TiposWorkflows
+namespace basecs.Business.Grupos
 {
-    public class TiposWorkflowsBusiness
+    public class GruposBusiness
     {
         #region INSERT
-        public string InsertValidation(basecs.Models.TipoWorkflow model)
+        public string InsertValidation(basecs.Models.Grupo model)
         {
             string validation = "";
 
-            if (model.TipoWorkflowId > 0)
+            if (model.GrupoId > 0)
             {
-                validation += "Identificação do tipo de workflow invalido\n";
+                validation += "Identificação do grupo invalido\n";
             }
 
             if (!string.IsNullOrEmpty(model.Descricao))
@@ -19,7 +19,7 @@ namespace basecs.Business.TiposWorkflows
                 model.Descricao = Validators.RemoveInjections(model.Descricao);
                 if (model.Descricao.Length < 3)
                 {
-                    validation += "Descrição do workflow contem menos de três caracteres\n";
+                    validation += "Descrição do grupo contem menos de três caracteres\n";
                 }
             }
 
@@ -35,7 +35,7 @@ namespace basecs.Business.TiposWorkflows
 
             if (!model.Ativo)
             {
-                validation += "Não pode ser adicinado tipo de workflow inativado\n";
+                validation += "Não pode ser adicinado bloqueio inativado\n";
             }
 
             return validation;
@@ -43,13 +43,13 @@ namespace basecs.Business.TiposWorkflows
         #endregion
 
         #region UPDATE
-        public string UpdateValidation(basecs.Models.TipoWorkflow model)
+        public string UpdateValidation(basecs.Models.Grupo model)
         {
             string validation = "";
 
-            if (model.TipoWorkflowId < 1)
+            if (model.GrupoId < 1)
             {
-                validation += "Identificação do tipo de workflow invalido\n";
+                validation += "Identificação do grupo invalido\n";
             }
 
             if (!string.IsNullOrEmpty(model.Descricao))
@@ -57,7 +57,7 @@ namespace basecs.Business.TiposWorkflows
                 model.Descricao = Validators.RemoveInjections(model.Descricao);
                 if (model.Descricao.Length < 3)
                 {
-                    validation += "Descrição do workflow contem menos de três caracteres\n";
+                    validation += "Descrição do grupo contem menos de três caracteres\n";
                 }
             }
 
@@ -77,7 +77,7 @@ namespace basecs.Business.TiposWorkflows
 
             if (id < 1)
             {
-                validation += "Identificação do tipo de workflow invalido\n";
+                validation += "Identificação do grupo invalido\n";
             }
 
             return validation;

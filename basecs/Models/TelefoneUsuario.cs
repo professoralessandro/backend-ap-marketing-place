@@ -4,7 +4,7 @@ namespace basecs.Models
 {
     public partial class TelefoneUsuario
     {
-        public int EnderecoUsuarioId { get; set; }
+        public int TelefoneUsuarioId { get; set; }
         public int TelefoneId { get; set; }
         public int UsuarioId { get; set; }
 

@@ -13,7 +13,7 @@ namespace basecs.Models
         }
 
         public int GrupoId { get; set; }
-        public string Grupo1 { get; set; }
+        public string Descricao { get; set; }
         public int UsuarioInclusaoId { get; set; }
         public int UsuarioUltimaAlteracaoId { get; set; }
         public DateTime DataInclusao { get; set; }
