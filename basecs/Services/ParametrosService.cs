@@ -1,7 +1,7 @@
-﻿using basecs.Business.Bloqueios;
+﻿using basecs.Business.Parametros;
 using basecs.Data;
 using basecs.Helpers.Helpers.Validators;
-using basecs.Interfaces.IBloqueiosService;
+using basecs.Interfaces.IParametrosService;
 using basecs.Models;
 using Microsoft.Data.SqlClient;
 using Microsoft.EntityFrameworkCore;
@@ -12,27 +12,27 @@ using System.Threading.Tasks;
 
 namespace basecs.Services
 {
-    public class BloqueiosService : IBloqueiosService
+    public class ParametrosService : IParametrosService
     {
         #region ATRIBUTTES
         private readonly MyDbContext _context;
-        private readonly BloqueiosBusiness _business;
+        private readonly ParametrosBusiness _business;
         #endregion
 
         #region CONTRUCTORS
-        public BloqueiosService(MyDbContext context)
+        public ParametrosService(MyDbContext context)
         {
             _context = context;
-            _business = new BloqueiosBusiness();
+            _business = new ParametrosBusiness();
         }
         #endregion
 
         #region FIND BY ID
-        public async Task<Bloqueio> FindById(int id)
+        public async Task<Parametro> FindById(int id)
         {
             try
             {
-                return await this._context.Bloqueios.SingleOrDefaultAsync(c => c.BloqueioId == id);
+                return await this._context.Parametros.SingleOrDefaultAsync(c => c.ParametroId == id);
             }
             catch (Exception ex)
             {
@@ -42,7 +42,7 @@ namespace basecs.Services
         #endregion
 
         #region RETURN LIST WITH PARAMETERS PAGINATED
-        public async Task<List<Bloqueio>> ReturnListWithParametersPaginated(
+        public async Task<List<Parametro>> ReturnListWithParametersPaginated(
                 string param,
                 DateTime? dateAdded,
                 int? pageNumber,
@@ -58,11 +58,11 @@ namespace basecs.Services
                     new SqlParameter("@RowspPage", rowspPage)
                 };
 
-                var storedProcedure = $@"[dbo].[BloqueiosPaginated] @Param, @DateAdded, @PageNumber, @RowspPage";
+                var storedProcedure = $@"[dbo].[ParametrosPaginated] @Param, @DateAdded, @PageNumber, @RowspPage";
 
                 using (var context = this._context)
                 {
-                    return await context.Bloqueios.FromSqlRaw(storedProcedure, Params).ToListAsync();
+                    return await context.Parametros.FromSqlRaw(storedProcedure, Params).ToListAsync();
                 }
             }
             catch (Exception ex)
@@ -74,10 +74,13 @@ namespace basecs.Services
         #endregion
 
         #region RETURN LIST WITH PARAMETERS
-        public async Task<List<Bloqueio>> ReturnListWithParameters(
+        public async Task<List<Parametro>> ReturnListWithParameters(
                 int? id,
+                int? tipoParametroId,
+                int? tipoDadoId,
                 string descricao,
-                bool isBloqueiaAcesso,
+                string valor,
+                bool? publico,
                 bool? ativo
             )
         {
@@ -85,12 +88,15 @@ namespace basecs.Services
             {
                 using (var context = this._context)
                 {
-                    return await context.Bloqueios.Where(c =>
-                    (c.BloqueioId.Equals(id) || id.Equals(null)) &&
-                    (c.NomeBloqueio.Contains(Validators.RemoveInjections(descricao)) || string.IsNullOrEmpty(Validators.RemoveInjections(descricao))) &&
-                    (c.IsBloqueiaAcesso.Equals(isBloqueiaAcesso) || isBloqueiaAcesso.Equals(null)) &&
-                    (c.Ativo.Equals(ativo) || ativo.Equals(null))
-                    ).OrderByDescending(x => x.BloqueioId)
+                    return await context.Parametros.Where(c =>
+                    (c.ParametroId.Equals(id) || id.Equals(null)) &&
+                    (c.TipoParametroId.Equals(tipoParametroId) || tipoParametroId.Equals(null)) &&
+                    (c.TipoDadoId.Equals(tipoDadoId) || tipoDadoId.Equals(null)) &&
+                    (c.Descricao.Contains(Validators.RemoveInjections(descricao)) || string.IsNullOrEmpty(Validators.RemoveInjections(descricao))) &&
+                    (c.Valor.Contains(Validators.RemoveInjections(valor)) || string.IsNullOrEmpty(Validators.RemoveInjections(valor))) &&
+                    (c.Publico.Equals(publico) || publico.Equals(null)) &&
+                    (c.Ativo.Equals(ativo) || ativo.Equals(ativo))
+                    ).OrderByDescending(x => x.ParametroId)
                     .ToListAsync();
                 }
             }
@@ -102,7 +108,7 @@ namespace basecs.Services
         #endregion
 
         #region INSERT
-        public async Task<Bloqueio> Insert(Bloqueio model)
+        public async Task<Parametro> Insert(Parametro model)
         {
             try
             {
@@ -110,7 +116,7 @@ namespace basecs.Services
 
                 if (validationMessage.Equals(""))
                 {
-                    this._context.Bloqueios.Add(model);
+                    this._context.Parametros.Add(model);
                     await this._context.SaveChangesAsync();
                     return model;
                 }
@@ -127,7 +133,7 @@ namespace basecs.Services
         #endregion
 
         #region UPDATE
-        public async Task<Bloqueio> Update(Bloqueio model)
+        public async Task<Parametro> Update(Parametro model)
         {
             try
             {
@@ -135,7 +141,7 @@ namespace basecs.Services
 
                 if (validationMessage.Equals(""))
                 {
-                    this._context.Bloqueios.Update(model);
+                    this._context.Parametros.Update(model);
                     await this._context.SaveChangesAsync();
                     return model;
                 }
@@ -152,7 +158,7 @@ namespace basecs.Services
         #endregion        
 
         #region DELETE
-        public async Task<Bloqueio> Delete(int id)
+        public async Task<Parametro> Delete(int id)
         {
             try
             {
@@ -160,7 +166,7 @@ namespace basecs.Services
 
                 if (validationMessage.Equals(""))
                 {
-                    Bloqueio model = await this.FindById(id);
+                    Parametro model = await this.FindById(id);
                     model.Ativo = false;
                     await this.Update(model);
                     return model;

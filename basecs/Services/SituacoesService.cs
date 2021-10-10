@@ -1,50 +1,51 @@
-﻿using basecs.Business.Bloqueios;
-using basecs.Data;
-using basecs.Helpers.Helpers.Validators;
-using basecs.Interfaces.IBloqueiosService;
-using basecs.Models;
-using Microsoft.Data.SqlClient;
-using Microsoft.EntityFrameworkCore;
 using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Threading.Tasks;
+using basecs.Data;
+using basecs.Models;
+using Microsoft.Data.SqlClient;
+using Microsoft.EntityFrameworkCore;
+using basecs.Business.Situacoes;
+using basecs.Helpers.Helpers.Validators;
+using basecs.Interfaces.ISituacoesService;
 
 namespace basecs.Services
 {
-    public class BloqueiosService : IBloqueiosService
+    public class SituacoesService : ISituacoesService
     {
         #region ATRIBUTTES
         private readonly MyDbContext _context;
-        private readonly BloqueiosBusiness _business;
+        private readonly SituacoesBusiness _business;
         #endregion
 
         #region CONTRUCTORS
-        public BloqueiosService(MyDbContext context)
+        public SituacoesService(MyDbContext context)
         {
             _context = context;
-            _business = new BloqueiosBusiness();
+            _business = new SituacoesBusiness();
         }
         #endregion
 
         #region FIND BY ID
-        public async Task<Bloqueio> FindById(int id)
+        public async Task<Situacao> FindById(int id)
         {
             try
             {
-                return await this._context.Bloqueios.SingleOrDefaultAsync(c => c.BloqueioId == id);
+                return await this._context.Situacoes.SingleOrDefaultAsync(c => c.SituacaoId == id);
             }
             catch (Exception ex)
             {
-                throw new Exception("Houve um erro ao buscar o registro desejado!" + ex.Message);
+                throw new Exception("Houve um erro ao buscar o Situacao desejada!" + ex.Message);
             }
         }
         #endregion
 
         #region RETURN LIST WITH PARAMETERS PAGINATED
-        public async Task<List<Bloqueio>> ReturnListWithParametersPaginated(
-                string param,
-                DateTime? dateAdded,
+        public async Task<List<Situacao>> ReturnListWithParametersPaginated(
+                int? id,
+                string descricao,
+                bool? ativo,
                 int? pageNumber,
                 int? rowspPage
             )
@@ -52,17 +53,18 @@ namespace basecs.Services
             try
             {
                 SqlParameter[] Params = {
-                    new SqlParameter("@Param", string.IsNullOrEmpty(Validators.RemoveInjections(param)) ? DBNull.Value : param),
-                    new SqlParameter("@DateAdded", dateAdded.Equals(null) ? DBNull.Value : dateAdded),
+                    new SqlParameter("@Id", id.Equals(null) ? DBNull.Value : id),
+                    new SqlParameter("@Descricao", string.IsNullOrEmpty(Validators.RemoveInjections(descricao)) ? DBNull.Value : Validators.RemoveInjections(descricao)),
+                    new SqlParameter("@Ativo", ativo.Equals(null) ? DBNull.Value : ativo),
                     new SqlParameter("@PageNumber", pageNumber),
                     new SqlParameter("@RowspPage", rowspPage)
                 };
 
-                var storedProcedure = $@"[dbo].[BloqueiosPaginated] @Param, @DateAdded, @PageNumber, @RowspPage";
+                var storedProcedure = $@"[dbo].[SituacoesPaginated] @Id, @Descricao, @Ativo, @PageNumber, @RowspPage";
 
                 using (var context = this._context)
                 {
-                    return await context.Bloqueios.FromSqlRaw(storedProcedure, Params).ToListAsync();
+                    return await context.Situacoes.FromSqlRaw(storedProcedure, Params).ToListAsync();
                 }
             }
             catch (Exception ex)
@@ -74,10 +76,9 @@ namespace basecs.Services
         #endregion
 
         #region RETURN LIST WITH PARAMETERS
-        public async Task<List<Bloqueio>> ReturnListWithParameters(
+        public async Task<List<Situacao>> ReturnListWithParameters(
                 int? id,
                 string descricao,
-                bool isBloqueiaAcesso,
                 bool? ativo
             )
         {
@@ -85,12 +86,11 @@ namespace basecs.Services
             {
                 using (var context = this._context)
                 {
-                    return await context.Bloqueios.Where(c =>
-                    (c.BloqueioId.Equals(id) || id.Equals(null)) &&
-                    (c.NomeBloqueio.Contains(Validators.RemoveInjections(descricao)) || string.IsNullOrEmpty(Validators.RemoveInjections(descricao))) &&
-                    (c.IsBloqueiaAcesso.Equals(isBloqueiaAcesso) || isBloqueiaAcesso.Equals(null)) &&
-                    (c.Ativo.Equals(ativo) || ativo.Equals(null))
-                    ).OrderByDescending(x => x.BloqueioId)
+                    return await context.Situacoes.Where(c =>
+                    (c.SituacaoId == id || id == null) &&
+                    (c.Descricao.Contains(Validators.RemoveInjections(descricao)) || string.IsNullOrEmpty(Validators.RemoveInjections(descricao))) &&
+                    (c.Ativo == ativo || ativo == null)
+                    ).OrderByDescending(x => x.SituacaoId)
                     .ToListAsync();
                 }
             }
@@ -102,7 +102,7 @@ namespace basecs.Services
         #endregion
 
         #region INSERT
-        public async Task<Bloqueio> Insert(Bloqueio model)
+        public async Task<Situacao> Insert(Situacao model)
         {
             try
             {
@@ -110,7 +110,7 @@ namespace basecs.Services
 
                 if (validationMessage.Equals(""))
                 {
-                    this._context.Bloqueios.Add(model);
+                    this._context.Situacoes.Add(model);
                     await this._context.SaveChangesAsync();
                     return model;
                 }
@@ -127,7 +127,7 @@ namespace basecs.Services
         #endregion
 
         #region UPDATE
-        public async Task<Bloqueio> Update(Bloqueio model)
+        public async Task<Situacao> Update(Situacao model)
         {
             try
             {
@@ -135,7 +135,7 @@ namespace basecs.Services
 
                 if (validationMessage.Equals(""))
                 {
-                    this._context.Bloqueios.Update(model);
+                    this._context.Situacoes.Update(model);
                     await this._context.SaveChangesAsync();
                     return model;
                 }
@@ -152,7 +152,7 @@ namespace basecs.Services
         #endregion        
 
         #region DELETE
-        public async Task<Bloqueio> Delete(int id)
+        public async Task<Situacao> Delete(int id)
         {
             try
             {
@@ -160,7 +160,7 @@ namespace basecs.Services
 
                 if (validationMessage.Equals(""))
                 {
-                    Bloqueio model = await this.FindById(id);
+                    Situacao model = await this.FindById(id);
                     model.Ativo = false;
                     await this.Update(model);
                     return model;

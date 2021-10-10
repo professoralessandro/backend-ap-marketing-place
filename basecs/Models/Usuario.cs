@@ -21,8 +21,6 @@ namespace basecs.Models
             Mensagens = new HashSet<Mensagem>();
             NotasFiscaiDestinatarios = new HashSet<NotaFiscal>();
             NotasFiscaiUsuarios = new HashSet<NotaFiscal>();
-            UsuariosDadosBancarios = new HashSet<UsuariosDadosBancario>();
-            UsuariosLancamentos = new HashSet<UsuariosLancamento>();
             Venda = new HashSet<Venda>();
         }
 
@@ -59,8 +57,6 @@ namespace basecs.Models
         public virtual ICollection<Mensagem> Mensagens { get; set; }
         public virtual ICollection<NotaFiscal> NotasFiscaiDestinatarios { get; set; }
         public virtual ICollection<NotaFiscal> NotasFiscaiUsuarios { get; set; }
-        public virtual ICollection<UsuariosDadosBancario> UsuariosDadosBancarios { get; set; }
-        public virtual ICollection<UsuariosLancamento> UsuariosLancamentos { get; set; }
         public virtual ICollection<Venda> Venda { get; set; }
     }
 }

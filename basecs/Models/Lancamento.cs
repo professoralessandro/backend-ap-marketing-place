@@ -11,7 +11,6 @@ namespace basecs.Models
         {
             Compras = new HashSet<Compra>();
             Pagamentos = new HashSet<Pagamento>();
-            UsuariosLancamentos = new HashSet<UsuariosLancamento>();
         }
 
         public int LancamentoId { get; set; }
@@ -32,11 +31,10 @@ namespace basecs.Models
         public DateTime DataUltimaAlteracao { get; set; }
         public bool Ativo { get; set; }
 
-        public virtual Situaco Situacao { get; set; }
+        public virtual Situacao Situacao { get; set; }
         public virtual TipoLancamento TiposLancamentos { get; set; }
         public virtual Usuario UsuarioInclusao { get; set; }
         public virtual ICollection<Compra> Compras { get; set; }
         public virtual ICollection<Pagamento> Pagamentos { get; set; }
-        public virtual ICollection<UsuariosLancamento> UsuariosLancamentos { get; set; }
     }
 }

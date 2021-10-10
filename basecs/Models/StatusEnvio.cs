@@ -5,14 +5,14 @@ using System.Collections.Generic;
 
 namespace basecs.Models
 {
-    public partial class StatusEnvioEmail
+    public partial class StatusEnvio
     {
-        public StatusEnvioEmail()
+        public StatusEnvio()
         {
             Emails = new HashSet<Email>();
         }
 
-        public int StatusEnvioEmailId { get; set; }
+        public int StatusEnvioId { get; set; }
         public string Descricao { get; set; }
         public int UsuarioInclusaoId { get; set; }
         public int UsuarioUltimaAlteracaoId { get; set; }

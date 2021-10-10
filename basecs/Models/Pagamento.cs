@@ -8,7 +8,7 @@ namespace basecs.Models
     public partial class Pagamento
     {
         public int PagamentoId { get; set; }
-        public int? LancamentoId { get; set; }
+        public int LancamentoId { get; set; }
         public string CodigoPagamento { get; set; }
         public string ChagoExterno { get; set; }
         public int UsuarioInclusaoId { get; set; }

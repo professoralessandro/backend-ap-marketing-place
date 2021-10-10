@@ -5,23 +5,22 @@ using System.Collections.Generic;
 
 namespace basecs.Models
 {
-    public partial class Situaco
+    public partial class StatusAprovacao
     {
-        public Situaco()
+        public StatusAprovacao()
         {
-            Compras = new HashSet<Compra>();
-            Lancamentos = new HashSet<Lancamento>();
+            WorkFlows = new HashSet<WorkFlow>();
         }
 
-        public int SituacaoId { get; set; }
+        public int StatusAprovacaoId { get; set; }
         public string Descricao { get; set; }
+        public string Valor { get; set; }
         public int UsuarioInclusaoId { get; set; }
         public int UsuarioUltimaAlteracaoId { get; set; }
         public DateTime DataInclusao { get; set; }
         public DateTime DataUltimaAlteracao { get; set; }
         public bool Ativo { get; set; }
 
-        public virtual ICollection<Compra> Compras { get; set; }
-        public virtual ICollection<Lancamento> Lancamentos { get; set; }
+        public virtual ICollection<WorkFlow> WorkFlows { get; set; }
     }
 }

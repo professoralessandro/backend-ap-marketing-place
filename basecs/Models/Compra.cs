@@ -34,6 +34,6 @@ namespace basecs.Models
         public virtual Garantia Garantia { get; set; }
         public virtual Lancamento LancamentoPai { get; set; }
         public virtual Produto Produto { get; set; }
-        public virtual Situaco StatusCompra { get; set; }
+        public virtual Situacao StatusCompra { get; set; }
     }
 }

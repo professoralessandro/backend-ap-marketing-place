@@ -20,7 +20,7 @@ namespace basecs.Models
         public DateTime DataUltimaAlteracao { get; set; }
         public bool Ativo { get; set; }
 
-        public virtual StatusAprovaco StatusAprovacao { get; set; }
+        public virtual StatusAprovacao StatusAprovacao { get; set; }
         public virtual TipoWorkFlow TipoWorkflow { get; set; }
     }
 }
