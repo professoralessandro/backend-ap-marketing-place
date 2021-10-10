@@ -47,7 +47,7 @@ namespace basecs.Business.Situacoes
         {
             string validation = "";
 
-            if (model.SituacaoId == 0)
+            if (model.SituacaoId < 1)
             {
                 validation += "Identificação do tipo de bloqueio invalido\n";
             }

@@ -47,7 +47,7 @@ namespace basecs.Business.StatusEnvio
         {
             string validation = "";
 
-            if (model.StatusEnvioId == 0)
+            if (model.StatusEnvioId < 1)
             {
                 validation += "Identificação do tipo de status envio invalido\n";
             }

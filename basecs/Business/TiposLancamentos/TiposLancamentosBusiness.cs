@@ -47,7 +47,7 @@ namespace basecs.Business.TiposLancamentosLancamentos
         {
             string validation = "";
 
-            if (model.TipoLancamentoId == 0)
+            if (model.TipoLancamentoId < 1)
             {
                 validation += "Identificação do tipo de lançamento invalido\n";
             }

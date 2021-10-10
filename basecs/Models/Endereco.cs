@@ -10,6 +10,7 @@ namespace basecs.Models
         public Endereco()
         {
             Compras = new HashSet<Compra>();
+            EnderecosUsuarios = new HashSet<EnderecoUsuario>();
         }
 
         public int EnderecoId { get; set; }
@@ -31,5 +32,6 @@ namespace basecs.Models
 
         public virtual TipoEndereco TipoEndereco { get; set; }
         public virtual ICollection<Compra> Compras { get; set; }
+        public virtual ICollection<EnderecoUsuario> EnderecosUsuarios { get; set; }
     }
 }

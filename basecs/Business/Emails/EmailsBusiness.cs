@@ -95,7 +95,7 @@ namespace basecs.Business.Emails
         {
             string validation = "";
 
-            if (model.EmailId == 0)
+            if (model.EmailId < 1)
             {
                 validation += "Identificação do bloqueios invalido\n";
             }

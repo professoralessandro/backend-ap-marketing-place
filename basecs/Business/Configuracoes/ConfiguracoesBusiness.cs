@@ -47,7 +47,7 @@ namespace basecs.Business.Configuracoes
         {
             string validation = "";
 
-            if (model.ConfiguracaoId == 0)
+            if (model.ConfiguracaoId < 1)
             {
                 validation += "Identificação da configuração invalido\n";
             }

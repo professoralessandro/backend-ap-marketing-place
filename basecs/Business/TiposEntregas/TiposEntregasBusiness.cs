@@ -47,7 +47,7 @@ namespace basecs.Business.TiposEntregas
         {
             string validation = "";
 
-            if (model.TipoEntregaId == 0)
+            if (model.TipoEntregaId < 1)
             {
                 validation += "Identificação do tipo de entrega invalido\n";
             }

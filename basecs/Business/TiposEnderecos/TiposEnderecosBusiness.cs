@@ -48,7 +48,7 @@ namespace basecs.Business.TiposEnderecos
         {
             string validation = "";
 
-            if (model.TipoEnderecoId == 0)
+            if (model.TipoEnderecoId < 1)
             {
                 validation += "Identificação do tipo de endereco invalido\n";
             }

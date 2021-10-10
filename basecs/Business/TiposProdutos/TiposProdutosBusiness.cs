@@ -47,7 +47,7 @@ namespace basecs.Business.TiposProdutos
         {
             string validation = "";
 
-            if (model.TipoProdutoId == 0)
+            if (model.TipoProdutoId < 1)
             {
                 validation += "Identificação do tipo de dado invalido\n";
             }

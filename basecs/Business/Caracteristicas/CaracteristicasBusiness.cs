@@ -52,7 +52,7 @@ namespace basecs.Business.Caracteristicas
         {
             string validation = "";
 
-            if (model.CaracteristicaId == 0)
+            if (model.CaracteristicaId < 1)
             {
                 validation += "Identificação do tipo de caracteristica invalido\n";
             }

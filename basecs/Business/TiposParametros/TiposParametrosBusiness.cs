@@ -47,7 +47,7 @@ namespace basecs.Business.TiposParametros
         {
             string validation = "";
 
-            if (model.TipoParametroId == 0)
+            if (model.TipoParametroId < 1)
             {
                 validation += "Identificação do tipo de parametro invalido\n";
             }

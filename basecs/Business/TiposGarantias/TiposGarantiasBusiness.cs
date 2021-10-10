@@ -47,7 +47,7 @@ namespace basecs.Business.TiposGarantias
         {
             string validation = "";
 
-            if (model.TipoGarantiaId == 0)
+            if (model.TipoGarantiaId < 1)
             {
                 validation += "Identificação do tipo de garantia invalido\n";
             }

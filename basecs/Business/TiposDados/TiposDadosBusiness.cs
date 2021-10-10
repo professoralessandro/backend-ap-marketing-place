@@ -47,7 +47,7 @@ namespace basecs.Business.TiposDados
         {
             string validation = "";
 
-            if (model.TipoDadoId == 0)
+            if (model.TipoDadoId < 1)
             {
                 validation += "Identificação do tipo de dado invalido\n";
             }

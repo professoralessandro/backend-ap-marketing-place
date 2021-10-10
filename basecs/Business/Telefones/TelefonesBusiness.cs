@@ -1,25 +1,35 @@
 ﻿using basecs.Helpers.Helpers.Validators;
 
-namespace basecs.Business.TiposTelefones
+namespace basecs.Business.Telefones
 {
-    public class TiposTelefonesBusiness
+    public class TelefonesBusiness
     {
         #region INSERT
-        public string InsertValidation(basecs.Models.TipoTelefone model)
+        public string InsertValidation(basecs.Models.Telefone model)
         {
             string validation = "";
 
-            if (model.TipoTelefoneId > 0)
+            if (model.TelefoneId > 0)
             {
-                validation += "Identificação do tipo de telefone invalido\n";
+                validation += "Identificação do telefone invalida\n";
             }
 
-            if (!string.IsNullOrEmpty(model.Descricao))
+            if (model.TipoTelefoneId < 1)
             {
-                model.Descricao = Validators.RemoveInjections(model.Descricao);
-                if (model.Descricao.Length < 3)
+                validation += "Identificação do tipo telefone invalida\n";
+            }
+
+            if (!string.IsNullOrEmpty(model.Numero))
+            {
+                model.Numero = Validators.RemoveInjections(model.Numero);
+                if (model.Numero.Length < 10)
                 {
-                    validation += "Descrição do telefone contem menos de três caracteres\n";
+                    validation += "Descrição do telefone contem menos de dez caracteres\n";
+                }
+
+                if (!int.TryParse(model.Numero, out int n))
+                {
+                    validation += "O campo nao esta no formato numerico\n";
                 }
             }
 
@@ -43,21 +53,31 @@ namespace basecs.Business.TiposTelefones
         #endregion
 
         #region UPDATE
-        public string UpdateValidation(basecs.Models.TipoTelefone model)
+        public string UpdateValidation(basecs.Models.Telefone model)
         {
             string validation = "";
 
-            if (model.TipoTelefoneId < 1)
+            if (model.TelefoneId < 1)
             {
                 validation += "Identificação do tipo de telefone invalido\n";
             }
 
-            if (!string.IsNullOrEmpty(model.Descricao))
+            if (model.TipoTelefoneId < 1)
             {
-                model.Descricao = Validators.RemoveInjections(model.Descricao);
-                if (model.Descricao.Length < 3)
+                validation += "Identificação do tipo telefone invalida\n";
+            }
+
+            if (!string.IsNullOrEmpty(model.Numero))
+            {
+                model.Numero = Validators.RemoveInjections(model.Numero);
+                if (model.Numero.Length < 10)
                 {
-                    validation += "Descrição do telefone contem menos de três caracteres\n";
+                    validation += "Descrição do telefone contem menos de dez caracteres\n";
+                }
+
+                if (!int.TryParse(model.Numero, out int n))
+                {
+                    validation += "O campo nao esta no formato numerico\n";
                 }
             }
 

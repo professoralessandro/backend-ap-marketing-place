@@ -70,6 +70,7 @@ namespace basecs
             services.AddScoped<StatusAprovacoesService>();
             services.AddScoped<StatusEnviosService>();
             services.AddScoped<ParametrosService>();
+            services.AddScoped<TelefonesService>();
             services.AddScoped<TiposBloqueiosService>();
             services.AddScoped<TiposCaracteristicasService>();
             services.AddScoped<TiposConfiguracoesService>();

@@ -88,7 +88,7 @@ namespace basecs.Business.Compras
         {
             string validation = "";
 
-            if (model.CompraId == 0)
+            if (model.CompraId < 1)
             {
                 validation += "Identificação da compra invalido\n";
             }

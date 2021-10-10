@@ -47,7 +47,7 @@ namespace basecs.Business.Avaliacoes
         {
             string validation = "";
 
-            if (model.AvaliacaoId == 0)
+            if (model.AvaliacaoId < 1)
             {
                 validation += "Identificação do avaliação invalido\n";
             }

@@ -5,13 +5,13 @@ using System.Collections.Generic;
 
 namespace basecs.Models
 {
-    public partial class GruposUsuario
+    public partial class EnderecoUsuario
     {
-        public int GrupoUsuarioId { get; set; }
-        public int GrupoId { get; set; }
+        public int EnderecoUsuarioId { get; set; }
+        public int EnderecoId { get; set; }
         public int UsuarioId { get; set; }
 
-        public virtual Grupo Grupo { get; set; }
+        public virtual Endereco Endereco { get; set; }
         public virtual Usuario Usuario { get; set; }
     }
 }

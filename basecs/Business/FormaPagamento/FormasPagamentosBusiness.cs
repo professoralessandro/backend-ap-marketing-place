@@ -47,7 +47,7 @@ namespace basecs.Business.FormasPagamentos
         {
             string validation = "";
 
-            if (model.FormaPagamentoId == 0)
+            if (model.FormaPagamentoId < 1)
             {
                 validation += "Identificação do tipo de bloqueio invalido\n";
             }
