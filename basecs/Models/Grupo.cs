@@ -9,6 +9,7 @@ namespace basecs.Models
     {
         public Grupo()
         {
+            GruposRecursos = new HashSet<GrupoRecurso>();
             Usuarios = new HashSet<Usuario>();
         }
 
@@ -20,6 +21,7 @@ namespace basecs.Models
         public DateTime DataUltimaAlteracao { get; set; }
         public bool Ativo { get; set; }
 
+        public virtual ICollection<GrupoRecurso> GruposRecursos { get; set; }
         public virtual ICollection<Usuario> Usuarios { get; set; }
     }
 }

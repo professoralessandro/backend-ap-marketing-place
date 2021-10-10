@@ -61,6 +61,7 @@ namespace basecs
             services.AddScoped<FormasPagamentosService>();
             services.AddScoped<GarantiasService>();
             services.AddScoped<GruposService>();
+            services.AddScoped<GruposRecursosService>();
             services.AddScoped<ImagensService>();
             services.AddScoped<ImagensProdutosService>();
             services.AddScoped<LancamentosService>();
@@ -68,6 +69,7 @@ namespace basecs
             services.AddScoped<ProdutosService>();
             services.AddScoped<NotasFiscaisService>();
             services.AddScoped<PagamentosService>();
+            services.AddScoped<RecursosService>();
             services.AddScoped<SituacoesService>();
             services.AddScoped<StatusAprovacoesService>();
             services.AddScoped<StatusEnviosService>();
@@ -91,6 +93,7 @@ namespace basecs
             services.AddScoped<TiposWorkflowsService>();
             services.AddScoped<LogsService>();
             services.AddScoped<WorkflowsService>();
+            services.AddScoped<UsuariosService>();
 
             return services;
         }

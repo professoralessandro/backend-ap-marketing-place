@@ -32,6 +32,7 @@ namespace basecs.Data
         public virtual DbSet<FormaPagamento> FormasPagamentos { get; set; }
         public virtual DbSet<Garantia> Garantias { get; set; }
         public virtual DbSet<Grupo> Grupos { get; set; }
+        public virtual DbSet<GrupoRecurso> GruposRecursos { get; set; }
         public virtual DbSet<Imagem> Imagens { get; set; }
         public virtual DbSet<ImagemProduto> ImagensProdutos { get; set; }
         public virtual DbSet<Lancamento> Lancamentos { get; set; }
@@ -532,6 +533,26 @@ namespace basecs.Data
                     .HasMaxLength(50)
                     .IsUnicode(false)
                     .HasColumnName("Descricao");
+            });
+
+            modelBuilder.Entity<GrupoRecurso>(entity =>
+            {
+                entity.HasKey(e => e.GrupoRecursoId)
+                    .HasName("PK__GruposRe__5A5BD257AE108E58");
+
+                entity.ToTable("GruposRecursos", "seg");
+
+                entity.HasOne(d => d.Grupo)
+                    .WithMany(p => p.GruposRecursos)
+                    .HasForeignKey(d => d.GrupoId)
+                    .OnDelete(DeleteBehavior.ClientSetNull)
+                    .HasConstraintName("FK_GruposRecursos_GrupoId");
+
+                entity.HasOne(d => d.Recurso)
+                    .WithMany(p => p.GruposRecursos)
+                    .HasForeignKey(d => d.RecursoId)
+                    .OnDelete(DeleteBehavior.ClientSetNull)
+                    .HasConstraintName("FK_TelefonesUsuarios_RecursoId");
             });
 
             modelBuilder.Entity<Imagem>(entity =>
@@ -1176,11 +1197,11 @@ namespace basecs.Data
                     .HasMaxLength(1)
                     .IsUnicode(false);
 
-                entity.Property(e => e.Usuario1)
+                entity.Property(e => e.Login)
                     .IsRequired()
                     .HasMaxLength(50)
                     .IsUnicode(false)
-                    .HasColumnName("Usuario");
+                    .HasColumnName("Login");
 
                 entity.HasOne(d => d.GrupoUsarui)
                     .WithMany(p => p.Usuarios)

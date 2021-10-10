@@ -26,7 +26,7 @@ namespace basecs.Models
 
         public int UsuarioId { get; set; }
         public int GrupoUsaruiId { get; set; }
-        public string Usuario1 { get; set; }
+        public string Login { get; set; }
         public string NmrDocumento { get; set; }
         public int TipoDocumentoId { get; set; }
         public string Senha { get; set; }
@@ -35,7 +35,6 @@ namespace basecs.Models
         public string Sexo { get; set; }
         public string EstadoCivil { get; set; }
         public string Email { get; set; }
-        public bool TrocaSenha { get; set; }
         public bool Bloqueado { get; set; }
         public int UsuarioInclusaoId { get; set; }
         public int UsuarioUltimaAlteracaoId { get; set; }
