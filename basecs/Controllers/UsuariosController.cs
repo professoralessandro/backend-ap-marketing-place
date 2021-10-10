@@ -51,7 +51,7 @@ namespace backend_adm.Controllers
                 [FromQuery] string login,
                 [FromQuery] string nome,
                 [FromQuery] string email,
-                [FromQuery] bool bloqueado,
+                [FromQuery] bool? bloqueado,
                 [FromQuery] bool? ativo
             )
         {

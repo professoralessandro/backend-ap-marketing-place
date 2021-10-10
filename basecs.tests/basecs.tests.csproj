@@ -26,4 +26,8 @@
     <ProjectReference Include="..\basecs\basecs.csproj" />
   </ItemGroup>
 
+  <ItemGroup>
+    <Folder Include="Services\Usuarios\" />
+  </ItemGroup>
+
 </Project>

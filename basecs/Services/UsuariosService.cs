@@ -80,7 +80,7 @@ namespace basecs.Services
                 string login,
                 string nome,
                 string email,
-                bool bloqueado,
+                bool? bloqueado,
                 bool? ativo
             )
         {

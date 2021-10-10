@@ -16,7 +16,7 @@ namespace basecs.Interfaces.IUsuariosService
         #endregion
 
         #region RETURN LIST WITH PARAMETERS
-        Task<List<Usuario>> ReturnListWithParameters(int? id, int? grupoUsaruiId, string login, string nome, string email, bool bloqueada, bool? ativo);
+        Task<List<Usuario>> ReturnListWithParameters(int? id, int? grupoUsaruiId, string login, string nome, string email, bool? bloqueada, bool? ativo);
         #endregion
 
         #region INSERT
