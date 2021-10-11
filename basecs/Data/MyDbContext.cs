@@ -136,6 +136,12 @@ namespace basecs.Data
                     .IsRequired()
                     .IsUnicode(false);
 
+                entity.HasOne(d => d.Produto)
+                    .WithMany(p => p.Caracteristicas)
+                    .HasForeignKey(d => d.ProdutoId)
+                    .OnDelete(DeleteBehavior.ClientSetNull)
+                    .HasConstraintName("FK_Caracteristicas_ProdutoId");
+
                 entity.HasOne(d => d.TipoCaracteristica)
                     .WithMany(p => p.Caracteristicas)
                     .HasForeignKey(d => d.TipoCaracteristicaId)
