@@ -1,9 +1,24 @@
-﻿using basecs.Helpers.Helpers.Validators;
+﻿using basecs.Data;
+using basecs.Helpers.Helpers.Validators;
+using basecs.Services;
 
 namespace basecs.Business.Avaliacoes
 {
     public class AvaliacoesBusiness
     {
+        //#region ATRIBUTES
+        //private readonly MyDbContext _context;
+        //private readonly ComprasService _comprasService;
+        //#endregion
+
+        //#region CONTRUCTORS
+        //public AvaliacoesBusiness(MyDbContext context)
+        //{
+        //    _context = context;
+        //    _comprasService = new ComprasService(context);
+        //}
+        //#endregion
+
         #region INSERT
         public string InsertValidation(basecs.Models.Avaliacao model)
         {
@@ -12,6 +27,11 @@ namespace basecs.Business.Avaliacoes
             if (model.AvaliacaoId > 0)
             {
                 validation += "Identificação do avaliação invalido\n";
+            }
+
+            if (string.IsNullOrEmpty(model.Descricao))
+            {
+                validation += "Descrição do avaliação nao pode ser vazia\n";
             }
 
             if (!string.IsNullOrEmpty(model.Descricao))

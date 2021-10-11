@@ -69,11 +69,6 @@ namespace basecs.Business.Compras
                 validation += "Identificação do vendedor que incluiu e invalido\n";
             }
 
-            if (model.AvaliacaoId < 1)
-            {
-                validation += "Identificação da avaliação que incluiu e invalido\n";
-            }
-
             if (!model.Ativo)
             {
                 validation += "Não pode ser adicinada compra inativada\n";
@@ -155,11 +150,6 @@ namespace basecs.Business.Compras
             if (model.VendedorId < 1)
             {
                 validation += "Identificação do vendedor que incluiu e invalido\n";
-            }
-
-            if (model.AvaliacaoId < 1)
-            {
-                validation += "Identificação da avaliação que incluiu e invalido\n";
             }
 
             return validation;

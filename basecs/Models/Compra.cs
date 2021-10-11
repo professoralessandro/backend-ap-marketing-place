@@ -20,13 +20,11 @@ namespace basecs.Models
         public int GarantiaId { get; set; }
         public int TelefoneId { get; set; }
         public int VendedorId { get; set; }
-        public int AvaliacaoId { get; set; }
         public bool IsPago { get; set; }
         public bool IsEntregue { get; set; }
         public bool IsAvaliado { get; set; }
         public bool Ativo { get; set; }
 
-        public virtual Avaliacao Avaliacao { get; set; }
         public virtual Usuario Comprador { get; set; }
         public virtual Endereco Endereco { get; set; }
         public virtual Entrega Entrega { get; set; }

@@ -9,7 +9,8 @@ namespace basecs.Models
     {
         public Usuario()
         {
-            Avaliacos = new HashSet<Avaliacao>();
+            AvaliacoesVendedores = new HashSet<AvaliacaoVendedor>();
+            Avaliacoes = new HashSet<Avaliacao>();
             CartoesBancarios = new HashSet<CartoesBancario>();
             Compras = new HashSet<Compra>();
             DadosBancarios = new HashSet<DadosBancario>();
@@ -31,7 +32,7 @@ namespace basecs.Models
         public int TipoDocumentoId { get; set; }
         public string Senha { get; set; }
         public string Nome { get; set; }
-        public DateTime? DataNascimento { get; set; }
+        public DateTime DataNascimento { get; set; }
         public string Sexo { get; set; }
         public string EstadoCivil { get; set; }
         public string Email { get; set; }
@@ -46,7 +47,8 @@ namespace basecs.Models
 
         public virtual Grupo GrupoUsarui { get; set; }
         public virtual TipoDocumento TipoDocumento { get; set; }
-        public virtual ICollection<Avaliacao> Avaliacos { get; set; }
+        public virtual ICollection<AvaliacaoVendedor> AvaliacoesVendedores { get; set; }
+        public virtual ICollection<Avaliacao> Avaliacoes { get; set; }
         public virtual ICollection<CartoesBancario> CartoesBancarios { get; set; }
         public virtual ICollection<Compra> Compras { get; set; }
         public virtual ICollection<DadosBancario> DadosBancarios { get; set; }
