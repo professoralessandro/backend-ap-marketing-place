@@ -21,13 +21,13 @@ namespace basecs.Business.Avaliacoes
                 model.Descricao = Validators.RemoveInjections(model.Descricao);
                 if (model.Descricao.Length < 10)
                 {
-                    validation += "Descrição do avaliação contem menos de dez caracteres\n";
+                    validation += "Descrição da avaliação contem menos de dez caracteres\n";
                 }
             }
 
             if (string.IsNullOrEmpty(model.Descricao))
             {
-                validation += "Descrição do avaliação nao pode ser vazia\n";
+                validation += "Descrição da avaliação nao pode ser vazia\n";
             }
 
             if (model.Valor <= 1 && model.Valor >= 5)
@@ -61,7 +61,7 @@ namespace basecs.Business.Avaliacoes
 
             if (model.AvaliacaoId < 1)
             {
-                validation += "Identificação do avaliação invalido\n";
+                validation += "Identificação da avaliação invalido\n";
             }
 
             if (!string.IsNullOrEmpty(model.Descricao))
@@ -69,7 +69,7 @@ namespace basecs.Business.Avaliacoes
                 model.Descricao = Validators.RemoveInjections(model.Descricao);
                 if (model.Descricao.Length < 10)
                 {
-                    validation += "Descrição do avaliação contem menos de dez caracteres\n";
+                    validation += "Descrição da avaliação contem menos de dez caracteres\n";
                 }
             }
 

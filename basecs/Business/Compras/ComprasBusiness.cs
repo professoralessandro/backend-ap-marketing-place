@@ -14,6 +14,24 @@ namespace basecs.Business.Compras
                 validation += "Identificação da compra invalido\n";
             }
 
+            if (!string.IsNullOrEmpty(model.CodigoCompra))
+            {
+                model.CodigoCompra = Validators.RemoveInjections(model.CodigoCompra);
+                if (model.CodigoCompra.Length < 3 || model.CodigoCompra.Length > 20)
+                {
+                    validation += "O codigo da compra contem menos de três ou mais que vinte caracteres\n";
+                }
+            }
+
+            if (!string.IsNullOrEmpty(model.CodigoPagamento))
+            {
+                model.CodigoPagamento = Validators.RemoveInjections(model.CodigoPagamento);
+                if (model.CodigoPagamento.Length < 3 || model.CodigoPagamento.Length > 20)
+                {
+                    validation += "O codigo da compra contem menos de três ou mais que vinte caracteres\n";
+                }
+            }
+
             if (model.ProdutoId < 1)
             {
                 validation += "Identificação do produto que incluiu e invalido\n";
@@ -91,9 +109,18 @@ namespace basecs.Business.Compras
             if (!string.IsNullOrEmpty(model.CodigoCompra))
             {
                 model.CodigoCompra = Validators.RemoveInjections(model.CodigoCompra);
-                if (model.CodigoCompra.Length > 20)
+                if (model.CodigoCompra.Length < 3 || model.CodigoCompra.Length > 20)
                 {
-                    validation += "Descrição do codigodacompra contem mais de vinte caracteres\n";
+                    validation += "O codigo da compra contem menos de três ou mais que vinte caracteres\n";
+                }
+            }
+
+            if (!string.IsNullOrEmpty(model.CodigoPagamento))
+            {
+                model.CodigoPagamento = Validators.RemoveInjections(model.CodigoPagamento);
+                if (model.CodigoPagamento.Length < 3 || model.CodigoPagamento.Length > 20)
+                {
+                    validation += "O codigo do pagamento contem menos de três ou mais que vinte caracteres\n";
                 }
             }
 

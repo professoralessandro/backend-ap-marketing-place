@@ -23,6 +23,11 @@ namespace basecs.Business.Caracteristicas
                 }
             }
 
+            if (string.IsNullOrEmpty(model.Descricao))
+            {
+                validation += "Descrição da caracteristica nao pode ser vazia\n";
+            }
+
             if (model.UsuarioInclusaoId < 1)
             {
                 validation += "Identificação do usuario que incluiu e invalido\n";
@@ -64,6 +69,11 @@ namespace basecs.Business.Caracteristicas
                 {
                     validation += "Descrição do caracteristica contem menos de dois caracteres\n";
                 }
+            }
+
+            if (string.IsNullOrEmpty(model.Descricao))
+            {
+                validation += "Descrição da caracteristica nao pode ser vazia\n";
             }
 
             if (model.UsuarioUltimaAlteracaoId < 1)

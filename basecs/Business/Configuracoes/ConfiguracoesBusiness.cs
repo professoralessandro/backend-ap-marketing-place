@@ -17,10 +17,15 @@ namespace basecs.Business.Configuracoes
             if (!string.IsNullOrEmpty(model.Descricao))
             {
                 model.Descricao = Validators.RemoveInjections(model.Descricao);
-                if (model.Descricao.Length < 3)
+                if (model.Descricao.Length < 3 && model.Descricao.Length > 150)
                 {
-                    validation += "Descrição da configuração contem menos de três caracteres\n";
+                    validation += "Descrição da configuração contem menos de três ou mais de cento e cinquenta caracteres\n";
                 }
+            }
+
+            if (string.IsNullOrEmpty(model.Descricao))
+            {
+                validation += "Descrição da configuração nao pode ser vazia\n";
             }
 
             if (model.UsuarioInclusaoId < 1)
@@ -55,10 +60,15 @@ namespace basecs.Business.Configuracoes
             if (!string.IsNullOrEmpty(model.Descricao))
             {
                 model.Descricao = Validators.RemoveInjections(model.Descricao);
-                if (model.Descricao.Length < 3)
+                if (model.Descricao.Length < 3 && model.Descricao.Length > 150)
                 {
-                    validation += "Descrição da configuração contem menos de três caracteres\n";
+                    validation += "Descrição da configuração contem menos de três ou mais de cento e cinquenta caracteres\n";
                 }
+            }
+
+            if (string.IsNullOrEmpty(model.Descricao))
+            {
+                validation += "Descrição da configuração nao pode ser vazia\n";
             }
 
             if (model.UsuarioUltimaAlteracaoId < 1)
