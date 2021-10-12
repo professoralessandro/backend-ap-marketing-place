@@ -48,7 +48,9 @@ namespace basecs
         #region SERVICES CONTAINER METHOD
         private IServiceCollection Container(IServiceCollection services)
         {
+            services.AddScoped<AvaliacoesProdutosService>();
             services.AddScoped<AvaliacoesService>();
+            services.AddScoped<AvaliacoesVendedoresService>();
             services.AddScoped<BloqueiosService>();
             services.AddScoped<CaracteristicasService>();
             services.AddScoped<ComprasService>();
