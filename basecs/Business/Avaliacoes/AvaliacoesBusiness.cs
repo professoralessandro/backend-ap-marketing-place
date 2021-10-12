@@ -6,19 +6,6 @@ namespace basecs.Business.Avaliacoes
 {
     public class AvaliacoesBusiness
     {
-        //#region ATRIBUTES
-        //private readonly MyDbContext _context;
-        //private readonly ComprasService _comprasService;
-        //#endregion
-
-        //#region CONTRUCTORS
-        //public AvaliacoesBusiness(MyDbContext context)
-        //{
-        //    _context = context;
-        //    _comprasService = new ComprasService(context);
-        //}
-        //#endregion
-
         #region INSERT
         public string InsertValidation(basecs.Models.Avaliacao model)
         {
