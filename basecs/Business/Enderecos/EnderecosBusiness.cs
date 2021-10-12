@@ -22,10 +22,15 @@ namespace basecs.Business.Enderecos
             if (!string.IsNullOrEmpty(model.Logradouro))
             {
                 model.Logradouro = Validators.RemoveInjections(model.Logradouro);
-                if (model.Logradouro.Length < 3)
+                if (model.Logradouro.Length < 3 && model.Logradouro.Length > 50)
                 {
-                    validation += "Descrição do logradouro contem menos de três caracteres\n";
+                    validation += "Descrição do logradouro contem menos de três ou maior que cinquenta caracteres\n";
                 }
+            }
+
+            if (string.IsNullOrEmpty(model.Logradouro))
+            {
+                validation += "Descrição do logradouro nao pode ser vazia\n";
             }
 
             if (!int.TryParse(model.Numero, out int n))
@@ -37,13 +42,27 @@ namespace basecs.Business.Enderecos
                 }
             }
 
+            if (!string.IsNullOrEmpty(model.Complemento))
+            {
+                model.Complemento = Validators.RemoveInjections(model.Complemento);
+                if (model.Complemento.Length < 3 && model.Complemento.Length > 10)
+                {
+                    validation += "Descrição do logradouro contem menos de três ou maior que dez caracteres\n";
+                }
+            }
+
             if (!string.IsNullOrEmpty(model.Cidade))
             {
                 model.Cidade = Validators.RemoveInjections(model.Cidade);
-                if (model.Cidade.Length < 3)
+                if (model.Cidade.Length < 3 && model.Cidade.Length > 30)
                 {
-                    validation += "Descrição da cidade contem menos de três caracteres\n";
+                    validation += "Descrição da cidade contem menos de três ou maior que trinta caracteres\n";
                 }
+            }
+
+            if (string.IsNullOrEmpty(model.Cidade))
+            {
+                validation += "Descrição da cidade nao pode ser vazia\n";
             }
 
             if (!string.IsNullOrEmpty(model.Estado))
@@ -55,12 +74,31 @@ namespace basecs.Business.Enderecos
                 }
             }
 
+            if (string.IsNullOrEmpty(model.Estado))
+            {
+                validation += "Descrição do estado nao pode ser vazia\n";
+            }
+
             if (!string.IsNullOrEmpty(model.Cep))
             {
                 model.Cidade = Validators.RemoveInjections(model.Cidade);
                 if (model.Cep.Length != 8)
                 {
                     validation += "o CEP não esta no formato correto\n";
+                }
+            }
+
+            if (string.IsNullOrEmpty(model.Cep))
+            {
+                validation += "Descrição do estado nao pode ser vazia\n";
+            }
+
+            if (!string.IsNullOrEmpty(model.PontoReferencia))
+            {
+                model.Cidade = Validators.RemoveInjections(model.PontoReferencia);
+                if (model.PontoReferencia.Length < 3 && model.PontoReferencia.Length > 100)
+                {
+                    validation += "Descrição do ponto de referência contem menos de três ou maior que cem caracteres\n";
                 }
             }
 
@@ -101,10 +139,15 @@ namespace basecs.Business.Enderecos
             if (!string.IsNullOrEmpty(model.Logradouro))
             {
                 model.Logradouro = Validators.RemoveInjections(model.Logradouro);
-                if (model.Logradouro.Length < 3)
+                if (model.Logradouro.Length < 3 && model.Logradouro.Length > 50)
                 {
-                    validation += "Descrição do logradouro contem menos de três caracteres\n";
+                    validation += "Descrição do logradouro contem menos de três ou maior que cinquenta caracteres\n";
                 }
+            }
+
+            if (string.IsNullOrEmpty(model.Logradouro))
+            {
+                validation += "Descrição do logradouro nao pode ser vazia\n";
             }
 
             if (!int.TryParse(model.Numero, out int n))
@@ -116,13 +159,27 @@ namespace basecs.Business.Enderecos
                 }
             }
 
+            if (!string.IsNullOrEmpty(model.Complemento))
+            {
+                model.Complemento = Validators.RemoveInjections(model.Complemento);
+                if (model.Complemento.Length < 3 && model.Complemento.Length > 10)
+                {
+                    validation += "Descrição do logradouro contem menos de três ou maior que dez caracteres\n";
+                }
+            }
+
             if (!string.IsNullOrEmpty(model.Cidade))
             {
                 model.Cidade = Validators.RemoveInjections(model.Cidade);
-                if (model.Cidade.Length < 3)
+                if (model.Cidade.Length < 3 && model.Cidade.Length > 30)
                 {
-                    validation += "Descrição da cidade contem menos de três caracteres\n";
+                    validation += "Descrição da cidade contem menos de três ou maior que trinta caracteres\n";
                 }
+            }
+
+            if (string.IsNullOrEmpty(model.Cidade))
+            {
+                validation += "Descrição da cidade nao pode ser vazia\n";
             }
 
             if (!string.IsNullOrEmpty(model.Estado))
@@ -134,12 +191,31 @@ namespace basecs.Business.Enderecos
                 }
             }
 
+            if (string.IsNullOrEmpty(model.Estado))
+            {
+                validation += "Descrição do estado nao pode ser vazia\n";
+            }
+
             if (!string.IsNullOrEmpty(model.Cep))
             {
                 model.Cidade = Validators.RemoveInjections(model.Cidade);
                 if (model.Cep.Length != 8)
                 {
                     validation += "o CEP não esta no formato correto\n";
+                }
+            }
+
+            if (string.IsNullOrEmpty(model.Cep))
+            {
+                validation += "Descrição do estado nao pode ser vazia\n";
+            }
+
+            if (!string.IsNullOrEmpty(model.PontoReferencia))
+            {
+                model.Cidade = Validators.RemoveInjections(model.PontoReferencia);
+                if (model.PontoReferencia.Length < 3 && model.PontoReferencia.Length > 100)
+                {
+                    validation += "Descrição do ponto de referência contem menos de três ou maior que cem caracteres\n";
                 }
             }
 

@@ -11,7 +11,7 @@ namespace basecs.Business.Configuracoes
 
             if (model.ConfiguracaoId > 0)
             {
-                validation += "Identificação do configuracaos invalido\n";
+                validation += "Identificação da avaliação invalida\n";
             }
 
             if (!string.IsNullOrEmpty(model.Descricao))

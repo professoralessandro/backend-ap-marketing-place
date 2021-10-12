@@ -13,7 +13,7 @@ namespace basecs.Business.Avaliacoes
 
             if (model.AvaliacaoId > 0)
             {
-                validation += "Identificação do avaliação invalido\n";
+                validation += "Identificação da avaliação invalida\n";
             }
 
             if (!string.IsNullOrEmpty(model.Descricao))
@@ -30,7 +30,7 @@ namespace basecs.Business.Avaliacoes
                 validation += "Descrição da avaliação nao pode ser vazia\n";
             }
 
-            if (model.Valor <= 1 && model.Valor >= 5)
+            if (model.Valor < 1 || model.Valor > 5)
             {
                 validation += "A avaliação nao deve ser menor que um ou maior que cinco\n";
             }
@@ -61,7 +61,7 @@ namespace basecs.Business.Avaliacoes
 
             if (model.AvaliacaoId < 1)
             {
-                validation += "Identificação da avaliação invalido\n";
+                validation += "Identificação da avaliação invalida\n";
             }
 
             if (!string.IsNullOrEmpty(model.Descricao))
@@ -78,9 +78,9 @@ namespace basecs.Business.Avaliacoes
                 validation += "Descrição do avaliação nao pode ser vazia\n";
             }
 
-            if (model.Valor <= 1 && model.Valor >= 5)
+            if (model.Valor < 1 || model.Valor > 5)
             {
-                validation += "A avaliação nao deve ser menor que um (1) ou maior que cinco (5)\n";
+                validation += "A avaliação nao deve ser menor que um ou maior que cinco\n";
             }
 
             if (model.UsuarioInclusaoId < 1)
@@ -104,7 +104,7 @@ namespace basecs.Business.Avaliacoes
 
             if (id < 1)
             {
-                validation += "Identificação do avaliação invalido\n";
+                validation += "Identificação da avaliação invalida\n";
             }
 
             return validation;

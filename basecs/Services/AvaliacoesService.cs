@@ -69,7 +69,7 @@ namespace basecs.Services
             }
             catch (Exception ex)
             {
-                throw new Exception("Não foi possível realizar a busca por tipos bloqueios: " + ex.Message);
+                throw new Exception("Não foi possível realizar a busca por registros: " + ex.Message);
             }
 
         }
@@ -96,7 +96,7 @@ namespace basecs.Services
             }
             catch (Exception ex)
             {
-                throw new Exception("Não foi possível realizar a busca por tipos bloqueios: " + ex.Message);
+                throw new Exception("Não foi possível realizar a busca por registros: " + ex.Message);
             }
         }
         #endregion
@@ -121,7 +121,7 @@ namespace basecs.Services
             }
             catch (Exception ex)
             {
-                throw new Exception("Houve um erro ao incluir tipos bloqueios: " + ex.Message);
+                throw new Exception("Houve um erro ao incluir o registro: " + ex.Message);
             }
         }
         #endregion
