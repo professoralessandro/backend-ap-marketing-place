@@ -11,6 +11,7 @@ namespace basecs.Models
         {
             AvaliacoesProdutos = new HashSet<AvaliacaoProduto>();
             Avaliacos = new HashSet<Avaliacao>();
+            BloqueiosProdutos = new HashSet<BloqueioProduto>();
             Caracteristicas = new HashSet<Caracteristica>();
             Compras = new HashSet<Compra>();
             ImagensProdutos = new HashSet<ImagemProduto>();
@@ -38,6 +39,7 @@ namespace basecs.Models
         public virtual TipoProduto TipoProduto { get; set; }
         public virtual ICollection<AvaliacaoProduto> AvaliacoesProdutos { get; set; }
         public virtual ICollection<Avaliacao> Avaliacos { get; set; }
+        public virtual ICollection<BloqueioProduto> BloqueiosProdutos { get; set; }
         public virtual ICollection<Caracteristica> Caracteristicas { get; set; }
         public virtual ICollection<Compra> Compras { get; set; }
         public virtual ICollection<ImagemProduto> ImagensProdutos { get; set; }

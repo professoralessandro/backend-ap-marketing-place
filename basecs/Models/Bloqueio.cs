@@ -7,6 +7,12 @@ namespace basecs.Models
 {
     public partial class Bloqueio
     {
+        public Bloqueio()
+        {
+            BloqueiosProdutos = new HashSet<BloqueioProduto>();
+            BloqueiosUsuarios = new HashSet<BloqueioUsuario>();
+        }
+
         public int BloqueioId { get; set; }
         public int TipoBloqueioId { get; set; }
         public int ItemBloqueadoId { get; set; }
@@ -21,5 +27,7 @@ namespace basecs.Models
         public bool Ativo { get; set; }
 
         public virtual TipoBloqueio TipoBloqueio { get; set; }
+        public virtual ICollection<BloqueioProduto> BloqueiosProdutos { get; set; }
+        public virtual ICollection<BloqueioUsuario> BloqueiosUsuarios { get; set; }
     }
 }

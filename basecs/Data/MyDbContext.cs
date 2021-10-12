@@ -21,6 +21,8 @@ namespace basecs.Data
         public virtual DbSet<AvaliacaoProduto> AvaliacoesProdutos { get; set; }
         public virtual DbSet<AvaliacaoVendedor> AvaliacoesVendedores { get; set; }
         public virtual DbSet<Bloqueio> Bloqueios { get; set; }
+        public virtual DbSet<BloqueioProduto> BloqueiosProdutos { get; set; }
+        public virtual DbSet<BloqueioUsuario> BloqueiosUsuarios { get; set; }
         public virtual DbSet<Caracteristica> Caracteristicas { get; set; }
         public virtual DbSet<CartoesBancario> CartoesBancarios { get; set; }
         public virtual DbSet<Compra> Compras { get; set; }
@@ -77,7 +79,7 @@ namespace basecs.Data
             modelBuilder.Entity<Avaliacao>(entity =>
             {
                 entity.HasKey(e => e.AvaliacaoId)
-                    .HasName("PK__Avaliaco__FC95FF182F8F3A77");
+                    .HasName("PK__Avaliaco__FC95FF182C776B47");
 
                 entity.Property(e => e.DataInclusao).HasColumnType("datetime");
 
@@ -87,7 +89,7 @@ namespace basecs.Data
                     .IsRequired()
                     .IsUnicode(false);
 
-                entity.Property(e => e.Valor).HasColumnType("decimal(10, 2)");
+                entity.Property(e => e.Valor).HasColumnType("decimal(2, 2)");
 
                 entity.HasOne(d => d.Produto)
                     .WithMany(p => p.Avaliacos)
@@ -105,7 +107,7 @@ namespace basecs.Data
             modelBuilder.Entity<AvaliacaoProduto>(entity =>
             {
                 entity.HasKey(e => e.AvaliacaoProdutoId)
-                    .HasName("PK__Avaliaco__FC608533B1682FE3");
+                    .HasName("PK__Avaliaco__FC608533667EFC3F");
 
                 entity.HasOne(d => d.Avaliacao)
                     .WithMany(p => p.AvaliacoesProdutos)
@@ -123,7 +125,7 @@ namespace basecs.Data
             modelBuilder.Entity<AvaliacaoVendedor>(entity =>
             {
                 entity.HasKey(e => e.AvaliacaoVendedorId)
-                    .HasName("PK__Avaliaco__47CB1D8DB29B8F6A");
+                    .HasName("PK__Avaliaco__47CB1D8D1A51E8EF");
 
                 entity.HasOne(d => d.Avaliacao)
                     .WithMany(p => p.AvaliacoesVendedores)
@@ -160,6 +162,42 @@ namespace basecs.Data
                     .HasForeignKey(d => d.TipoBloqueioId)
                     .OnDelete(DeleteBehavior.ClientSetNull)
                     .HasConstraintName("FK_Bloqueios_TipoBloqueioId");
+            });
+
+            modelBuilder.Entity<BloqueioProduto>(entity =>
+            {
+                entity.HasKey(e => e.BloqueioProdutoId)
+                    .HasName("PK__Bloqueio__FC608533999ADCC1");
+
+                entity.HasOne(d => d.Bloqueio)
+                    .WithMany(p => p.BloqueiosProdutos)
+                    .HasForeignKey(d => d.BloqueioId)
+                    .OnDelete(DeleteBehavior.ClientSetNull)
+                    .HasConstraintName("FK_BloqueiosProdutos_BloqueioId");
+
+                entity.HasOne(d => d.Produto)
+                    .WithMany(p => p.BloqueiosProdutos)
+                    .HasForeignKey(d => d.ProdutoId)
+                    .OnDelete(DeleteBehavior.ClientSetNull)
+                    .HasConstraintName("FK_BloqueiosProduto_ProdutoId");
+            });
+
+            modelBuilder.Entity<BloqueioUsuario>(entity =>
+            {
+                entity.HasKey(e => e.BloqueioUsuarioId)
+                    .HasName("PK__Bloqueio__FC608533EB35FC78");
+
+                entity.HasOne(d => d.Bloqueio)
+                    .WithMany(p => p.BloqueiosUsuarios)
+                    .HasForeignKey(d => d.BloqueioId)
+                    .OnDelete(DeleteBehavior.ClientSetNull)
+                    .HasConstraintName("FK_BloqueiosUsuarios_BloqueioId");
+
+                entity.HasOne(d => d.Usuario)
+                    .WithMany(p => p.BloqueiosUsuarios)
+                    .HasForeignKey(d => d.UsuarioId)
+                    .OnDelete(DeleteBehavior.ClientSetNull)
+                    .HasConstraintName("FK_BloqueiosUsuarios_ProdutoId");
             });
 
             modelBuilder.Entity<Caracteristica>(entity =>

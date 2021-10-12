@@ -52,6 +52,8 @@ namespace basecs
             services.AddScoped<AvaliacoesService>();
             services.AddScoped<AvaliacoesVendedoresService>();
             services.AddScoped<BloqueiosService>();
+            services.AddScoped<BloqueiosProdutosService>();
+            services.AddScoped<BloqueiosUsuariosService>();
             services.AddScoped<CaracteristicasService>();
             services.AddScoped<ComprasService>();
             services.AddScoped<ConfiguracoesService>();

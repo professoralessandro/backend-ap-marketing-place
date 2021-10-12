@@ -16,18 +16,23 @@ namespace basecs.Business.Avaliacoes
                 validation += "Identificação do avaliação invalido\n";
             }
 
+            if (!string.IsNullOrEmpty(model.Descricao))
+            {
+                model.Descricao = Validators.RemoveInjections(model.Descricao);
+                if (model.Descricao.Length < 10)
+                {
+                    validation += "Descrição do avaliação contem menos de dez caracteres\n";
+                }
+            }
+
             if (string.IsNullOrEmpty(model.Descricao))
             {
                 validation += "Descrição do avaliação nao pode ser vazia\n";
             }
 
-            if (!string.IsNullOrEmpty(model.Descricao))
+            if (model.Valor <= 1 && model.Valor >= 5)
             {
-                model.Descricao = Validators.RemoveInjections(model.Descricao);
-                if (model.Descricao.Length < 3)
-                {
-                    validation += "Descrição do avaliação contem menos de três caracteres\n";
-                }
+                validation += "A avaliação nao deve ser menor que um ou maior que cinco\n";
             }
 
             if (model.UsuarioInclusaoId < 1)
@@ -62,10 +67,25 @@ namespace basecs.Business.Avaliacoes
             if (!string.IsNullOrEmpty(model.Descricao))
             {
                 model.Descricao = Validators.RemoveInjections(model.Descricao);
-                if (model.Descricao.Length < 3)
+                if (model.Descricao.Length < 10)
                 {
-                    validation += "Descrição do avaliação contem menos de três caracteres\n";
+                    validation += "Descrição do avaliação contem menos de dez caracteres\n";
                 }
+            }
+
+            if (string.IsNullOrEmpty(model.Descricao))
+            {
+                validation += "Descrição do avaliação nao pode ser vazia\n";
+            }
+
+            if (model.Valor <= 1 && model.Valor >= 5)
+            {
+                validation += "A avaliação nao deve ser menor que um (1) ou maior que cinco (5)\n";
+            }
+
+            if (model.UsuarioInclusaoId < 1)
+            {
+                validation += "Identificação do usuario que incluiu e invalido\n";
             }
 
             if (model.UsuarioUltimaAlteracaoId < 1)
