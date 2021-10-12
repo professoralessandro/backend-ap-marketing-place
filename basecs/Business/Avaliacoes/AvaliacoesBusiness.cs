@@ -1,4 +1,6 @@
-﻿using basecs.Helpers.Helpers.Validators;
+﻿using basecs.Data;
+using basecs.Helpers.Helpers.Validators;
+using basecs.Services;
 
 namespace basecs.Business.Avaliacoes
 {
@@ -12,6 +14,11 @@ namespace basecs.Business.Avaliacoes
             if (model.AvaliacaoId > 0)
             {
                 validation += "Identificação do avaliação invalido\n";
+            }
+
+            if (string.IsNullOrEmpty(model.Descricao))
+            {
+                validation += "Descrição do avaliação nao pode ser vazia\n";
             }
 
             if (!string.IsNullOrEmpty(model.Descricao))

@@ -9,6 +9,7 @@ namespace basecs.Models
     {
         public int CaracteristicaId { get; set; }
         public int TipoCaracteristicaId { get; set; }
+        public int ProdutoId { get; set; }
         public string Descricao { get; set; }
         public int? Ordem { get; set; }
         public bool Publico { get; set; }
@@ -18,6 +19,7 @@ namespace basecs.Models
         public DateTime DataUltimaAlteracao { get; set; }
         public bool Ativo { get; set; }
 
+        public virtual Produto Produto { get; set; }
         public virtual TipoCaracteristica TipoCaracteristica { get; set; }
     }
 }

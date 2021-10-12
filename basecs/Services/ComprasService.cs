@@ -55,7 +55,6 @@ namespace basecs.Services
                 int? garantiaId,
                 int? telefoneId,
                 int? vendedorId,
-                int? avaliacaoId,
                 bool? isPago,
                 bool? isEntregue,
                 bool? isAvaliado,
@@ -79,7 +78,6 @@ namespace basecs.Services
                     new SqlParameter("@GarantiaId", garantiaId.Equals(null) ? DBNull.Value : garantiaId),
                     new SqlParameter("@TelefoneId", telefoneId.Equals(null) ? DBNull.Value : telefoneId),
                     new SqlParameter("@VendedorId", vendedorId.Equals(null) ? DBNull.Value : vendedorId),
-                    new SqlParameter("@AvaliacaoId", avaliacaoId.Equals(null) ? DBNull.Value : avaliacaoId),
                     new SqlParameter("@IsPago", isPago.Equals(null) ? DBNull.Value : isPago),
                     new SqlParameter("@IsEntregue", isEntregue.Equals(null) ? DBNull.Value : isEntregue),
                     new SqlParameter("@IsAvaliado", isAvaliado.Equals(null) ? DBNull.Value : isAvaliado),
@@ -88,7 +86,7 @@ namespace basecs.Services
                     new SqlParameter("@RowspPage", rowspPage)
                 };
 
-                var storedProcedure = $@"[dbo].[ComprasPaginated] @Id, @CodigoCompra, @ProdutoId, @FormaPagamentoId, @StatusCompraId, @EntregaId, @LancamentoPaiId, @EnderecoId, @GarantiaId, @TelefoneId, @VendedorId, @AvaliacaoId, @IsPago, @IsEntregue, @IsAvaliado, @Ativo, @PageNumber, @RowspPage";
+                var storedProcedure = $@"[dbo].[ComprasPaginated] @Id, @CodigoCompra, @ProdutoId, @FormaPagamentoId, @StatusCompraId, @EntregaId, @LancamentoPaiId, @EnderecoId, @GarantiaId, @TelefoneId, @VendedorId, @IsPago, @IsEntregue, @IsAvaliado, @Ativo, @PageNumber, @RowspPage";
 
                 using (var context = this._context)
                 {
@@ -117,7 +115,6 @@ namespace basecs.Services
                 int? garantiaId,
                 int? telefoneId,
                 int? vendedorId,
-                int? avaliacaoId,
                 bool? isPago,
                 bool? isEntregue,
                 bool? isAvaliado,
@@ -141,7 +138,6 @@ namespace basecs.Services
                     (c.GarantiaId.Equals(garantiaId) || !garantiaId.Equals(null)) &&
                     (c.TelefoneId.Equals(telefoneId) || !telefoneId.Equals(null)) &&
                     (c.VendedorId.Equals(vendedorId) || !vendedorId.Equals(null)) &&
-                    (c.AvaliacaoId.Equals(avaliacaoId) || !avaliacaoId.Equals(null)) &&
                     (c.IsPago.Equals(isPago) || !isPago.Equals(null)) &&
                     (c.IsEntregue.Equals(isEntregue) || !isEntregue.Equals(null)) &&
                     (c.IsAvaliado.Equals(isAvaliado) || !isAvaliado.Equals(null)) &&
