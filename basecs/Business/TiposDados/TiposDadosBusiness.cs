@@ -16,7 +16,7 @@ namespace basecs.Business.TiposDados
 
             if (!string.IsNullOrEmpty(model.Descricao))
             {
-                model.Descricao = Validators.RemoveInjections(model.Descricao);
+                model.Descricao = model.Descricao.RemoveInjections();
                 if (model.Descricao.Length < 2)
                 {
                     validation += "Descrição do dado contem menos de dois caracteres\n";
@@ -49,7 +49,7 @@ namespace basecs.Business.TiposDados
 
             if (!string.IsNullOrEmpty(model.Descricao))
             {
-                model.Descricao = Validators.RemoveInjections(model.Descricao);
+                model.Descricao = model.Descricao.RemoveInjections();
                 if (model.Descricao.Length < 2)
                 {
                     validation += "Descrição do dado contem menos de dois caracteres\n";

@@ -90,7 +90,7 @@ namespace basecs.Business.Compras
 
             if (!string.IsNullOrEmpty(model.CodigoCompra))
             {
-                model.CodigoCompra = Validators.RemoveInjections(model.CodigoCompra);
+                model.CodigoCompra = model.CodigoCompra.RemoveInjections();
                 if (model.CodigoCompra.Length > 20)
                 {
                     validation += "Descrição do codigodacompra contem mais de vinte caracteres\n";

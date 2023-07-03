@@ -50,7 +50,7 @@ namespace basecs.Services
             try
             {
                 SqlParameter[] Params = {
-                    new SqlParameter("@Param", string.IsNullOrEmpty(Validators.RemoveInjections(param)) ? DBNull.Value : param),
+                    new SqlParameter("@Param", string.IsNullOrEmpty(param.RemoveInjections()) ? DBNull.Value : param.RemoveInjections()),
                     new SqlParameter("@DateAdded", dateAdded.Equals(null) ? DBNull.Value : dateAdded),
                     new SqlParameter("@PageNumber", pageNumber),
                     new SqlParameter("@RowspPage", rowspPage)
@@ -84,8 +84,8 @@ namespace basecs.Services
             {
                 List<Log> lstRetorno = await _context.Logs.Where(c =>
                     (c.LogId == id || id == null) &&
-                    (c.Request.Contains(Validators.RemoveInjections(request)) || string.IsNullOrEmpty(Validators.RemoveInjections(request))) &&
-                    (c.Method.Contains(Validators.RemoveInjections(method)) || string.IsNullOrEmpty(Validators.RemoveInjections(method))) &&
+                    (c.Request.Contains(request.RemoveInjections()) || string.IsNullOrEmpty(request.RemoveInjections())) &&
+                    (c.Method.Contains(method.RemoveInjections()) || string.IsNullOrEmpty(method.RemoveInjections())) &&
                     (c.UserAddedId == userAddedId || userAddedId == null) &&
                     (c.DateAdded == dateAdded || dateAdded == null)
                     ).ToListAsync();

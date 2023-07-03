@@ -55,7 +55,7 @@ namespace basecs.Services
             {
                 SqlParameter[] Params = {
                     new SqlParameter("@Id", id.Equals(null) ? DBNull.Value : id),
-                    new SqlParameter("@Descricao", string.IsNullOrEmpty(Validators.RemoveInjections(descricao)) ? DBNull.Value : Validators.RemoveInjections(descricao)),
+                    new SqlParameter("@Descricao", string.IsNullOrEmpty(descricao.RemoveInjections()) ? DBNull.Value : descricao.RemoveInjections()),
                     new SqlParameter("@TipoCaracteristicaId", tipoCaracteristicaId.Equals(null) ? DBNull.Value : id),
                     new SqlParameter("@Ativo", ativo.Equals(null) ? DBNull.Value : ativo),
                     new SqlParameter("@PageNumber", pageNumber),
@@ -91,7 +91,7 @@ namespace basecs.Services
                 {
                     return await _context.Caracteristicas.Where(c =>
                     (c.CaracteristicaId == id || id == null) &&
-                    (c.Descricao.Contains(Validators.RemoveInjections(descricao)) || string.IsNullOrEmpty(Validators.RemoveInjections(descricao))) &&
+                    (c.Descricao.Contains(descricao.RemoveInjections()) || string.IsNullOrEmpty(descricao.RemoveInjections())) &&
                     (c.TipoCaracteristicaId == tipoCaracteristicaId || tipoCaracteristicaId == null) &&
                     (c.Ativo == ativo || ativo == null)
                     ).ToListAsync();

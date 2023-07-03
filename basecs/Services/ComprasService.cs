@@ -68,7 +68,7 @@ namespace basecs.Services
             {
                 SqlParameter[] Params = {
                     new SqlParameter("@Id", id.Equals(null) ? DBNull.Value : id),
-                    new SqlParameter("@CodigoCompra", string.IsNullOrEmpty(Validators.RemoveInjections(codigoCompra)) ? DBNull.Value : codigoCompra),
+                    new SqlParameter("@CodigoCompra", string.IsNullOrEmpty(codigoCompra.RemoveInjections()) ? DBNull.Value : codigoCompra.RemoveInjections()),
                     new SqlParameter("@ProdutoId", produtoId.Equals(null) ? DBNull.Value : produtoId),
                     new SqlParameter("@CompradorId", compradorId.Equals(null) ? DBNull.Value : compradorId),
                     new SqlParameter("@FormaPagamentoId", produtoId.Equals(null) ? DBNull.Value : formaPagamentoId),
@@ -130,7 +130,7 @@ namespace basecs.Services
                 {
                     return await context.Compras.Where(c =>
                     (c.CompraId == id || id == null) &&
-                    (c.CodigoCompra.Contains(Validators.RemoveInjections(codigoCompra)) || string.IsNullOrEmpty(Validators.RemoveInjections(codigoCompra))) &&
+                    (c.CodigoCompra.Contains(codigoCompra.RemoveInjections()) || string.IsNullOrEmpty(codigoCompra.RemoveInjections())) &&
                     (c.ProdutoId.Equals(produtoId) || !produtoId.Equals(null)) &&
                     (c.CompradorId.Equals(compradorId) || !compradorId.Equals(null)) &&
                     (c.FormaPagamentoId.Equals(formaPagamentoId) || !formaPagamentoId.Equals(null)) &&

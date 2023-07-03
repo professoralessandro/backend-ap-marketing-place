@@ -16,7 +16,7 @@ namespace basecs.Business.Bloqueios
 
             if (!string.IsNullOrEmpty(model.NomeBloqueio))
             {
-                model.NomeBloqueio = Validators.RemoveInjections(model.NomeBloqueio);
+                model.NomeBloqueio = model.NomeBloqueio.RemoveInjections();
                 if (model.NomeBloqueio.Length < 3)
                 {
                     validation += "Descrição do bloqueios contem menos de três caracteres\n";
@@ -49,7 +49,7 @@ namespace basecs.Business.Bloqueios
 
             if (!string.IsNullOrEmpty(model.NomeBloqueio))
             {
-                model.NomeBloqueio = Validators.RemoveInjections(model.NomeBloqueio);
+                model.NomeBloqueio = model.NomeBloqueio.RemoveInjections();
                 if (model.NomeBloqueio.Length < 3)
                 {
                     validation += "Descrição do bloqueios contem menos de três caracteres\n";

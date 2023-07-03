@@ -51,7 +51,7 @@ namespace basecs.Services
             try
             {
                 SqlParameter[] Params = {
-                    new SqlParameter("@Param", string.IsNullOrEmpty(Validators.RemoveInjections(param)) ? DBNull.Value : param),
+                    new SqlParameter("@Param", string.IsNullOrEmpty(param.RemoveInjections()) ? DBNull.Value : param),
                     new SqlParameter("@DateAdded", dateAdded.Equals(null) ? DBNull.Value : dateAdded),
                     new SqlParameter("@PageNumber", pageNumber),
                     new SqlParameter("@RowspPage", rowspPage)
@@ -86,7 +86,7 @@ namespace basecs.Services
                 {
                     return await context.Bloqueios.Where(c =>
                     (c.BloqueioId == id || id == null) &&
-                    (c.NomeBloqueio.Contains(Validators.RemoveInjections(descricao)) || string.IsNullOrEmpty(Validators.RemoveInjections(descricao))) &&
+                    (c.NomeBloqueio.Contains(descricao.RemoveInjections()) || string.IsNullOrEmpty(descricao.RemoveInjections())) &&
                     (c.IsBloqueiaAcesso.Equals(isBloqueiaAcesso) || !isBloqueiaAcesso.Equals(null)) &&
                     (c.Ativo == ativo || ativo == null)
                     ).OrderByDescending(x => x.BloqueioId)

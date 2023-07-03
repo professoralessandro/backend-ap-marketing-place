@@ -5,13 +5,11 @@ namespace basecs.Helpers.Helpers.Validators
 {
     public static class Validators
     {
-        public static string RemoveInjections(string param)
+        public static string RemoveInjections(this string param)
         {
             param = Sanitizer.GetSafeHtmlFragment(param);
 
-            param = Regex.Replace(param.Trim(), "[^0-9a-zA-Z ]+", "");
-
-            return param;
+            return Regex.Replace(param, "[^0-9a-zA-Z ]+", "").Trim();
         }
     }
 }
