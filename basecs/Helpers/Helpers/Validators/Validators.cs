@@ -7,9 +7,7 @@ namespace basecs.Helpers.Helpers.Validators
     {
         public static string RemoveInjections(this string param)
         {
-            param = Sanitizer.GetSafeHtmlFragment(param);
-
-            return Regex.Replace(param, "[^0-9a-zA-Z ]+", "").Trim();
+            return !string.IsNullOrEmpty(param) ? Regex.Replace(Sanitizer.GetSafeHtmlFragment(param), "[^0-9a-zA-Z ]+", "").Trim() : string.Empty;
         }
     }
 }
