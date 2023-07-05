@@ -232,5 +232,9 @@ namespace basecs.Services
             }
         }
         #endregion
+
+        #region CHECKOUT
+
+        #endregion
     }
 }

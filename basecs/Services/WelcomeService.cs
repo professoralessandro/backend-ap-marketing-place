@@ -13,7 +13,7 @@ namespace basecs.Services
             }
             catch (Exception ex)
             {
-                throw new Exception("Não foi possível realizar a busca por WorkFlows: " + ex.Message);
+                throw new Exception("Não foi possível realizar a busca por boas vindas: " + ex.Message);
             }
 
         }

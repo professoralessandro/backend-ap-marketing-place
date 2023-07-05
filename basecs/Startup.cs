@@ -68,7 +68,9 @@ namespace basecs
             services.AddScoped<TiposWorkFlowsService>();
             services.AddScoped<WelcomeService>();
             services.AddScoped<LogsService>();
-            
+            services.AddScoped<WelcomeService>();
+            services.AddScoped<ProdutoService>();
+
             return services;
         }
         #endregion
