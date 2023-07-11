@@ -1,4 +1,4 @@
-﻿using basecs.Interfaces.ICaracteristicasService;
+﻿using basecs.Interfaces.Services.ICaracteristicasService;
 using basecs.Services;
 using Moq;
 using System;
@@ -26,7 +26,7 @@ namespace basecs.tests.Services.Caracteristicas
         [Fact(DisplayName = "Insert Send Valid Post")]
         public void Insert_SendValidPost()
         {
-            var retorno = new basecs.Models.Caracteristica { CaracteristicaId = 1, Descricao = "Unit Test", Ativo = true, TipoCaracteristicaId = 1, UsuarioUltimaAlteracaoId = 1, UsuarioInclusaoId = 1, DataInclusao = DateTime.Now, DataUltimaAlteracao = DateTime.Now };
+            var retorno = new basecs.Models.Caracteristica { CaracteristicaId = 1, Descricao = "Unit Test", Ativo = true, TipoCaracteristica = Enuns.TipoCaracteristicaEnum.CaracteristicaTeste, UsuarioUltimaAlteracaoId = 1, UsuarioInclusaoId = 1, DataInclusao = DateTime.Now, DataUltimaAlteracao = DateTime.Now };
             _serviceMock.Setup(x => x.Insert(It.IsAny<basecs.Models.Caracteristica>())).ReturnsAsync(retorno);
         }
 
@@ -47,7 +47,7 @@ namespace basecs.tests.Services.Caracteristicas
         [Fact(DisplayName = "Update Send Invalid Post Description")]
         public void Update_SendValidPut()
         {
-            var retorno = new basecs.Models.Caracteristica { CaracteristicaId = 200, Descricao = "Unit Test", Ativo = true, TipoCaracteristicaId = 1, UsuarioUltimaAlteracaoId = 1, UsuarioInclusaoId = 1, DataInclusao = DateTime.Now, DataUltimaAlteracao = DateTime.Now };
+            var retorno = new basecs.Models.Caracteristica { CaracteristicaId = 200, Descricao = "Unit Test", Ativo = true, TipoCaracteristica = Enuns.TipoCaracteristicaEnum.CaracteristicaTeste, UsuarioUltimaAlteracaoId = 1, UsuarioInclusaoId = 1, DataInclusao = DateTime.Now, DataUltimaAlteracao = DateTime.Now };
             _serviceMock.Setup(x => x.Update(It.IsAny<basecs.Models.Caracteristica>())).ReturnsAsync(retorno);
         }
 

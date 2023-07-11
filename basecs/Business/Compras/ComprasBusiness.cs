@@ -1,8 +1,9 @@
 ﻿using basecs.Helpers.Helpers.Validators;
+using basecs.Interfaces.Business.IAvaliacoesBusiness;
 
 namespace basecs.Business.Compras
 {
-    public class ComprasBusiness
+    public class ComprasBusiness : IComprasBusiness
     {
         #region INSERT
         public string InsertValidation(basecs.Models.Compra model)
@@ -24,12 +25,12 @@ namespace basecs.Business.Compras
                 validation += "Identificacao da compra que incluiu e invalido\n";
             }
 
-            if (model.FormaPagamentoId < 1)
+            if ((int)model.FormaPagamento < 0)
             {
                 validation += "Identificacao da forma de pagamento que incluiu e invalido\n";
             }
 
-            if (model.StatusCompraId < 1)
+            if ((int)model.StatusCompra < 0)
             {
                 validation += "Identificacao do status da compra que incluiu e invalido\n";
             }
@@ -107,12 +108,12 @@ namespace basecs.Business.Compras
                 validation += "Identificacao da compra que incluiu e invalido\n";
             }
 
-            if (model.FormaPagamentoId < 1)
+            if ((int)model.FormaPagamento < 0)
             {
                 validation += "Identificacao da forma de pagamento que incluiu e invalido\n";
             }
 
-            if (model.StatusCompraId < 1)
+            if ((int)model.StatusCompra < 1)
             {
                 validation += "Identificacao do status da compra que incluiu e invalido\n";
             }
@@ -161,7 +162,7 @@ namespace basecs.Business.Compras
         }
         #endregion
 
-        #region UPDATE
+        #region DELETE
         public string DeleteValidation(int id)
         {
             string validation = "";

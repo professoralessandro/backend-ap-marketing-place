@@ -26,15 +26,16 @@ namespace backend_adm.Controllers
         #region RETURN LIST PAGINATED
         [HttpGet, Route("paginated")]
         public async Task<ActionResult<List<Bloqueio>>> ReturnListWithParameters(
-                [FromQuery] string param,
-                [FromQuery] DateTime? dateAdded,
+                [FromQuery] int? id,
+                [FromQuery] string descricao,
+                [FromQuery] bool? ativo,
                 [FromQuery] int? pageNumber,
                 [FromQuery] int? rowspPage
             )
         {
             try
             {
-                return Ok(await _service.ReturnListWithParametersPaginated(param, dateAdded, pageNumber, rowspPage));
+                return Ok(await _service.ReturnListWithParametersPaginated(id, descricao, ativo, pageNumber, rowspPage));
             }
             catch (Exception ex)
             {

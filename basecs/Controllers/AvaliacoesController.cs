@@ -5,18 +5,20 @@ using basecs.Models;
 using basecs.Services;
 using Microsoft.AspNetCore.Mvc;
 using System.Threading.Tasks;
+using basecs.Interfaces.Services.ILogsService;
+using basecs.Interfaces.Services.IAvaliacoesService;
 
 namespace backend_adm.Controllers
 {
     public class AvaliacoesController : ControllerCS
     {
         #region ATRIBUTTES
-        private readonly AvaliacoesService _service;
-        private readonly LogsService _log;
+        private readonly IAvaliacoesService _service;
+        private readonly ILogsService _log;
         #endregion
 
         #region CONSTRUCTORS
-        public AvaliacoesController([FromServices] AvaliacoesService service, [FromServices] LogsService log)
+        public AvaliacoesController([FromServices] IAvaliacoesService service, [FromServices] ILogsService log)
         {
             _service = service;
             _log = log;
@@ -25,7 +27,7 @@ namespace backend_adm.Controllers
 
         #region RETURN LIST PAGINATED
         [HttpGet, Route("paginated")]
-        public async Task<ActionResult<List<TipoConfiguracao>>> ReturnListWithParameters(
+        public async Task<ActionResult<List<Avaliacao>>> ReturnListWithParameters(
                 [FromQuery] int? id,
                 [FromQuery] string descricao,
                 [FromQuery] bool? ativo,

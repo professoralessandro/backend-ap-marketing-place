@@ -1,8 +1,9 @@
 ﻿using basecs.Helpers.Helpers.Validators;
+using basecs.Interfaces.Business.AvaliacoesBusiness;
 
 namespace basecs.Business.Caracteristicas
 {
-    public class CaracteristicasBusiness
+    public class CaracteristicasBusiness : ICaracteristicasBusiness
     {
         #region INSERT
         public string InsertValidation(basecs.Models.Caracteristica model)
@@ -75,7 +76,7 @@ namespace basecs.Business.Caracteristicas
         }
         #endregion
 
-        #region UPDATE
+        #region DELETE
         public string DeleteValidation(int id)
         {
             string validation = "";

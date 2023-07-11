@@ -1,4 +1,4 @@
-﻿using basecs.Interfaces.IConfiguracoesService;
+﻿using basecs.Interfaces.Services.IConfiguracoesService;
 using basecs.Services;
 using Moq;
 using System;

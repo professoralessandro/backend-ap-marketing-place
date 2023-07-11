@@ -8,7 +8,7 @@ using Microsoft.Data.SqlClient;
 using Microsoft.EntityFrameworkCore;
 using basecs.Business.Configuracoes;
 using basecs.Helpers.Helpers.Validators;
-using basecs.Interfaces.IConfiguracoesService;
+using basecs.Interfaces.Services.IConfiguracoesService;
 
 namespace basecs.Services
 {

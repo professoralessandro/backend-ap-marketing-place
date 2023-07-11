@@ -1,8 +1,9 @@
+using basecs.Interfaces.Services.IWelcomeService;
 using System;
 
 namespace basecs.Services
 {
-    public class WelcomeService
+    public class WelcomeService : IWelcomeService
     {
         #region RETURN WELCOME MESSAGE
         public string ReturnWelcomeMessage()

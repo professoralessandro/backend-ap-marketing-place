@@ -1,4 +1,5 @@
 ﻿using basecs.Helpers.Helpers.Validators;
+using basecs.Interfaces.Business.IAvaliacoesBusiness;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -6,7 +7,7 @@ using System.Threading.Tasks;
 
 namespace basecs.Business.Configuracoes
 {
-    public class ConfiguracoesBusiness
+    public class ConfiguracoesBusiness : IConfiguracoesBusiness
     {
         #region INSERT
         public string InsertValidation(basecs.Models.Configuracao model)
@@ -69,7 +70,7 @@ namespace basecs.Business.Configuracoes
         }
         #endregion
 
-        #region UPDATE
+        #region DELETE
         public string DeleteValidation(int id)
         {
             string validation = "";

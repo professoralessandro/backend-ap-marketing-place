@@ -1,5 +1,5 @@
-﻿using System;
-using System.Collections.Generic;
+﻿using basecs.Enuns;
+using System;
 
 #nullable disable
 
@@ -8,7 +8,7 @@ namespace basecs.Models
     public partial class Bloqueio
     {
         public int BloqueioId { get; set; }
-        public int TipoBloqueioId { get; set; }
+        public TipoBloqueioEnum TipoBloqueio { get; set; }
         public int ItemBloqueadoId { get; set; }
         public string NomeBloqueio { get; set; }
         public bool IsBloqueiaAcesso { get; set; }
@@ -19,7 +19,5 @@ namespace basecs.Models
         public DateTime DataInclusao { get; set; }
         public DateTime DataUltimaAlteracao { get; set; }
         public bool Ativo { get; set; }
-
-        public virtual TipoBloqueio TipoBloqueio { get; set; }
     }
 }

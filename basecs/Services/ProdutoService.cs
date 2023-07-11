@@ -8,21 +8,22 @@ using System;
 using basecs.Business.Produtos;
 using Microsoft.EntityFrameworkCore;
 using System.Linq;
+using basecs.Interfaces.Services.IAvaliacoesService;
 
 namespace basecs.Services
 {
-    public class ProdutoService
+    public class ProdutoService : IProdutoService
     {
         #region ATRIBUTTES
         private readonly MyDbContext _context;
-        private readonly ProdutosBussines _business;
+        private readonly ProdutosBusiness _business;
         #endregion
 
         #region CONTRUCTORS
         public ProdutoService(MyDbContext context)
         {
             _context = context;
-            _business = new ProdutosBussines();
+            _business = new ProdutosBusiness();
         }
         #endregion
 

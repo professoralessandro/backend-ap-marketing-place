@@ -1,5 +1,4 @@
-﻿
-using basecs.Interfaces.IBloqueiosService;
+﻿using basecs.Interfaces.Services.IBloqueiosService;
 using basecs.Services;
 using Moq;
 using System;

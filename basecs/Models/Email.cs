@@ -1,4 +1,5 @@
-﻿using System;
+﻿using basecs.Enuns;
+using System;
 using System.Collections.Generic;
 
 #nullable disable
@@ -9,7 +10,8 @@ namespace basecs.Models
     {
         public int EmailId { get; set; }
         public int UsuarioEnvioId { get; set; }
-        public int TipoEmailId { get; set; }
+        public TipoEmailEnum TipoEmail { get; set; }
+        public StatusEnvioEnum StatusEnvio { get; set; }
         public string NomeEmail { get; set; }
         public string Destinatario { get; set; }
         public string Assunto { get; set; }
@@ -22,8 +24,6 @@ namespace basecs.Models
         public DateTime DataInclusao { get; set; }
         public DateTime DataUltimaAlteracao { get; set; }
         public bool Ativo { get; set; }
-
-        public virtual TipoEmail TipoEmail { get; set; }
         public virtual Usuario UsuarioEnvio { get; set; }
     }
 }

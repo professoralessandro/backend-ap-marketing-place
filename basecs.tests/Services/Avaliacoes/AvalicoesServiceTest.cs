@@ -1,4 +1,4 @@
-﻿using basecs.Interfaces.IAvaliacoesService;
+﻿using basecs.Interfaces.Services.IAvaliacoesService;
 using basecs.Services;
 using Moq;
 using System;

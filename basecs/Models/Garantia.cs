@@ -1,4 +1,5 @@
-﻿using System;
+﻿using basecs.Enuns;
+using System;
 using System.Collections.Generic;
 
 #nullable disable
@@ -13,7 +14,7 @@ namespace basecs.Models
         }
 
         public int GarantiaId { get; set; }
-        public int TipoGarantiaId { get; set; }
+        public TipoGarantiaEnum TipoGarantia { get; set; }
         public string Descricao { get; set; }
         public decimal PrecoVenda { get; set; }
         public bool Bloqueado { get; set; }
@@ -23,8 +24,6 @@ namespace basecs.Models
         public DateTime DataInclusao { get; set; }
         public DateTime DataUltimaAlteracao { get; set; }
         public bool Ativo { get; set; }
-
-        public virtual TipoGarantia TipoGarantia { get; set; }
         public virtual ICollection<Compra> Compras { get; set; }
     }
 }

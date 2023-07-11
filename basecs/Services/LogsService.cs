@@ -4,7 +4,7 @@ using System.Linq;
 using System.Threading.Tasks;
 using basecs.Data;
 using basecs.Helpers.Helpers.Validators;
-using basecs.Interfaces.ITiposLogsService;
+using basecs.Interfaces.Services.ILogsService;
 using basecs.Models;
 using Microsoft.AspNetCore.Http;
 using Microsoft.Data.SqlClient;

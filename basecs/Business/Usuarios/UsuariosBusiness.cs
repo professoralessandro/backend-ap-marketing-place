@@ -1,18 +1,29 @@
-﻿using basecs.Helpers.Helpers.Validators;
+﻿using basecs.Dtos.Usuarios;
+using basecs.Helpers.Helpers.Validators;
+using basecs.Interfaces.Business.IAvaliacoesBusiness;
+using basecs.Interfaces.Services.IUsuariosService;
+using System.Linq;
+using System.Threading.Tasks;
 
 namespace basecs.Business.Usuarios
 {
-    public class UsuariosBusiness
+    public class UsuariosBusiness : IUsuariosBusiness
     {
+        //#region ATTRIBUTES
+        //private readonly IUsuariosService _usuariosService;
+        //#endregion
+
+        //#region CONSTRUCTORES
+        //public UsuariosBusiness(IUsuariosService usuariosService)
+        //{
+        //    _usuariosService = usuariosService;
+        //}
+        //#endregion
+
         #region INSERT
-        public string InsertValidation(basecs.Models.Usuario model)
+        public async Task<string> InsertValidation(InsertUserDto model, IUsuariosService _usuariosService)
         {
             string validation = "";
-
-            if (model.UsuarioId > 0)
-            {
-                validation += "Identificação do avaliação invalido\n";
-            }
 
             if (!string.IsNullOrEmpty(model.Nome))
             {
@@ -25,7 +36,6 @@ namespace basecs.Business.Usuarios
 
             if (!string.IsNullOrEmpty(model.Email))
             {
-                model.Email = Validators.RemoveInjections(model.Email);
                 if (model.Email.Length < 3)
                 {
                     validation += "Email contem menos de três caracteres\n";
@@ -42,9 +52,18 @@ namespace basecs.Business.Usuarios
                 validation += "Identificação do usuario que incluiu e invalido\n";
             }
 
-            if (model.UsuarioUltimaAlteracaoId < 1)
+            var user = await _usuariosService.ReturnListWithParametersPaginated(null, null, null, model.Email, null, 1, 1);
+
+            if (user.Any())
             {
-                validation += "Identificacao do usuario que incluiu e invalido\n";
+                validation += "Ja existe este usuario com este email cadastrado na base de dados.\n";
+            }
+
+            user = await _usuariosService.ReturnListWithParametersPaginated(null, null, model.NmrDocumento, null, null, 1, 1);
+
+            if (user.Any())
+            {
+                validation += "Ja existe este usuario com este numero de documento cadastrado na base de dados.\n";
             }
 
             return validation;

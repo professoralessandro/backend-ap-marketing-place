@@ -1,5 +1,4 @@
-﻿
-using basecs.Interfaces.IComprasService;
+﻿using basecs.Interfaces.Services.IComprasService;
 using basecs.Services;
 using Moq;
 using System;

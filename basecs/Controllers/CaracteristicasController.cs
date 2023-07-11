@@ -5,6 +5,7 @@ using basecs.Models;
 using basecs.Services;
 using Microsoft.AspNetCore.Mvc;
 using System.Threading.Tasks;
+using basecs.Enuns;
 
 namespace backend_adm.Controllers
 {
@@ -25,10 +26,10 @@ namespace backend_adm.Controllers
 
         #region RETURN LIST PAGINATED
         [HttpGet, Route("paginated")]
-        public async Task<ActionResult<List<TipoConfiguracao>>> ReturnListWithParameters(
+        public async Task<ActionResult<List<Caracteristica>>> ReturnListWithParameters(
                 [FromQuery] int? id,
                 [FromQuery] string descricao,
-                [FromQuery] int tipoCaracteristicaId,
+                [FromQuery] TipoCaracteristicaEnum? tipoCaracteristicaId,
                 [FromQuery] bool? ativo,
                 [FromQuery] int? pageNumber,
                 [FromQuery] int? rowspPage
@@ -50,7 +51,7 @@ namespace backend_adm.Controllers
         public async Task<ActionResult<List<Caracteristica>>> ReturnListWithParameters(
             [FromQuery] int? id,
             [FromQuery] string descricao,
-            [FromQuery] int? tipoCaracteristicaId,
+            [FromQuery] TipoCaracteristicaEnum? tipoCaracteristicaId,
             [FromQuery] bool? ativo
             )
         {

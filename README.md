@@ -21,6 +21,10 @@ ng serve
 
 Navigate to `http://localhost:5000/swagger`. To seen Swagger.
 
+## Tecnical Debitos
+Change all sort of objects to ENUM
+Change toi microservices the tipes
+
 ## Author
 Alessandro dos Santos
 

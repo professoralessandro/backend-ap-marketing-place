@@ -1,4 +1,27 @@
-﻿using basecs.Data;
+﻿using basecs.Business.Avaliacoes;
+using basecs.Business.Bloqueios;
+using basecs.Business.Caracteristicas;
+using basecs.Business.Compras;
+using basecs.Business.Configuracoes;
+using basecs.Business.Produtos;
+using basecs.Business.Telefones;
+using basecs.Business.Usuarios;
+using basecs.Data;
+using basecs.Helpers.RumtimeStings;
+using basecs.Interfaces.Business.AvaliacoesBusiness;
+using basecs.Interfaces.Business.IAvaliacoesBusiness;
+using basecs.Interfaces.Data;
+using basecs.Interfaces.Repository;
+using basecs.Interfaces.Services.IAvaliacoesService;
+using basecs.Interfaces.Services.IBloqueiosService;
+using basecs.Interfaces.Services.ICaracteristicasService;
+using basecs.Interfaces.Services.IComprasService;
+using basecs.Interfaces.Services.IConfiguracoesService;
+using basecs.Interfaces.Services.ILogsService;
+using basecs.Interfaces.Services.ITelefonesService;
+using basecs.Interfaces.Services.IUsuariosService;
+using basecs.Interfaces.Services.IWelcomeService;
+using basecs.Repository;
 using basecs.Services;
 using Microsoft.AspNetCore.Builder;
 using Microsoft.AspNetCore.Hosting;
@@ -7,7 +30,6 @@ using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.DependencyInjection;
 using Microsoft.Extensions.Hosting;
 using Microsoft.OpenApi.Models;
-using System;
 
 namespace basecs
 {
@@ -28,8 +50,19 @@ namespace basecs
         // This method gets called by the runtime. Use this method to add services to the container.
         public void ConfigureServices(IServiceCollection services)
         {
+            #region RUMTIME SETTINGS
+            RumtimeSettings.ConnectionString = Configuration.GetValue<string>("ConnectionString").ToString();
+            #endregion
+
+            #region RUMTIME SETTINGS PAGSEGURO
+            RumtimeStingsPagSeguro.Url = Configuration.GetValue<string>("MercadoPagoIntegration:Url").ToString();
+            RumtimeStingsPagSeguro.Email = Configuration.GetValue<string>("MercadoPagoIntegration:Email").ToString();
+            RumtimeStingsPagSeguro.Token = Configuration.GetValue<string>("MercadoPagoIntegration:Token").ToString();
+            RumtimeStingsPagSeguro.PaymentUrl = Configuration.GetValue<string>("MercadoPagoIntegration:PaymentUrl").ToString();
+            #endregion
+
             #region CONFIGURATION SERVICES
-            services.AddEntityFrameworkSqlServer().AddDbContext<MyDbContext>(a => a.UseSqlServer(Configuration.GetValue<String>("ConnectionString").ToString()));
+            services.AddEntityFrameworkSqlServer().AddDbContext<MyDbContext>(a => a.UseSqlServer(RumtimeSettings.ConnectionString));
             services = Container(services);
             #endregion
 
@@ -47,29 +80,34 @@ namespace basecs
         #region SERVICES CONTAINER METHOD
         private IServiceCollection Container(IServiceCollection services)
         {
-            services.AddScoped<AvaliacoesService>();
-            services.AddScoped<BloqueiosService>();
-            services.AddScoped<CaracteristicasService>();
-            services.AddScoped<ComprasService>();
-            services.AddScoped<ConfiguracoesService>();
-            services.AddScoped<TiposBloqueiosService>();
-            services.AddScoped<TiposCaracteristicasService>();
-            services.AddScoped<TiposConfiguracoesService>();
-            services.AddScoped<TiposDadosService>();
-            services.AddScoped<TiposDocumentosService>();
-            services.AddScoped<TiposEmailsService>();
-            services.AddScoped<TiposEnderecosService>();
-            services.AddScoped<TiposEntregasService>();
-            services.AddScoped<TiposGarantiasService>();
-            services.AddScoped<TiposLancamentosService>();
-            services.AddScoped<TiposNotasFiscaisService>();
-            services.AddScoped<TiposParametrosService>();
-            services.AddScoped<TiposTelefonesService>();
-            services.AddScoped<TiposWorkFlowsService>();
-            services.AddScoped<WelcomeService>();
-            services.AddScoped<LogsService>();
-            services.AddScoped<WelcomeService>();
-            services.AddScoped<ProdutoService>();
+            // DAPPER
+            services.AddScoped<APDConnector>();
+            services.AddTransient<IAPDWork, APDWork>();
+
+            // SERVICES
+            services.AddScoped<IAvaliacoesService, AvaliacoesService>();
+            services.AddScoped<IBloqueiosService, BloqueiosService>();
+            services.AddScoped<ICaracteristicasService, CaracteristicasService>();
+            services.AddScoped<IComprasService, ComprasService>();
+            services.AddScoped<IConfiguracoesService, ConfiguracoesService>();
+            services.AddScoped<IWelcomeService, WelcomeService>();
+            services.AddScoped<ILogsService, LogsService>();
+            services.AddScoped<IProdutoService, ProdutoService>();
+            services.AddScoped<IUsuariosService, UsuariosService>();
+            services.AddScoped<ITelefonesService, TelefonesService>();
+
+            // REPOSITORYS
+            services.AddScoped<IUsuariosRepository, UsuariosRepository>();
+
+            // BUSSINESS
+            services.AddScoped<IAvaliacoesBusiness, AvaliacoesBusiness>();
+            services.AddScoped<IBloqueiosBusiness, BloqueiosBusiness>();
+            services.AddScoped<ICaracteristicasBusiness, CaracteristicasBusiness>();
+            services.AddScoped<IComprasBusiness, ComprasBusiness>();
+            services.AddScoped<IConfiguracoesBusiness, ConfiguracoesBusiness>();
+            services.AddScoped<IProdutosBusiness, ProdutosBusiness>();
+            services.AddScoped<ITelefonesBusiness, TelefonesBusiness>();
+            services.AddScoped<IUsuariosBusiness, UsuariosBusiness>();
 
             return services;
         }

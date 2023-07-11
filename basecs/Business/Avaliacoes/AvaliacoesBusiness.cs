@@ -1,8 +1,9 @@
 ﻿using basecs.Helpers.Helpers.Validators;
+using basecs.Interfaces.Business.IAvaliacoesBusiness;
 
 namespace basecs.Business.Avaliacoes
 {
-    public class AvaliacoesBusiness
+    public class AvaliacoesBusiness : IAvaliacoesBusiness
     {
         #region INSERT
         public string InsertValidation(basecs.Models.Avaliacao model)

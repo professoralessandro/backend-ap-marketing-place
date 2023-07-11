@@ -1,8 +1,9 @@
 ﻿using basecs.Helpers.Helpers.Validators;
+using basecs.Interfaces.Business.AvaliacoesBusiness;
 
 namespace basecs.Business.Bloqueios
 {
-    public class BloqueiosBusiness
+    public class BloqueiosBusiness : IBloqueiosBusiness
     {
         #region INSERT
         public string InsertValidation(basecs.Models.Bloqueio model)
@@ -65,7 +66,7 @@ namespace basecs.Business.Bloqueios
         }
         #endregion
 
-        #region UPDATE
+        #region DELETE
         public string DeleteValidation(int id)
         {
             string validation = "";

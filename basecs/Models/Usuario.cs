@@ -1,4 +1,5 @@
-﻿using System;
+﻿using basecs.Enuns;
+using System;
 using System.Collections.Generic;
 
 #nullable disable
@@ -23,11 +24,10 @@ namespace basecs.Models
             UsuariosLancamentos = new HashSet<UsuariosLancamento>();
             Venda = new HashSet<Venda>();
         }
-
         public int UsuarioId { get; set; }
         public string Usuario1 { get; set; }
         public string NmrDocumento { get; set; }
-        public int TipoDocumentoId { get; set; }
+        public TipoDocumentoEnum TipoDocumento { get; set; }
         public string Senha { get; set; }
         public string Nome { get; set; }
         public DateTime? DataNascimento { get; set; }
@@ -43,8 +43,8 @@ namespace basecs.Models
         public DateTime DataUltimaTrocaSenha { get; set; }
         public DateTime? DataUltimoLogin { get; set; }
         public bool Ativo { get; set; }
+        public string NmrTelefone { get; set; }
 
-        public virtual TipoDocumento TipoDocumento { get; set; }
         public virtual ICollection<Avaliacao> Avaliacos { get; set; }
         public virtual ICollection<CartoesBancario> CartoesBancarios { get; set; }
         public virtual ICollection<Compra> Compras { get; set; }

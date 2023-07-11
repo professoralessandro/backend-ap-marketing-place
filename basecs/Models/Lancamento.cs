@@ -1,4 +1,5 @@
-﻿using System;
+﻿using basecs.Enuns;
+using System;
 using System.Collections.Generic;
 
 #nullable disable
@@ -14,7 +15,7 @@ namespace basecs.Models
         }
 
         public int LancamentoId { get; set; }
-        public int TipoLancamentoId { get; set; }
+        public TipoLancamentoEnum TipoLancamento { get; set; }
         public int UsuarioId { get; set; }
         public int SituacaoId { get; set; }
         public string Referencia { get; set; }
@@ -33,7 +34,6 @@ namespace basecs.Models
         public decimal? ValorParcela { get; set; }
 
         public virtual Situaco Situacao { get; set; }
-        public virtual TipoLancamento TipoLancamento { get; set; }
         public virtual Usuario Usuario { get; set; }
         public virtual ICollection<Compra> Compras { get; set; }
         public virtual ICollection<UsuariosLancamento> UsuariosLancamentos { get; set; }

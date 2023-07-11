@@ -4,8 +4,9 @@ using System.Linq;
 using System.Threading.Tasks;
 using basecs.Business.Caracteristicas;
 using basecs.Data;
+using basecs.Enuns;
 using basecs.Helpers.Helpers.Validators;
-using basecs.Interfaces.ICaracteristicasService;
+using basecs.Interfaces.Services.ICaracteristicasService;
 using basecs.Models;
 using Microsoft.Data.SqlClient;
 using Microsoft.EntityFrameworkCore;
@@ -45,7 +46,7 @@ namespace basecs.Services
         public async Task<List<Caracteristica>> ReturnListWithParametersPaginated(
                 int? id,
                 string descricao,
-                int? tipoCaracteristicaId,
+                TipoCaracteristicaEnum? tipoCaracteristica,
                 bool? ativo,
                 int? pageNumber,
                 int? rowspPage
@@ -56,7 +57,7 @@ namespace basecs.Services
                 SqlParameter[] Params = {
                     new SqlParameter("@Id", id.Equals(null) ? DBNull.Value : id),
                     new SqlParameter("@Descricao", string.IsNullOrEmpty(descricao.RemoveInjections()) ? DBNull.Value : descricao.RemoveInjections()),
-                    new SqlParameter("@TipoCaracteristicaId", tipoCaracteristicaId.Equals(null) ? DBNull.Value : id),
+                    new SqlParameter("@TipoCaracteristicaId", tipoCaracteristica.Equals(null) ? DBNull.Value : id),
                     new SqlParameter("@Ativo", ativo.Equals(null) ? DBNull.Value : ativo),
                     new SqlParameter("@PageNumber", pageNumber),
                     new SqlParameter("@RowspPage", rowspPage)
@@ -81,7 +82,7 @@ namespace basecs.Services
         public async Task<List<Caracteristica>> ReturnListWithParameters(
                 int? id,
                 string descricao,
-                int? tipoCaracteristicaId,
+                TipoCaracteristicaEnum? tipoCaracteristica,
                 bool? ativo
             )
         {
@@ -92,7 +93,7 @@ namespace basecs.Services
                     return await _context.Caracteristicas.Where(c =>
                     (c.CaracteristicaId == id || id == null) &&
                     (c.Descricao.Contains(descricao.RemoveInjections()) || string.IsNullOrEmpty(descricao.RemoveInjections())) &&
-                    (c.TipoCaracteristicaId == tipoCaracteristicaId || tipoCaracteristicaId == null) &&
+                    (c.TipoCaracteristica == tipoCaracteristica || tipoCaracteristica == null) &&
                     (c.Ativo == ativo || ativo == null)
                     ).ToListAsync();
                 }
