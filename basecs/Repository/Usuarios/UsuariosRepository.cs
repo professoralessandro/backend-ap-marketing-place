@@ -5,7 +5,7 @@ using Dapper;
 using System;
 using System.Threading.Tasks;
 
-namespace basecs.Repository
+namespace basecs.Repository.Usuarios
 {
     public class UsuariosRepository : IUsuariosRepository
     {
@@ -30,24 +30,25 @@ namespace basecs.Repository
 
         public async Task<int> InsertUserAsync(InsertUserDto model)
         {
-            var Params = new {
-                Usuario = model.Usuario,
-                NmrDocumento = model.NmrDocumento,
-                TipoDocumento = model.TipoDocumento,
-                Senha = model.Senha,
-                Nome = model.Nome,
-                DataNascimento = model.DataNascimento,
-                Sexo = model.Sexo,
-                EstadoCivil = model.EstadoCivil,
-                Email = model.Email,
+            var Params = new
+            {
+                model.Usuario,
+                model.NmrDocumento,
+                model.TipoDocumento,
+                model.Senha,
+                model.Nome,
+                model.DataNascimento,
+                model.Sexo,
+                model.EstadoCivil,
+                model.Email,
                 TrocaSenha = false,
                 Bloqueado = false,
-                UsuarioInclusaoId = model.UsuarioInclusaoId,
+                model.UsuarioInclusaoId,
                 UsuarioUltimaAlteracaoId = model.UsuarioInclusaoId,
                 DataInclusao = DateTime.Now,
                 DataUltimaAlteracao = DateTime.Now,
                 DataUltimaTrocaSenha = DateTime.Now,
-                DataUltimoLogin = model.DataUltimoLogin,
+                model.DataUltimoLogin,
                 Ativo = true,
             };
 
@@ -65,23 +66,23 @@ namespace basecs.Repository
         {
             var Params = new
             {
-                Id = model.Id,
-                Usuario = model.Usuario,
-                NmrDocumento = model.NmrDocumento,
-                TipoDocumento = model.TipoDocumento,
-                Senha = model.Senha,
-                Nome = model.Nome,
-                DataNascimento = model.DataNascimento,
-                Sexo = model.Sexo,
-                EstadoCivil = model.EstadoCivil,
-                Email = model.Email,
-                TrocaSenha = model.TrocaSenha,
-                Bloqueado = model.Bloqueado,
-                UsuarioUltimaAlteracaoId = model.UsuarioUltimaAlteracaoId,
-                DataUltimaAlteracao = model.DataUltimaAlteracao,
-                DataUltimaTrocaSenha = model.DataUltimaTrocaSenha,
-                DataUltimoLogin = model.DataUltimoLogin,
-                Ativo = model.Ativo,
+                model.Id,
+                model.Usuario,
+                model.NmrDocumento,
+                model.TipoDocumento,
+                model.Senha,
+                model.Nome,
+                model.DataNascimento,
+                model.Sexo,
+                model.EstadoCivil,
+                model.Email,
+                model.TrocaSenha,
+                model.Bloqueado,
+                model.UsuarioUltimaAlteracaoId,
+                model.DataUltimaAlteracao,
+                model.DataUltimaTrocaSenha,
+                model.DataUltimoLogin,
+                model.Ativo,
             };
 
             string query = string.Empty;

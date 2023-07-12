@@ -5,5 +5,6 @@
         CartaoDebito = 0,
         CartaoCredito = 1,
         Dinheiro = 2,
+        MercadoPago = 3,
     }
 }

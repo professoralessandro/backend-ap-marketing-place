@@ -267,7 +267,7 @@ namespace basecs.Services
                 NameValueCollection postData = await ReturnCheckoutParameters(model, user.First());
 
                 //Retorna código do checkout.
-                return string.Concat(RumtimeStingsPagSeguro.PaymentUrl, ReturnCodeFromXML(postData));
+                return string.Concat(RumtimeStingsPagSeguro.CheckoutUrl, ReturnCodeFromXML(postData));
             }
             catch (ValidationException ex)
             {

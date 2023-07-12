@@ -295,7 +295,7 @@ namespace backend_adm.Controllers
                 var date = xmlDoc.GetElementsByTagName("date")[0];
 
                 //Retorna código do checkout.
-                return Ok(string.Concat(RumtimeStingsPagSeguro.PaymentUrl, code.InnerText));
+                return Ok(string.Concat(RumtimeStingsPagSeguro.CheckoutUrl, code.InnerText));
             }
             catch (ValidationException ex)
             {

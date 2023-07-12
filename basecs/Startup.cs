@@ -21,7 +21,7 @@ using basecs.Interfaces.Services.ILogsService;
 using basecs.Interfaces.Services.ITelefonesService;
 using basecs.Interfaces.Services.IUsuariosService;
 using basecs.Interfaces.Services.IWelcomeService;
-using basecs.Repository;
+using basecs.Repository.Usuarios;
 using basecs.Services;
 using Microsoft.AspNetCore.Builder;
 using Microsoft.AspNetCore.Hosting;
@@ -58,7 +58,12 @@ namespace basecs
             RumtimeStingsPagSeguro.Url = Configuration.GetValue<string>("MercadoPagoIntegration:Url").ToString();
             RumtimeStingsPagSeguro.Email = Configuration.GetValue<string>("MercadoPagoIntegration:Email").ToString();
             RumtimeStingsPagSeguro.Token = Configuration.GetValue<string>("MercadoPagoIntegration:Token").ToString();
-            RumtimeStingsPagSeguro.PaymentUrl = Configuration.GetValue<string>("MercadoPagoIntegration:PaymentUrl").ToString();
+
+            // MERCADO PAGO SETTINGS
+            RumtimeStingsPagSeguro.CheckoutUrl = Configuration.GetValue<string>("MercadoPagoIntegration:CheckoutUrl").ToString();
+            RumtimeStingsPagSeguro.CancelamentoUrl = Configuration.GetValue<string>("MercadoPagoIntegration:CancelamentoUrl").ToString();
+            RumtimeStingsPagSeguro.ConsultaUrlUrl = Configuration.GetValue<string>("MercadoPagoIntegration:ConsultaUrl").ToString();
+            RumtimeStingsPagSeguro.FinalizacaoUrl = Configuration.GetValue<string>("MercadoPagoIntegration:FinalizacaoUrl").ToString();
             #endregion
 
             #region CONFIGURATION SERVICES
