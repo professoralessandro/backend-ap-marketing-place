@@ -1,7 +1,7 @@
 ﻿using basecs.Dtos.Checkout.Request;
-using basecs.Dtos.Checkout.Test.Enum;
 using basecs.Enuns;
 using basecs.Models;
+using System;
 using System.Collections.Generic;
 using System.Threading.Tasks;
 
@@ -10,12 +10,12 @@ namespace basecs.Interfaces.Services.IComprasService
     public interface IComprasService
     {
         #region FIND BY ID
-        Task<Compra> FindById(int id);
+        Task<Compra> FindById(Guid id);
         #endregion
 
         #region RETURN LIST WITH PARAMETERS PAGINATED
         Task<List<Compra>> ReturnListWithParametersPaginated(
-            int? id,
+            Guid? id,
             string codigoCompra,
             int? produtoId,
             int? compradorId,
@@ -25,7 +25,6 @@ namespace basecs.Interfaces.Services.IComprasService
             int? lancamentoPaiId,
             int? enderecoId,
             int? garantiaId,
-            int? telefoneId,
             int? vendedorId,
             int? avaliacaoId,
             bool? isPago,
@@ -39,7 +38,7 @@ namespace basecs.Interfaces.Services.IComprasService
 
         #region RETURN LIST WITH PARAMETERS
         Task<List<Compra>> ReturnListWithParameters(
-            int? id,
+            Guid? id,
             string codigoCompra,
             int? produtoId,
             int? compradorId,
@@ -49,7 +48,6 @@ namespace basecs.Interfaces.Services.IComprasService
             int? lancamentoPaiId,
             int? enderecoId,
             int? garantiaId,
-            int? telefoneId,
             int? vendedorId,
             int? avaliacaoId,
             bool? isPago,
@@ -68,7 +66,7 @@ namespace basecs.Interfaces.Services.IComprasService
         #endregion        
 
         #region DELETE SERVIÇO DE DELETE
-        Task<Compra> Delete(int id);
+        Task<Compra> Delete(Guid id);
         #endregion
 
         #region CHECKOUT

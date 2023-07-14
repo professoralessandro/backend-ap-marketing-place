@@ -6,9 +6,9 @@ using basecs.Data;
 using basecs.Models;
 using Microsoft.Data.SqlClient;
 using Microsoft.EntityFrameworkCore;
-using basecs.Business.Configuracoes;
 using basecs.Helpers.Helpers.Validators;
 using basecs.Interfaces.Services.IConfiguracoesService;
+using basecs.Interfaces.Business.IAvaliacoesBusiness;
 
 namespace basecs.Services
 {
@@ -16,19 +16,19 @@ namespace basecs.Services
     {
         #region ATRIBUTTES
         private readonly MyDbContext _context;
-        private readonly ConfiguracoesBusiness _business;
+        private readonly IConfiguracoesBusiness _business;
         #endregion
 
         #region CONTRUCTORS
-        public ConfiguracoesService(MyDbContext context)
+        public ConfiguracoesService(MyDbContext context, IConfiguracoesBusiness business)
         {
             _context = context;
-            _business = new ConfiguracoesBusiness();
+            _business = business;
         }
         #endregion
 
         #region FIND BY ID
-        public async Task<Configuracao> FindById(int id)
+        public async Task<Configuracao> FindById(Guid id)
         {
             try
             {
@@ -43,7 +43,7 @@ namespace basecs.Services
 
         #region RETURN LIST WITH PARAMETERS PAGINATED
         public async Task<List<Configuracao>> ReturnListWithParametersPaginated(
-                int? id,
+                Guid? id,
                 string descricao,
                 bool? ativo,
                 int? pageNumber,
@@ -77,7 +77,7 @@ namespace basecs.Services
 
         #region RETURN LIST WITH PARAMETERS
         public async Task<List<Configuracao>> ReturnListWithParameters(
-                int? id,
+                Guid? id,
                 string descricao,
                 bool? ativo
             )
@@ -152,7 +152,7 @@ namespace basecs.Services
         #endregion        
 
         #region DELETE SERVIÇO DE DELETE
-        public async Task<Configuracao> Delete(int id)
+        public async Task<Configuracao> Delete(Guid id)
         {
             try
             {

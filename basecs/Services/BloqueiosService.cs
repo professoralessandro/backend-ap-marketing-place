@@ -1,6 +1,6 @@
-﻿using basecs.Business.Bloqueios;
-using basecs.Data;
+﻿using basecs.Data;
 using basecs.Helpers.Helpers.Validators;
+using basecs.Interfaces.Business.AvaliacoesBusiness;
 using basecs.Interfaces.Services.IBloqueiosService;
 using basecs.Models;
 using Microsoft.Data.SqlClient;
@@ -16,19 +16,19 @@ namespace basecs.Services
     {
         #region ATRIBUTTES
         private readonly MyDbContext _context;
-        private readonly BloqueiosBusiness _business;
+        private readonly IBloqueiosBusiness _business;
         #endregion
 
         #region CONTRUCTORS
-        public BloqueiosService(MyDbContext context)
+        public BloqueiosService(MyDbContext context, IBloqueiosBusiness business)
         {
             _context = context;
-            _business = new BloqueiosBusiness();
+            _business = business;
         }
         #endregion
 
         #region FIND BY ID
-        public async Task<Bloqueio> FindById(int id)
+        public async Task<Bloqueio> FindById(Guid id)
         {
             try
             {
@@ -43,7 +43,7 @@ namespace basecs.Services
 
         #region RETURN LIST WITH PARAMETERS PAGINATED
         public async Task<List<Bloqueio>> ReturnListWithParametersPaginated(
-                int? id,
+                Guid? id,
                 string descricao,
                 bool? ativo,
                 int? pageNumber,
@@ -77,7 +77,7 @@ namespace basecs.Services
 
         #region RETURN LIST WITH PARAMETERS
         public async Task<List<Bloqueio>> ReturnListWithParameters(
-                int? id,
+                Guid? id,
                 string descricao,
                 bool isBloqueiaAcesso,
                 bool? ativo
@@ -154,7 +154,7 @@ namespace basecs.Services
         #endregion        
 
         #region DELETE SERVIÇO DE DELETE
-        public async Task<Bloqueio> Delete(int id)
+        public async Task<Bloqueio> Delete(Guid id)
         {
             try
             {

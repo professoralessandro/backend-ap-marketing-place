@@ -8,19 +8,22 @@ namespace basecs.Models
 {
     public partial class Configuracao
     {
-        public Configuracao()
-        {
-            ConfiguracoesParametros = new HashSet<ConfiguracoesParametro>();
-        }
+        public Guid ConfiguracaoId { get; set; }
 
-        public int ConfiguracaoId { get; set; }
         public TipoConfiguracaoEnum TipoConfiguracao { get; set; }
+
         public string Descricao { get; set; }
-        public int UsuarioInclusaoId { get; set; }
-        public int UsuarioUltimaAlteracaoId { get; set; }
+
+        public Guid UsuarioInclusaoId { get; set; }
+
+        public Guid? UsuarioUltimaAlteracaoId { get; set; }
+
         public DateTime DataInclusao { get; set; }
-        public DateTime DataUltimaAlteracao { get; set; }
+
+        public DateTime? DataUltimaAlteracao { get; set; }
+
         public bool Ativo { get; set; }
-        public virtual ICollection<ConfiguracoesParametro> ConfiguracoesParametros { get; set; }
+
+        public virtual ICollection<ConfiguracoesParametro> ConfiguracoesParametros { get; set; } = new List<ConfiguracoesParametro>();
     }
 }

@@ -18,7 +18,6 @@ using System.Text;
 using System.Xml;
 using System.Collections.Specialized;
 using basecs.Helpers.Helpers.Validators;
-using basecs.Dtos.Checkout.Test.Enum;
 using basecs.Dtos.Checkout.Test.TransferObjects;
 using System.Globalization;
 using System.IO;
@@ -47,7 +46,7 @@ namespace backend_adm.Controllers
         #region RETURN LIST PAGINATED
         [HttpGet, Route("paginated")]
         public async Task<ActionResult<List<Compra>>> ReturnListWithParameters(
-                [FromQuery] int? id,
+                [FromQuery] Guid? id,
                 [FromQuery] string codigoCompra,
                 [FromQuery] int? produtoId,
                 [FromQuery] int? compradorId,
@@ -57,7 +56,6 @@ namespace backend_adm.Controllers
                 [FromQuery] int? lancamentoPaiId,
                 [FromQuery] int? enderecoId,
                 [FromQuery] int? garantiaId,
-                [FromQuery] int? telefoneId,
                 [FromQuery] int? vendedorId,
                 [FromQuery] int? avaliacaoId,
                 [FromQuery] bool? isPago,
@@ -81,7 +79,6 @@ namespace backend_adm.Controllers
                     lancamentoPaiId,
                     enderecoId,
                     garantiaId,
-                    telefoneId,
                     vendedorId,
                     avaliacaoId,
                     isPago,
@@ -102,7 +99,7 @@ namespace backend_adm.Controllers
         #region RETURN LIST WITH PARAMETERS
         [HttpGet]
         public async Task<ActionResult<List<Compra>>> ReturnListWithParameters(
-                [FromQuery] int? id,
+                [FromQuery] Guid? id,
                 [FromQuery] string codigoCompra,
                 [FromQuery] int? produtoId,
                 [FromQuery] int? compradorId,
@@ -112,7 +109,6 @@ namespace backend_adm.Controllers
                 [FromQuery] int? lancamentoPaiId,
                 [FromQuery] int? enderecoId,
                 [FromQuery] int? garantiaId,
-                [FromQuery] int? telefoneId,
                 [FromQuery] int? vendedorId,
                 [FromQuery] int? avaliacaoId,
                 [FromQuery] bool? isPago,
@@ -134,7 +130,6 @@ namespace backend_adm.Controllers
                     lancamentoPaiId,
                     enderecoId,
                     garantiaId,
-                    telefoneId,
                     vendedorId,
                     avaliacaoId,
                     isPago,
@@ -190,7 +185,7 @@ namespace backend_adm.Controllers
 
         #region DELETE
         [HttpDelete]
-        public async Task<ActionResult> Delete(Int32 id)
+        public async Task<ActionResult> Delete(Guid id)
         {
             try
             {
@@ -247,7 +242,7 @@ namespace backend_adm.Controllers
                     postData.Add(string.Concat("itemDescription", i + 1), productFromDb.Descricao); // DESCRICAO DO PRODUTO
                     postData.Add(string.Concat("itemAmount", i + 1), productFromDb.PrecoVenda.ToString()); // PRECO DE VENDA DO PRODUTO
                     postData.Add(string.Concat("itemQuantity", i + 1), model.Product[i].Quantity.ToString()); // QUANTIDADE SOLICITADA PELO CLIENTE
-                    postData.Add(string.Concat("itemWeight", i + 1), "20"); // VALOT SETADO NA MAO POIS NAO TEMOS PESO CADASTRADO NA BASE
+                    postData.Add(string.Concat("itemWeight", i + 1), productFromDb.Peso == null ? "10" : productFromDb.Peso.ToString()); // VALOT SETADO NA MAO POIS NAO TEMOS PESO CADASTRADO NA BASE
                 }
 
                 //Reference.

@@ -28,7 +28,7 @@ namespace backend_adm.Controllers
         #region RETURN LIST PAGINATED
         [HttpGet, Route("paginated")]
         public async Task<ActionResult<List<Usuario>>> ReturnListWithParameters(
-                [FromQuery] int? id,
+                [FromQuery] Guid? id,
                 [FromQuery] string nome,
                 [FromQuery] string nmrDocumento,
                 [FromQuery] string email,
@@ -51,7 +51,7 @@ namespace backend_adm.Controllers
         #region RETURN LIST WITH PARAMETERS
         [HttpGet]
         public async Task<ActionResult<List<Usuario>>> ReturnListWithParameters(
-                [FromQuery] int? id,
+                [FromQuery] Guid? id,
                 [FromQuery] string nome,
                 [FromQuery] string nmrDocumento,
                 [FromQuery] string email,
@@ -109,7 +109,7 @@ namespace backend_adm.Controllers
 
         #region DELETE
         [HttpDelete]
-        public async Task<ActionResult> Delete(int id)
+        public async Task<ActionResult> Delete(Guid id)
         {
             try
             {

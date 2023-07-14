@@ -1,5 +1,6 @@
 ﻿using basecs.Helpers.Helpers.Validators;
 using basecs.Interfaces.Business.AvaliacoesBusiness;
+using System;
 
 namespace basecs.Business.Caracteristicas
 {
@@ -10,7 +11,7 @@ namespace basecs.Business.Caracteristicas
         {
             string validation = "";
 
-            if (model.CaracteristicaId > 0)
+            if (model.CaracteristicaId == Guid.Empty)
             {
                 validation += "Identificação do tipo de caracteristica invalido\n";
             }
@@ -24,17 +25,12 @@ namespace basecs.Business.Caracteristicas
                 }
             }
 
-            if (model.UsuarioInclusaoId < 1)
+            if (model.UsuarioInclusaoId == Guid.Empty)
             {
                 validation += "Identificação do usuario que incluiu e invalido\n";
             }
 
-            if (model.UsuarioUltimaAlteracaoId < 1)
-            {
-                validation += "Identificacao do usuario que incluiu e invalido\n";
-            }
-
-            if (model.CaracteristicaId < 1)
+            if (model.CaracteristicaId == Guid.Empty)
             {
                 validation += "Identificacao do tipo de caracteristica\n";
             }
@@ -48,7 +44,7 @@ namespace basecs.Business.Caracteristicas
         {
             string validation = "";
 
-            if (model.CaracteristicaId == 0)
+            if (model.CaracteristicaId == Guid.Empty)
             {
                 validation += "Identificação do tipo de caracteristica invalido\n";
             }
@@ -62,12 +58,12 @@ namespace basecs.Business.Caracteristicas
                 }
             }
 
-            if (model.UsuarioUltimaAlteracaoId < 1)
+            if (model.UsuarioUltimaAlteracaoId == Guid.Empty)
             {
                 validation += "Identificacao do usuario que incluiu e invalido\n";
             }
 
-            if (model.CaracteristicaId < 1)
+            if (model.CaracteristicaId == Guid.Empty)
             {
                 validation += "Identificacao do tipo de caracteristica\n";
             }
@@ -77,11 +73,11 @@ namespace basecs.Business.Caracteristicas
         #endregion
 
         #region DELETE
-        public string DeleteValidation(int id)
+        public string DeleteValidation(Guid id)
         {
             string validation = "";
 
-            if (id == 0)
+            if (id == Guid.Empty)
             {
                 validation += "Identificação do tipo de caracteristica invalido\n";
             }

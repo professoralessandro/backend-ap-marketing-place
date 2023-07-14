@@ -8,22 +8,30 @@ namespace basecs.Models
 {
     public partial class Garantia
     {
-        public Garantia()
-        {
-            Compras = new HashSet<Compra>();
-        }
+        public Guid GarantiaId { get; set; }
 
-        public int GarantiaId { get; set; }
         public TipoGarantiaEnum TipoGarantia { get; set; }
+
         public string Descricao { get; set; }
-        public decimal PrecoVenda { get; set; }
-        public bool Bloqueado { get; set; }
-        public DateTime Periodo { get; set; }
-        public int UsuarioInclusaoId { get; set; }
-        public int UsuarioUltimaAlteracaoId { get; set; }
+
+        public string Detalhes { get; set; }
+
+        public string Periodo { get; set; }
+
+        public DateTime? Inicio { get; set; }
+
+        public DateTime? Fim { get; set; }
+
+        public Guid UsuarioInclusaoId { get; set; }
+
+        public Guid? UsuarioUltimaAlteracaoId { get; set; }
+
         public DateTime DataInclusao { get; set; }
-        public DateTime DataUltimaAlteracao { get; set; }
+
+        public DateTime? DataUltimaAlteracao { get; set; }
+
         public bool Ativo { get; set; }
-        public virtual ICollection<Compra> Compras { get; set; }
+
+        public virtual ICollection<Compra> Compras { get; set; } = new List<Compra>();
     }
 }

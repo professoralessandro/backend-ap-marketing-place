@@ -14,7 +14,7 @@ namespace basecs.Dtos.Usuarios
         public string Sexo { get; set; }
         public string EstadoCivil { get; set; }
         public string Email { get; set; }
-        public int UsuarioInclusaoId { get; set; }
+        public Guid UsuarioInclusaoId { get; set; }
         public DateTime DataUltimoLogin { get; set; }
     }
 }

@@ -1,4 +1,5 @@
-﻿using basecs.Business.Avaliacoes;
+﻿#region IMPORTS
+using basecs.Business.Avaliacoes;
 using basecs.Business.Bloqueios;
 using basecs.Business.Caracteristicas;
 using basecs.Business.Compras;
@@ -30,6 +31,7 @@ using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.DependencyInjection;
 using Microsoft.Extensions.Hosting;
 using Microsoft.OpenApi.Models;
+#endregion
 
 namespace basecs
 {

@@ -6,6 +6,7 @@ using basecs.Business.Caracteristicas;
 using basecs.Data;
 using basecs.Enuns;
 using basecs.Helpers.Helpers.Validators;
+using basecs.Interfaces.Business.AvaliacoesBusiness;
 using basecs.Interfaces.Services.ICaracteristicasService;
 using basecs.Models;
 using Microsoft.Data.SqlClient;
@@ -17,19 +18,19 @@ namespace basecs.Services
     {
         #region ATRIBUTTES
         private readonly MyDbContext _context;
-        private readonly CaracteristicasBusiness _business;
+        private readonly ICaracteristicasBusiness _business;
         #endregion
 
         #region CONTRUCTORS
-        public CaracteristicasService(MyDbContext context)
+        public CaracteristicasService(MyDbContext context, ICaracteristicasBusiness busines)
         {
             _context = context;
-            _business = new CaracteristicasBusiness();
+            _business = busines;
         }
         #endregion
 
         #region FIND BY ID
-        public async Task<Caracteristica> FindById(int id)
+        public async Task<Caracteristica> FindById(Guid id)
         {
             try
             {
@@ -44,7 +45,7 @@ namespace basecs.Services
 
         #region RETURN LIST WITH PARAMETERS PAGINATED
         public async Task<List<Caracteristica>> ReturnListWithParametersPaginated(
-                int? id,
+                Guid? id,
                 string descricao,
                 TipoCaracteristicaEnum? tipoCaracteristica,
                 bool? ativo,
@@ -80,7 +81,7 @@ namespace basecs.Services
 
         #region RETURN LIST WITH PARAMETERS
         public async Task<List<Caracteristica>> ReturnListWithParameters(
-                int? id,
+                Guid? id,
                 string descricao,
                 TipoCaracteristicaEnum? tipoCaracteristica,
                 bool? ativo
@@ -150,7 +151,7 @@ namespace basecs.Services
         #endregion        
 
         #region DELETE SERVIÇO DE DELETE
-        public async Task<Caracteristica> Delete(int id)
+        public async Task<Caracteristica> Delete(Guid id)
         {
             string validationMessage = _business.DeleteValidation(id);
 

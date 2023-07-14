@@ -1,4 +1,5 @@
 ﻿using basecs.Models;
+using System;
 using System.Collections.Generic;
 using System.Threading.Tasks;
 
@@ -7,15 +8,15 @@ namespace basecs.Interfaces.Services.IAvaliacoesService
     public interface IProdutoService
     {
         #region FIND BY ID
-        Task<Produto> FindById(int id);
+        Task<Produto> FindById(Guid id);
         #endregion
 
         #region RETURN LIST WITH PARAMETERS PAGINATED
-        Task<List<Produto>> ReturnListWithParametersPaginated(int? id, string descricao, bool? ativo, int? pageNumber, int? rowspPage);
+        Task<List<Produto>> ReturnListWithParametersPaginated(Guid? id, string descricao, bool? ativo, int? pageNumber, int? rowspPage);
         #endregion
 
         #region RETURN LIST WITH PARAMETERS
-        Task<List<Produto>> ReturnListWithParameters(int? id, string descricao, bool? ativo);
+        Task<List<Produto>> ReturnListWithParameters(Guid? id, string descricao, bool? ativo);
         #endregion
 
         #region INSERT
@@ -27,7 +28,7 @@ namespace basecs.Interfaces.Services.IAvaliacoesService
         #endregion        
 
         #region DELETE SERVIÇO DE DELETE
-        Task<Produto> Delete(int id);
+        Task<Produto> Delete(Guid id);
         #endregion
     }
 }

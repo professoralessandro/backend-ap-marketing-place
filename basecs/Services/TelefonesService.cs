@@ -7,8 +7,8 @@ using System.Threading.Tasks;
 using System;
 using Microsoft.EntityFrameworkCore;
 using System.Linq;
-using basecs.Business.Telefones;
 using basecs.Interfaces.Services.ITelefonesService;
+using basecs.Interfaces.Business.IAvaliacoesBusiness;
 
 namespace basecs.Services
 {
@@ -16,19 +16,19 @@ namespace basecs.Services
     {
         #region ATRIBUTTES
         private readonly MyDbContext _context;
-        private readonly TelefonesBusiness _business;
+        private readonly ITelefonesBusiness _business;
         #endregion
 
         #region CONTRUCTORS
-        public TelefonesService(MyDbContext context)
+        public TelefonesService(MyDbContext context, ITelefonesBusiness business)
         {
             _context = context;
-            _business = new TelefonesBusiness();
+            _business = business;
         }
         #endregion
 
         #region FIND BY ID
-        public async Task<Telefone> FindById(int id)
+        public async Task<Telefone> FindById(Guid id)
         {
             try
             {
@@ -43,7 +43,7 @@ namespace basecs.Services
 
         #region RETURN LIST WITH PARAMETERS PAGINATED
         public async Task<List<Telefone>> ReturnListWithParametersPaginated(
-                int? id,
+                Guid? id,
                 string descricao,
                 bool? ativo,
                 int? pageNumber,
@@ -77,7 +77,7 @@ namespace basecs.Services
 
         #region RETURN LIST WITH PARAMETERS
         public async Task<List<Telefone>> ReturnListWithParameters(
-                int? id,
+                Guid? id,
                 string descricao,
                 bool? ativo
             )
@@ -152,7 +152,7 @@ namespace basecs.Services
         #endregion        
 
         #region DELETE SERVIÇO DE DELETE
-        public async Task<Telefone> Delete(int id)
+        public async Task<Telefone> Delete(Guid id)
         {
             try
             {

@@ -1,5 +1,6 @@
 ﻿using basecs.Dtos.Usuarios;
 using basecs.Interfaces.Services.IUsuariosService;
+using System;
 using System.Threading.Tasks;
 
 namespace basecs.Interfaces.Business.IAvaliacoesBusiness
@@ -15,7 +16,7 @@ namespace basecs.Interfaces.Business.IAvaliacoesBusiness
         #endregion
 
         #region DELETE
-        public string DeleteValidation(int id);
+        public string DeleteValidation(Guid id);
         #endregion
     }
 }

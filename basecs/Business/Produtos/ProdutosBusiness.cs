@@ -1,5 +1,6 @@
 ﻿using basecs.Helpers.Helpers.Validators;
 using basecs.Interfaces.Business.IAvaliacoesBusiness;
+using System;
 
 namespace basecs.Business.Produtos
 {
@@ -10,7 +11,7 @@ namespace basecs.Business.Produtos
         {
             string validation = "";
 
-            if (model.ProdutoId > 0)
+            if (model.ProdutoId == Guid.Empty)
             {
                 validation += "Identificação do produto invalido\n";
             }
@@ -24,14 +25,9 @@ namespace basecs.Business.Produtos
                 }
             }
 
-            if (model.UsuarioInclusaoId < 1)
+            if (model.UsuarioInclusaoId == Guid.Empty)
             {
                 validation += "Identificação do usuario que incluiu e invalido\n";
-            }
-
-            if (model.UsuarioUltimaAlteracaoId < 1)
-            {
-                validation += "Identificacao do usuario que incluiu e invalido\n";
             }
 
             return validation;
@@ -43,7 +39,7 @@ namespace basecs.Business.Produtos
         {
             string validation = "";
 
-            if (model.ProdutoId == 0)
+            if (model.ProdutoId == Guid.Empty)
             {
                 validation += "Identificação do produto invalido\n";
             }
@@ -57,7 +53,7 @@ namespace basecs.Business.Produtos
                 }
             }
 
-            if (model.UsuarioUltimaAlteracaoId < 1)
+            if (model.UsuarioUltimaAlteracaoId == Guid.Empty)
             {
                 validation += "Identificacao do usuario que incluiu e invalido\n";
             }
@@ -67,11 +63,11 @@ namespace basecs.Business.Produtos
         #endregion
 
         #region DELETE
-        public string DeleteValidation(int id)
+        public string DeleteValidation(Guid id)
         {
             string validation = "";
 
-            if (id == 0)
+            if (id == Guid.Empty)
             {
                 validation += "Identificação do produto invalido\n";
             }

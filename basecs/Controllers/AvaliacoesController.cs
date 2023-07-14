@@ -2,7 +2,6 @@ using System;
 using System.Collections.Generic;
 using basecs.Helpers.Patterns.Controller;
 using basecs.Models;
-using basecs.Services;
 using Microsoft.AspNetCore.Mvc;
 using System.Threading.Tasks;
 using basecs.Interfaces.Services.ILogsService;
@@ -28,7 +27,7 @@ namespace backend_adm.Controllers
         #region RETURN LIST PAGINATED
         [HttpGet, Route("paginated")]
         public async Task<ActionResult<List<Avaliacao>>> ReturnListWithParameters(
-                [FromQuery] int? id,
+                [FromQuery] Guid? id,
                 [FromQuery] string descricao,
                 [FromQuery] bool? ativo,
                 [FromQuery] int? pageNumber,
@@ -49,7 +48,7 @@ namespace backend_adm.Controllers
         #region RETURN LIST WITH PARAMETERS
         [HttpGet]
         public async Task<ActionResult<List<Avaliacao>>> ReturnListWithParameters(
-            [FromQuery] int? id,
+            [FromQuery] Guid? id,
             [FromQuery] string descricao,
             [FromQuery] bool? ativo
             )
@@ -105,7 +104,7 @@ namespace backend_adm.Controllers
 
         #region DELETE
         [HttpDelete]
-        public async Task<ActionResult> Delete(Int32 id)
+        public async Task<ActionResult> Delete(Guid id)
         {
             try
             {

@@ -2,12 +2,14 @@
 #nullable disable
 
 using basecs.Enuns;
+using System;
 
 namespace basecs.Models
 {
     public partial class NotasFiscai
     {
-        public int NotaFiscalId { get; set; }
+        public Guid NotaFiscalId { get; set; }
+
         public TipoNotaFiscalEnum TipoNotaFiscal { get; set; }
     }
 }

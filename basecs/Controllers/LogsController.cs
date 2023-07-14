@@ -2,20 +2,20 @@
 using System.Collections.Generic;
 using basecs.Helpers.Patterns.Controller;
 using basecs.Models;
-using basecs.Services;
 using Microsoft.AspNetCore.Mvc;
 using System.Threading.Tasks;
+using basecs.Interfaces.Services.ILogsService;
 
 namespace basecs.Controllers
 {
     public class LogsController : ControllerCS
     {
         #region ATRIBUTTES
-        private readonly LogsService _service;
+        private readonly ILogsService _service;
         #endregion
 
         #region CONSTRUCTORS
-        public LogsController([FromServices] LogsService service)
+        public LogsController([FromServices] ILogsService service)
         {
             _service = service;
         }
@@ -44,10 +44,10 @@ namespace basecs.Controllers
         #region RETURN LIST WITH PARAMETERS
         [HttpGet]
         public async Task<ActionResult<List<Log>>> ReturnListWithParameters(
-                [FromQuery] int? id,
+                [FromQuery] Guid? id,
                 [FromQuery] string request,
                 [FromQuery] string method,
-                [FromQuery] int? userAddedId,
+                [FromQuery] Guid? userAddedId,
                 [FromQuery] DateTime? dateAdded
             )
         {

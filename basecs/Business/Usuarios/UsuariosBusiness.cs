@@ -2,6 +2,7 @@
 using basecs.Helpers.Helpers.Validators;
 using basecs.Interfaces.Business.IAvaliacoesBusiness;
 using basecs.Interfaces.Services.IUsuariosService;
+using System;
 using System.Linq;
 using System.Threading.Tasks;
 
@@ -9,17 +10,6 @@ namespace basecs.Business.Usuarios
 {
     public class UsuariosBusiness : IUsuariosBusiness
     {
-        //#region ATTRIBUTES
-        //private readonly IUsuariosService _usuariosService;
-        //#endregion
-
-        //#region CONSTRUCTORES
-        //public UsuariosBusiness(IUsuariosService usuariosService)
-        //{
-        //    _usuariosService = usuariosService;
-        //}
-        //#endregion
-
         #region INSERT
         public async Task<string> InsertValidation(InsertUserDto model, IUsuariosService _usuariosService)
         {
@@ -47,7 +37,7 @@ namespace basecs.Business.Usuarios
                 }
             }
 
-            if (model.UsuarioInclusaoId < 1)
+            if (model.UsuarioInclusaoId == Guid.Empty)
             {
                 validation += "Identificação do usuario que incluiu e invalido\n";
             }
@@ -75,7 +65,7 @@ namespace basecs.Business.Usuarios
         {
             string validation = "";
 
-            if (model.UsuarioId == 0)
+            if (model.UsuarioId == Guid.Empty)
             {
                 validation += "Identificação do avaliação invalido\n";
             }
@@ -103,7 +93,7 @@ namespace basecs.Business.Usuarios
                 }
             }
 
-            if (model.UsuarioUltimaAlteracaoId < 1)
+            if (model.UsuarioUltimaAlteracaoId == Guid.Empty)
             {
                 validation += "Identificacao do usuario que incluiu e invalido\n";
             }
@@ -113,11 +103,11 @@ namespace basecs.Business.Usuarios
         #endregion
 
         #region DELETE
-        public string DeleteValidation(int id)
+        public string DeleteValidation(Guid id)
         {
             string validation = "";
 
-            if (id == 0)
+            if (id == Guid.Empty)
             {
                 validation += "Identificação do avaliação invalido\n";
             }

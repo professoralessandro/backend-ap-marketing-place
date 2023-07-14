@@ -5,10 +5,10 @@ using Microsoft.Data.SqlClient;
 using System.Collections.Generic;
 using System.Threading.Tasks;
 using System;
-using basecs.Business.Produtos;
 using Microsoft.EntityFrameworkCore;
 using System.Linq;
 using basecs.Interfaces.Services.IAvaliacoesService;
+using basecs.Interfaces.Business.IAvaliacoesBusiness;
 
 namespace basecs.Services
 {
@@ -16,19 +16,19 @@ namespace basecs.Services
     {
         #region ATRIBUTTES
         private readonly MyDbContext _context;
-        private readonly ProdutosBusiness _business;
+        private readonly IProdutosBusiness _business;
         #endregion
 
         #region CONTRUCTORS
-        public ProdutoService(MyDbContext context)
+        public ProdutoService(MyDbContext context, IProdutosBusiness business)
         {
             _context = context;
-            _business = new ProdutosBusiness();
+            _business = business;
         }
         #endregion
 
         #region FIND BY ID
-        public async Task<Produto> FindById(int id)
+        public async Task<Produto> FindById(Guid id)
         {
             try
             {
@@ -43,7 +43,7 @@ namespace basecs.Services
 
         #region RETURN LIST WITH PARAMETERS PAGINATED
         public async Task<List<Produto>> ReturnListWithParametersPaginated(
-                int? id,
+                Guid? id,
                 string descricao,
                 bool? ativo,
                 int? pageNumber,
@@ -77,7 +77,7 @@ namespace basecs.Services
 
         #region RETURN LIST WITH PARAMETERS
         public async Task<List<Produto>> ReturnListWithParameters(
-                int? id,
+                Guid? id,
                 string descricao,
                 bool? ativo
             )
@@ -152,7 +152,7 @@ namespace basecs.Services
         #endregion        
 
         #region DELETE SERVIÇO DE DELETE
-        public async Task<Produto> Delete(int id)
+        public async Task<Produto> Delete(Guid id)
         {
             try
             {

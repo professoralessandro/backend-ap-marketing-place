@@ -1,9 +1,6 @@
 ﻿using basecs.Helpers.Helpers.Validators;
 using basecs.Interfaces.Business.IAvaliacoesBusiness;
 using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Threading.Tasks;
 
 namespace basecs.Business.Configuracoes
 {
@@ -14,7 +11,7 @@ namespace basecs.Business.Configuracoes
         {
             string validation = "";
 
-            if (model.ConfiguracaoId > 0)
+            if (model.ConfiguracaoId == Guid.Empty)
             {
                 validation += "Identificação do configuracaos invalido\n";
             }
@@ -28,12 +25,7 @@ namespace basecs.Business.Configuracoes
                 }
             }
 
-            if (model.UsuarioInclusaoId < 1)
-            {
-                validation += "Identificação do usuario que incluiu e invalido\n";
-            }
-
-            if (model.UsuarioUltimaAlteracaoId < 1)
+            if (model.UsuarioInclusaoId == Guid.Empty)
             {
                 validation += "Identificação do usuario que incluiu e invalido\n";
             }
@@ -47,7 +39,7 @@ namespace basecs.Business.Configuracoes
         {
             string validation = "";
 
-            if (model.ConfiguracaoId == 0)
+            if (model.ConfiguracaoId == Guid.Empty)
             {
                 validation += "Identificação da configuração invalido\n";
             }
@@ -61,7 +53,7 @@ namespace basecs.Business.Configuracoes
                 }
             }
 
-            if (model.UsuarioUltimaAlteracaoId < 1)
+            if (model.UsuarioUltimaAlteracaoId == Guid.Empty)
             {
                 validation += "Identificação do usuario que incluiu e invalido\n";
             }
@@ -71,11 +63,11 @@ namespace basecs.Business.Configuracoes
         #endregion
 
         #region DELETE
-        public string DeleteValidation(int id)
+        public string DeleteValidation(Guid id)
         {
             string validation = "";
 
-            if (id == 0)
+            if (id == Guid.Empty)
             {
                 validation += "Identificação da configuração invalido\n";
             }

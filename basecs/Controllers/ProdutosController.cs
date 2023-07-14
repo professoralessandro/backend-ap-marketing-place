@@ -2,21 +2,22 @@ using System;
 using System.Collections.Generic;
 using basecs.Helpers.Patterns.Controller;
 using basecs.Models;
-using basecs.Services;
 using Microsoft.AspNetCore.Mvc;
 using System.Threading.Tasks;
+using basecs.Interfaces.Services.ILogsService;
+using basecs.Interfaces.Services.IAvaliacoesService;
 
 namespace backend_adm.Controllers
 {
     public class ProdutoController : ControllerCS
     {
         #region ATRIBUTTES
-        private readonly ProdutoService _service;
-        private readonly LogsService _log;
+        private readonly IProdutoService _service;
+        private readonly ILogsService _log;
         #endregion
 
         #region CONSTRUCTORS
-        public ProdutoController([FromServices] ProdutoService service, [FromServices] LogsService log)
+        public ProdutoController([FromServices] IProdutoService service, [FromServices] ILogsService log)
         {
             _service = service;
             _log = log;
@@ -26,7 +27,7 @@ namespace backend_adm.Controllers
         #region RETURN LIST PAGINATED
         [HttpGet, Route("paginated")]
         public async Task<ActionResult<List<Produto>>> ReturnListWithParameters(
-                [FromQuery] int? id,
+                [FromQuery] Guid? id,
                 [FromQuery] string descricao,
                 [FromQuery] bool? ativo,
                 [FromQuery] int? pageNumber,
@@ -47,7 +48,7 @@ namespace backend_adm.Controllers
         #region RETURN LIST WITH PARAMETERS
         [HttpGet]
         public async Task<ActionResult<List<Produto>>> ReturnListWithParameters(
-            [FromQuery] int? id,
+            [FromQuery] Guid? id,
             [FromQuery] string descricao,
             [FromQuery] bool? ativo
             )
@@ -103,7 +104,7 @@ namespace backend_adm.Controllers
 
         #region DELETE
         [HttpDelete]
-        public async Task<ActionResult> Delete(Int32 id)
+        public async Task<ActionResult> Delete(Guid id)
         {
             try
             {

@@ -1,4 +1,6 @@
-﻿namespace basecs.Interfaces.Business.AvaliacoesBusiness
+﻿using System;
+
+namespace basecs.Interfaces.Business.AvaliacoesBusiness
 {
     public interface ICaracteristicasBusiness
     {
@@ -11,7 +13,7 @@
         #endregion
 
         #region DELETE
-        public string DeleteValidation(int id);
+        public string DeleteValidation(Guid id);
         #endregion
     }
 }

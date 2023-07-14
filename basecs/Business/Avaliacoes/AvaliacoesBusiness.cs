@@ -1,5 +1,6 @@
 ﻿using basecs.Helpers.Helpers.Validators;
 using basecs.Interfaces.Business.IAvaliacoesBusiness;
+using System;
 
 namespace basecs.Business.Avaliacoes
 {
@@ -10,7 +11,7 @@ namespace basecs.Business.Avaliacoes
         {
             string validation = "";
 
-            if (model.AvaliacaoId > 0)
+            if (model.AvaliacaoId ==  System.Guid.Empty)
             {
                 validation += "Identificação do avaliação invalido\n";
             }
@@ -24,12 +25,12 @@ namespace basecs.Business.Avaliacoes
                 }
             }
 
-            if (model.UsuarioInclusaoId < 1)
+            if (model.UsuarioInclusaoId == System.Guid.Empty)
             {
                 validation += "Identificação do usuario que incluiu e invalido\n";
             }
 
-            if (model.UsuarioUltimaAlteracaoId < 1)
+            if (model.UsuarioUltimaAlteracaoId == System.Guid.Empty)
             {
                 validation += "Identificacao do usuario que incluiu e invalido\n";
             }
@@ -43,7 +44,7 @@ namespace basecs.Business.Avaliacoes
         {
             string validation = "";
 
-            if (model.AvaliacaoId == 0)
+            if (model.AvaliacaoId == System.Guid.Empty)
             {
                 validation += "Identificação do avaliação invalido\n";
             }
@@ -57,7 +58,7 @@ namespace basecs.Business.Avaliacoes
                 }
             }
 
-            if (model.UsuarioUltimaAlteracaoId < 1)
+            if (model.UsuarioUltimaAlteracaoId == System.Guid.Empty)
             {
                 validation += "Identificacao do usuario que incluiu e invalido\n";
             }
@@ -67,11 +68,11 @@ namespace basecs.Business.Avaliacoes
         #endregion
 
         #region DELETE
-        public string DeleteValidation(int id)
+        public string DeleteValidation(Guid id)
         {
             string validation = "";
 
-            if (id == 0)
+            if (id == Guid.Empty)
             {
                 validation += "Identificação do avaliação invalido\n";
             }

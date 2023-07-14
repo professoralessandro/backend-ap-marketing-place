@@ -33,7 +33,7 @@ namespace basecs.Services
         #endregion
 
         #region FIND BY ID
-        public async Task<Usuario> FindById(int id)
+        public async Task<Usuario> FindById(Guid id)
         {
             try
             {
@@ -48,7 +48,7 @@ namespace basecs.Services
 
         #region RETURN LIST WITH PARAMETERS PAGINATED
         public async Task<List<Usuario>> ReturnListWithParametersPaginated(
-                int? id,
+                Guid? id,
                 string nome,
                 string nmrDocumento,
                 string email,
@@ -83,7 +83,7 @@ namespace basecs.Services
 
         #region RETURN LIST WITH PARAMETERS
         public async Task<List<Usuario>> ReturnListWithParameters(
-                int? id,
+                Guid? id,
                 string nome,
                 string nmrDocumento,
                 string email,
@@ -164,7 +164,7 @@ namespace basecs.Services
         #endregion        
 
         #region DELETE
-        public async Task<Usuario> Delete(int id)
+        public async Task<Usuario> Delete(Guid id)
         {
             try
             {

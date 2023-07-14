@@ -1,5 +1,6 @@
 ﻿using basecs.Helpers.Helpers.Validators;
 using basecs.Interfaces.Business.IAvaliacoesBusiness;
+using System;
 
 namespace basecs.Business.Compras
 {
@@ -10,17 +11,17 @@ namespace basecs.Business.Compras
         {
             string validation = "";
 
-            if (model.CompraId > 0)
+            if (model.CompraId == Guid.Empty)
             {
                 validation += "Identificação da compra invalido\n";
             }
 
-            if (model.ProdutoId < 1)
+            if (model.ProdutoId == Guid.Empty)
             {
                 validation += "Identificacao do produto que incluiu e invalido\n";
             }
 
-            if (model.CompradorId < 1)
+            if (model.CompradorId == Guid.Empty)
             {
                 validation += "Identificacao da compra que incluiu e invalido\n";
             }
@@ -35,42 +36,37 @@ namespace basecs.Business.Compras
                 validation += "Identificacao do status da compra que incluiu e invalido\n";
             }
 
-            if (model.EntregaId < 1)
+            if (model.EntregaId == Guid.Empty)
             {
                 validation += "Identificacao da entrega que incluiu e invalido\n";
             }
 
-            if (model.LancamentoPaiId < 1)
+            if (model.LancamentoPaiId == Guid.Empty)
             {
                 validation += "Identificacao do lancamento que incluiu e invalido\n";
             }
 
-            if (model.EnderecoId < 1)
+            if (model.EnderecoId == Guid.Empty)
             {
                 validation += "Identificacao do endereço que incluiu e invalido\n";
             }
 
-            if (model.EnderecoId < 1)
+            if (model.EnderecoId == Guid.Empty)
             {
                 validation += "Identificacao do endereço que incluiu e invalido\n";
             }
 
-            if (model.GarantiaId < 1)
+            if (model.GarantiaId == Guid.Empty)
             {
                 validation += "Identificacao da garantia que incluiu e invalido\n";
             }
 
-            if (model.TelefoneId < 1)
-            {
-                validation += "Identificacao da telefone que incluiu e invalido\n";
-            }
-
-            if (model.VendedorId < 1)
+            if (model.VendedorId == Guid.Empty)
             {
                 validation += "Identificacao do vendedor que incluiu e invalido\n";
             }
 
-            if (model.AvaliacaoId < 1)
+            if (model.AvaliacaoId == Guid.Empty)
             {
                 validation += "Identificacao da avaliação que incluiu e invalido\n";
             }
@@ -84,7 +80,7 @@ namespace basecs.Business.Compras
         {
             string validation = "";
 
-            if (model.CompraId == 0)
+            if (model.CompraId == Guid.Empty)
             {
                 validation += "Identificação da compra invalido\n";
             }
@@ -98,12 +94,12 @@ namespace basecs.Business.Compras
                 }
             }
 
-            if (model.ProdutoId < 1)
+            if (model.ProdutoId == Guid.Empty)
             {
                 validation += "Identificacao do produto que incluiu e invalido\n";
             }
 
-            if (model.CompradorId < 1)
+            if (model.CompradorId == Guid.Empty)
             {
                 validation += "Identificacao da compra que incluiu e invalido\n";
             }
@@ -118,42 +114,37 @@ namespace basecs.Business.Compras
                 validation += "Identificacao do status da compra que incluiu e invalido\n";
             }
 
-            if (model.EntregaId < 1)
+            if (model.EntregaId == Guid.Empty)
             {
                 validation += "Identificacao da entrega que incluiu e invalido\n";
             }
 
-            if (model.LancamentoPaiId < 1)
+            if (model.LancamentoPaiId == Guid.Empty)
             {
                 validation += "Identificacao do lancamento que incluiu e invalido\n";
             }
 
-            if (model.EnderecoId < 1)
+            if (model.EnderecoId == Guid.Empty)
             {
                 validation += "Identificacao do endereço que incluiu e invalido\n";
             }
 
-            if (model.EnderecoId < 1)
+            if (model.EnderecoId == Guid.Empty)
             {
                 validation += "Identificacao do endereço que incluiu e invalido\n";
             }
 
-            if (model.GarantiaId < 1)
+            if (model.GarantiaId == Guid.Empty)
             {
                 validation += "Identificacao da garantia que incluiu e invalido\n";
             }
 
-            if (model.TelefoneId < 1)
-            {
-                validation += "Identificacao da telefone que incluiu e invalido\n";
-            }
-
-            if (model.VendedorId < 1)
+            if (model.VendedorId == Guid.Empty)
             {
                 validation += "Identificacao do vendedor que incluiu e invalido\n";
             }
 
-            if (model.AvaliacaoId < 1)
+            if (model.AvaliacaoId == Guid.Empty)
             {
                 validation += "Identificacao da avaliação que incluiu e invalido\n";
             }
@@ -163,11 +154,11 @@ namespace basecs.Business.Compras
         #endregion
 
         #region DELETE
-        public string DeleteValidation(int id)
+        public string DeleteValidation(Guid id)
         {
             string validation = "";
 
-            if (id == 0)
+            if (id == Guid.Empty)
             {
                 validation += "Identificação da compra invalido\n";
             }

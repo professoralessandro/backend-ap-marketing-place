@@ -1,5 +1,6 @@
 ﻿using basecs.Helpers.Helpers.Validators;
 using basecs.Interfaces.Business.AvaliacoesBusiness;
+using System;
 
 namespace basecs.Business.Bloqueios
 {
@@ -10,7 +11,7 @@ namespace basecs.Business.Bloqueios
         {
             string validation = "";
 
-            if (model.BloqueioId > 0)
+            if (model.BloqueioId == Guid.Empty)
             {
                 validation += "Identificação do bloqueios invalido\n";
             }
@@ -24,14 +25,9 @@ namespace basecs.Business.Bloqueios
                 }
             }
 
-            if (model.UsuarioInclusaoId < 1)
+            if (model.UsuarioInclusaoId == Guid.Empty)
             {
                 validation += "Identificação do usuario que incluiu e invalido\n";
-            }
-
-            if (model.UsuarioUltimaAlteracaoId < 1)
-            {
-                validation += "Identificacao do usuario que incluiu e invalido\n";
             }
 
             return validation;
@@ -43,7 +39,7 @@ namespace basecs.Business.Bloqueios
         {
             string validation = "";
 
-            if (model.BloqueioId == 0)
+            if (model.BloqueioId == Guid.Empty)
             {
                 validation += "Identificação do bloqueios invalido\n";
             }
@@ -57,7 +53,7 @@ namespace basecs.Business.Bloqueios
                 }
             }
 
-            if (model.UsuarioUltimaAlteracaoId < 1)
+            if (model.UsuarioUltimaAlteracaoId == Guid.Empty)
             {
                 validation += "Identificacao do usuario que incluiu e invalido\n";
             }
@@ -67,11 +63,11 @@ namespace basecs.Business.Bloqueios
         #endregion
 
         #region DELETE
-        public string DeleteValidation(int id)
+        public string DeleteValidation(Guid id)
         {
             string validation = "";
 
-            if (id == 0)
+            if (id == Guid.Empty)
             {
                 validation += "Identificação do bloqueios invalido\n";
             }

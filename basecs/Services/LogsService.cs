@@ -26,7 +26,7 @@ namespace basecs.Services
         #endregion
 
         #region FIND BY ID
-        public async Task<Log> FindById(int id)
+        public async Task<Log> FindById(Guid id)
         {
             try
             {
@@ -73,10 +73,10 @@ namespace basecs.Services
 
         #region RETURN LIST WITH PARAMETERS
         public async Task<List<Log>> ReturnListWithParameters(
-                long? id,
+                Guid? id,
                 string request,
                 string method,
-                int? userAddedId,
+                Guid? userAddedId,
                 DateTime? dateAdded
             )
         {
@@ -100,7 +100,7 @@ namespace basecs.Services
         #endregion
 
         #region CREATE
-        public async Task<Log> Create(HttpRequest request, HttpResponse response, string message, int userId = 1)
+        public async Task<Log> Create(HttpRequest request, HttpResponse response, string message, string userId = "00000000-0000-0000-0000-000000000000")
         {
             try
             {
@@ -110,7 +110,7 @@ namespace basecs.Services
                     Request = $"{request.Scheme}://{request.Host.ToString()}{request.Path.ToString()}",
                     Response = response.StatusCode,
                     Message = message,
-                    UserAddedId = userId,
+                    UserAddedId = !string.IsNullOrEmpty(userId) ? Guid.Parse(userId) : Guid.Empty,
                     DateAdded = DateTime.Now
                 };
 

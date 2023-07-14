@@ -1,4 +1,5 @@
 ﻿using basecs.Models;
+using System;
 using System.Collections.Generic;
 using System.Threading.Tasks;
 
@@ -7,15 +8,15 @@ namespace basecs.Interfaces.Services.ITelefonesService
     public interface ITelefonesService
     {
         #region FIND BY ID
-        Task<Telefone> FindById(int id);
+        Task<Telefone> FindById(Guid id);
         #endregion
 
         #region RETURN LIST WITH PARAMETERS PAGINATED
-        Task<List<Telefone>> ReturnListWithParametersPaginated(int? id, string numero, bool? ativo, int? pageNumber, int? rowspPage);
+        Task<List<Telefone>> ReturnListWithParametersPaginated(Guid? id, string numero, bool? ativo, int? pageNumber, int? rowspPage);
         #endregion
 
         #region RETURN LIST WITH PARAMETERS
-        Task<List<Telefone>> ReturnListWithParameters(int? id, string numero, bool? ativo);
+        Task<List<Telefone>> ReturnListWithParameters(Guid? id, string numero, bool? ativo);
         #endregion
 
         #region INSERT
@@ -27,7 +28,7 @@ namespace basecs.Interfaces.Services.ITelefonesService
         #endregion        
 
         #region DELETE SERVIÇO DE DELETE
-        Task<Telefone> Delete(int id);
+        Task<Telefone> Delete(Guid id);
         #endregion
     }
 }

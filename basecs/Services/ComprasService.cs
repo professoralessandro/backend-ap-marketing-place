@@ -1,5 +1,4 @@
-﻿using basecs.Business.Compras;
-using basecs.Data;
+﻿using basecs.Data;
 using basecs.Dtos.Checkout.Request;
 using basecs.Dtos.Checkout.Test.Enum;
 using basecs.Enuns;
@@ -8,7 +7,6 @@ using basecs.Helpers.RumtimeStings;
 using basecs.Interfaces.Business.IAvaliacoesBusiness;
 using basecs.Interfaces.Services.IAvaliacoesService;
 using basecs.Interfaces.Services.IComprasService;
-using basecs.Interfaces.Services.ILogsService;
 using basecs.Interfaces.Services.IUsuariosService;
 using basecs.Models;
 using Microsoft.Data.SqlClient;
@@ -45,7 +43,7 @@ namespace basecs.Services
         #endregion
 
         #region FIND BY ID
-        public async Task<Compra> FindById(int id)
+        public async Task<Compra> FindById(Guid id)
         {
             try
             {
@@ -60,7 +58,7 @@ namespace basecs.Services
 
         #region RETURN LIST WITH PARAMETERS PAGINATED
         public async Task<List<Compra>> ReturnListWithParametersPaginated(
-                int? id,
+                Guid? id,
                 string codigoCompra,
                 int? produtoId,
                 int? compradorId,
@@ -70,7 +68,6 @@ namespace basecs.Services
                 int? lancamentoPaiId,
                 int? enderecoId,
                 int? garantiaId,
-                int? telefoneId,
                 int? vendedorId,
                 int? avaliacaoId,
                 bool? isPago,
@@ -94,7 +91,6 @@ namespace basecs.Services
                     new SqlParameter("@LancamentoPaiId", entregaId.Equals(null) ? DBNull.Value : lancamentoPaiId),
                     new SqlParameter("@EnderecoId", enderecoId.Equals(null) ? DBNull.Value : enderecoId),
                     new SqlParameter("@GarantiaId", garantiaId.Equals(null) ? DBNull.Value : garantiaId),
-                    new SqlParameter("@TelefoneId", telefoneId.Equals(null) ? DBNull.Value : telefoneId),
                     new SqlParameter("@VendedorId", vendedorId.Equals(null) ? DBNull.Value : vendedorId),
                     new SqlParameter("@AvaliacaoId", avaliacaoId.Equals(null) ? DBNull.Value : avaliacaoId),
                     new SqlParameter("@IsPago", isPago.Equals(null) ? DBNull.Value : isPago),
@@ -105,7 +101,7 @@ namespace basecs.Services
                     new SqlParameter("@RowspPage", rowspPage)
                 };
 
-                var storedProcedure = $@"[dbo].[ComprasPaginated] @Id, @CodigoCompra, @ProdutoId, @FormaPagamentoId, @StatusCompraId, @EntregaId, @LancamentoPaiId, @EnderecoId, @GarantiaId, @TelefoneId, @VendedorId, @AvaliacaoId, @IsPago, @IsEntregue, @IsAvaliado, @Ativo, @PageNumber, @RowspPage";
+                var storedProcedure = $@"[dbo].[ComprasPaginated] @Id, @CodigoCompra, @ProdutoId, @FormaPagamentoId, @StatusCompraId, @EntregaId, @LancamentoPaiId, @EnderecoId, @GarantiaId, @VendedorId, @AvaliacaoId, @IsPago, @IsEntregue, @IsAvaliado, @Ativo, @PageNumber, @RowspPage";
 
                 using (var context = this._context)
                 {
@@ -122,7 +118,7 @@ namespace basecs.Services
 
         #region RETURN LIST WITH PARAMETERS
         public async Task<List<Compra>> ReturnListWithParameters(
-            int? id,
+            Guid? id,
             string codigoCompra,
             int? produtoId,
             int? compradorId,
@@ -132,7 +128,6 @@ namespace basecs.Services
             int? lancamentoPaiId,
             int? enderecoId,
             int? garantiaId,
-            int? telefoneId,
             int? vendedorId,
             int? avaliacaoId,
             bool? isPago,
@@ -156,7 +151,6 @@ namespace basecs.Services
                     (c.LancamentoPaiId.Equals(lancamentoPaiId) || !lancamentoPaiId.Equals(null)) &&
                     (c.EnderecoId.Equals(enderecoId) || !enderecoId.Equals(null)) &&
                     (c.GarantiaId.Equals(garantiaId) || !garantiaId.Equals(null)) &&
-                    (c.TelefoneId.Equals(telefoneId) || !telefoneId.Equals(null)) &&
                     (c.VendedorId.Equals(vendedorId) || !vendedorId.Equals(null)) &&
                     (c.AvaliacaoId.Equals(avaliacaoId) || !avaliacaoId.Equals(null)) &&
                     (c.IsPago.Equals(isPago) || !isPago.Equals(null)) &&
@@ -225,7 +219,7 @@ namespace basecs.Services
         #endregion        
 
         #region DELETE SERVIÇO DE DELETE
-        public async Task<Compra> Delete(int id)
+        public async Task<Compra> Delete(Guid id)
         {
             try
             {
