@@ -13,6 +13,7 @@ using basecs.Interfaces.Business.AvaliacoesBusiness;
 using basecs.Interfaces.Business.IAvaliacoesBusiness;
 using basecs.Interfaces.Data;
 using basecs.Interfaces.Repository;
+using basecs.Interfaces.Repository.Produto;
 using basecs.Interfaces.Services.IAvaliacoesService;
 using basecs.Interfaces.Services.IBloqueiosService;
 using basecs.Interfaces.Services.ICaracteristicasService;
@@ -22,6 +23,8 @@ using basecs.Interfaces.Services.ILogsService;
 using basecs.Interfaces.Services.ITelefonesService;
 using basecs.Interfaces.Services.IUsuariosService;
 using basecs.Interfaces.Services.IWelcomeService;
+using basecs.Repository.Avaliacoes;
+using basecs.Repository.Produto;
 using basecs.Repository.Usuarios;
 using basecs.Services;
 using Microsoft.AspNetCore.Builder;
@@ -105,6 +108,8 @@ namespace basecs
 
             // REPOSITORYS
             services.AddScoped<IUsuariosRepository, UsuariosRepository>();
+            services.AddScoped<IProdutoRepository, ProdutoRepository>();
+            services.AddScoped<IAvaliacoesRepository, AvaliacoesRepository>();
 
             // BUSSINESS
             services.AddScoped<IAvaliacoesBusiness, AvaliacoesBusiness>();

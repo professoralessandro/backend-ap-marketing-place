@@ -14,6 +14,15 @@ namespace basecs.Interfaces.Services.IUsuariosService
 
         #region RETURN LIST WITH PARAMETERS PAGINATED
         Task<List<Usuario>> ReturnListWithParametersPaginated(Guid? id, string nome, string nmrDocumento, string email, bool? ativo, int? pageNumber, int? rowspPage);
+        Task<IEnumerable<UsuarioDto>> ReturnUsersWithParametersPaginated(
+                Guid? id,
+                string nome,
+                string nmrDocumento,
+                string email,
+                bool? ativo,
+                int? pageNumber,
+                int? rowspPage
+            );
         #endregion
 
         #region RETURN LIST WITH PARAMETERS

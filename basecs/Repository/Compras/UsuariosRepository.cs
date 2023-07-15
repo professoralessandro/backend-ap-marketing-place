@@ -1,6 +1,5 @@
 ﻿using basecs.Data;
 using basecs.Dtos.Compras;
-using basecs.Dtos.Usuarios;
 using basecs.Interfaces.Repository;
 using Dapper;
 using System;
@@ -22,7 +21,7 @@ namespace basecs.Repository
             string query = string.Empty;
 
             query = @"
-                DELETE FROM [seg].[Compras]
+                DELETE FROM [seg].[Usuarios]
                 WHERE [UsuarioId]=@Id;
             ";
 

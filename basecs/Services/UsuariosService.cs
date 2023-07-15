@@ -77,7 +77,17 @@ namespace basecs.Services
             {
                 throw new Exception("Não foi possível realizar a busca por usuarios: " + ex.Message);
             }
-
+        }
+        public async Task<IEnumerable<UsuarioDto>> ReturnUsersWithParametersPaginated(Guid? id, string nome, string nmrDocumento, string email, bool? ativo, int? pageNumber, int? rowspPage)
+        {
+            try
+            {
+                return await _repository.ReturnUsersWithParametersPaginated(id, nome, nmrDocumento, email, ativo, pageNumber, rowspPage);
+            }
+            catch (Exception ex)
+            {
+                throw new Exception("Não foi possível realizar a busca por usuarios: " + ex.Message);
+            }
         }
         #endregion
 

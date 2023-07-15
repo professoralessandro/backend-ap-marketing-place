@@ -217,7 +217,7 @@ namespace backend_adm.Controllers
                 if (!model.Product.Any()) throw new ValidationException("Erro na validacao dos produtos");
 
                 // PEGAR O ID DO USUARIO VINDO DO TOKEN E VALIDAR O USUARIO
-                var user = await _userService.ReturnListWithParametersPaginated(model.UsuarioId, null, null, null, true, 1, 1);
+                var user = await _userService.ReturnUsersWithParametersPaginated(model.UsuarioId, null, null, null, true, 1, 1);
 
                 // VALIDAR SE A COMPRA EXISTE
                 if (user == null) throw new ValidationException("Erro: nao foi possivel buscar pelo usuario na base de dados");
@@ -228,9 +228,11 @@ namespace backend_adm.Controllers
                 postData.Add("token", RumtimeStingsPagSeguro.Token);
                 postData.Add("currency", "BRL");
 
+                List<ProdutoDto> productToUpdate = new List<ProdutoDto>();
+
                 for (int i = 0; i < model.Product.Count; i++)
                 {
-                    var productFromDb = await _productService.FindById(model.Product[i].ProductId);
+                    var productFromDb = await _productService.GetById(model.Product[i].ProductId);
 
                     // VALIDAR SE A COMPRA EXISTE
                     if (productFromDb == null) throw new ValidationException("Erro: nao foi possivel buscar pela compra na base de dados");
@@ -243,6 +245,10 @@ namespace backend_adm.Controllers
                     postData.Add(string.Concat("itemAmount", i + 1), productFromDb.PrecoVenda.ToString()); // PRECO DE VENDA DO PRODUTO
                     postData.Add(string.Concat("itemQuantity", i + 1), model.Product[i].Quantity.ToString()); // QUANTIDADE SOLICITADA PELO CLIENTE
                     postData.Add(string.Concat("itemWeight", i + 1), productFromDb.Peso == null ? "10" : productFromDb.Peso.ToString()); // VALOT SETADO NA MAO POIS NAO TEMOS PESO CADASTRADO NA BASE
+
+                    productFromDb.Quantidade = productFromDb.Quantidade -= model.Product[i].Quantity;
+
+                    productToUpdate.Add(productFromDb);
                 }
 
                 //Reference.
@@ -288,6 +294,11 @@ namespace backend_adm.Controllers
 
                 //Obtém data de transação (Checkout).
                 var date = xmlDoc.GetElementsByTagName("date")[0];
+
+                for (int i = 0; i < productToUpdate.Count; i++)
+                {
+                    await _productService.Update(productToUpdate[i]);
+                }
 
                 //Retorna código do checkout.
                 return Ok(string.Concat(RumtimeStingsPagSeguro.CheckoutUrl, code.InnerText));

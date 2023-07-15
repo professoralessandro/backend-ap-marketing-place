@@ -1,7 +1,6 @@
 ﻿using basecs.Data;
 using basecs.Helpers.Helpers.Validators;
 using basecs.Models;
-using Microsoft.Data.SqlClient;
 using System.Collections.Generic;
 using System.Threading.Tasks;
 using System;
@@ -9,6 +8,8 @@ using Microsoft.EntityFrameworkCore;
 using System.Linq;
 using basecs.Interfaces.Services.IAvaliacoesService;
 using basecs.Interfaces.Business.IAvaliacoesBusiness;
+using basecs.Interfaces.Repository.Produto;
+using basecs.Dtos.Produtos;
 
 namespace basecs.Services
 {
@@ -17,13 +18,15 @@ namespace basecs.Services
         #region ATRIBUTTES
         private readonly MyDbContext _context;
         private readonly IProdutosBusiness _business;
+        private readonly IProdutoRepository _repository;
         #endregion
 
         #region CONTRUCTORS
-        public ProdutoService(MyDbContext context, IProdutosBusiness business)
+        public ProdutoService(MyDbContext context, IProdutosBusiness business, IProdutoRepository repository)
         {
             _context = context;
             _business = business;
+            _repository = repository;
         }
         #endregion
 
@@ -41,8 +44,22 @@ namespace basecs.Services
         }
         #endregion
 
+        #region FIND BY ID
+        public async Task<ProdutoDto> GetById(Guid id)
+        {
+            try
+            {
+                return await _repository.FindById(id);
+            }
+            catch (Exception ex)
+            {
+                throw new Exception("Houve um erro ao buscar o avaliação desejada!" + ex.Message);
+            }
+        }
+        #endregion
+
         #region RETURN LIST WITH PARAMETERS PAGINATED
-        public async Task<List<Produto>> ReturnListWithParametersPaginated(
+        public async Task<IEnumerable<ProdutoDto>> ReturnListWithParametersPaginated(
                 Guid? id,
                 string descricao,
                 bool? ativo,
@@ -52,20 +69,7 @@ namespace basecs.Services
         {
             try
             {
-                SqlParameter[] Params = {
-                    new SqlParameter("@Id", id.Equals(null) ? DBNull.Value : id),
-                    new SqlParameter("@Descricao", string.IsNullOrEmpty(descricao.RemoveInjections()) ? DBNull.Value : descricao.RemoveInjections()),
-                    new SqlParameter("@Ativo", ativo.Equals(null) ? DBNull.Value : ativo),
-                    new SqlParameter("@PageNumber", pageNumber),
-                    new SqlParameter("@RowspPage", rowspPage)
-                };
-
-                var storedProcedure = $@"[dbo].[ProdutoPaginated] @Id, @Descricao, @Ativo, @PageNumber, @RowspPage";
-
-                using (var context = this._context)
-                {
-                    return await context.Produtos.FromSqlRaw(storedProcedure, Params).ToListAsync();
-                }
+                return await _repository.ReturnListWithParametersPaginated(id, descricao, ativo, pageNumber, rowspPage);
             }
             catch (Exception ex)
             {
@@ -124,6 +128,18 @@ namespace basecs.Services
                 throw new Exception("Houve um erro ao incluir tipos bloqueios: " + ex.Message);
             }
         }
+
+        public async Task<int> Insert(ProdutoDto model)
+        {
+            try
+            {
+                return await _repository.Insert(model);
+            }
+            catch (Exception ex)
+            {
+                throw new Exception("Houve um erro ao incluir tipos bloqueios: " + ex.Message);
+            }
+        }
         #endregion
 
         #region UPDATE
@@ -147,6 +163,18 @@ namespace basecs.Services
             catch (Exception ex)
             {
                 throw new Exception("Houve um erro ao tentar editar o registro: " + ex.Message);
+            }
+        }
+
+        public async Task<int> Update(ProdutoDto model)
+        {
+            try
+            {
+                return await _repository.Update(model);
+            }
+            catch (Exception ex)
+            {
+                throw new Exception("Houve um erro ao editar o registro: " + ex.Message);
             }
         }
         #endregion        
@@ -173,6 +201,18 @@ namespace basecs.Services
             catch (Exception ex)
             {
                 throw new Exception("Houve um erro ao tentar deletar o registro: " + ex.Message);
+            }
+        }
+
+        public async Task<int> Remove(Guid id)
+        {
+            try
+            {
+                return await _repository.Delete(id);
+            }
+            catch (Exception ex)
+            {
+                throw new Exception("Houve um erro ao deletar o registro: " + ex.Message);
             }
         }
         #endregion

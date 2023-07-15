@@ -1,8 +1,12 @@
 ﻿using basecs.Data;
 using basecs.Dtos.Usuarios;
+using basecs.Helpers.Helpers.Validators;
 using basecs.Interfaces.Repository;
+using basecs.Models;
 using Dapper;
+using Microsoft.Data.SqlClient;
 using System;
+using System.Collections.Generic;
 using System.Threading.Tasks;
 
 namespace basecs.Repository.Usuarios
@@ -60,6 +64,23 @@ namespace basecs.Repository.Usuarios
             ";
 
             return await _session.Connection.ExecuteAsync(query, Params);
+        }
+
+        public async Task<IEnumerable<UsuarioDto>> ReturnUsersWithParametersPaginated(Guid? id, string nome, string nmrDocumento, string email, bool? ativo, int? pageNumber, int? rowspPage)
+        {
+            SqlParameter[] Params = {
+                    new SqlParameter("@Id", id.Equals(null) ? DBNull.Value : id),
+                    new SqlParameter("@Nome", string.IsNullOrEmpty(nome.RemoveInjections()) ? DBNull.Value : nome.RemoveInjections()),
+                    new SqlParameter("@NmrDocumento", string.IsNullOrEmpty(nmrDocumento.RemoveInjections()) ? DBNull.Value : nmrDocumento.RemoveInjections()),
+                    new SqlParameter("@Email", string.IsNullOrEmpty(email.RemoveInjections()) ? DBNull.Value : email.RemoveInjections()),
+                    new SqlParameter("@Ativo", ativo.Equals(null) ? DBNull.Value : ativo),
+                    new SqlParameter("@PageNumber", pageNumber),
+                    new SqlParameter("@RowspPage", rowspPage)
+                };
+
+            var storedProcedure = $@"[seg].[UsuariosPaginated] @Id, @Nome, @NmrDocumento, @Email, @Ativo, @PageNumber, @RowspPage";
+
+            return await _session.Connection.QueryAsync<UsuarioDto>(storedProcedure, Params);
         }
 
         public async Task<int> UpdateValidation(EditUserDto model)
